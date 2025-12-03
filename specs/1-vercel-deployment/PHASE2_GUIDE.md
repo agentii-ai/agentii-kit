@@ -48,9 +48,11 @@
 #### Step 3: Environment Variables (Settings → Environment Variables)
 1. Click **Add New**
 2. **Name**: `NEXT_PUBLIC_SITE_URL`
-3. **Value**: `https://kits.agentii.ai`
-4. **Environments**: Select "Production" (for now; can add Preview later)
+3. **Value**: `https://kits.agentii.ai` (or your Vercel preview domain for testing)
+4. **Environments**: Select "Production" (required), optionally add "Preview" and "Development"
 5. Click **Save**
+
+**Note**: This environment variable is NOT defined in vercel.json (to avoid secret reference errors). It must be configured directly in the Vercel dashboard.
 
 #### Step 4: Node.js Version (Settings → Node.js Version)
 1. **Version**: Select `18.x` (should be default)
