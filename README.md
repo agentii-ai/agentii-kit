@@ -4,7 +4,7 @@ A powerful, SEO-optimized blog and documentation platform built with **Nextra**,
 
 ## 🎯 Overview
 
-This project provides a separate Next.js application for Agentii's blog and documentation, deployed at `blog.agentii.ai` and `docs.agentii.ai`. It features:
+This project provides a separate Next.js application for Agentii's Kits website, deployed at `kits.agentii.ai`. It features:
 
 - **🚀 Static Site Generation (SSG)** - Fast, secure, and SEO-optimized
 - **📝 Markdown-First Authoring** - Write content in simple Markdown with YAML frontmatter
@@ -17,9 +17,9 @@ This project provides a separate Next.js application for Agentii's blog and docu
 
 ## 📋 Architecture
 
-### Design: Option B - Separate Next.js Application
+### Design: Separate Next.js Application
 
-This project is intentionally separated from the main Vite frontend to:
+This project is intentionally separated from the main Vite frontend for agentii.ai to:
 - Avoid framework conflicts (Vite vs Next.js)
 - Leverage Nextra's full feature set
 - Provide optimal static site generation for SEO
@@ -76,7 +76,7 @@ pnpm generate-sitemap # Generate XML sitemap (runs post-build)
 ## 📁 Project Structure
 
 ```
-frontend-blog/
+repo_name/
 ├── app/                    # Next.js App Router
 │   ├── blog/              # Blog routes (powered by Nextra)
 │   ├── docs/              # Documentation routes (powered by Nextra)
