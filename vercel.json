@@ -1,8 +1,5 @@
 {
   "buildCommand": "pnpm build",
   "installCommand": "pnpm install --frozen-lockfile",
-  "outputDirectory": ".next/out",
-  "env": {
-    "NEXT_PUBLIC_SITE_URL": "@next-public-site-url"
-  }
+  "outputDirectory": ".next/out"
 }
