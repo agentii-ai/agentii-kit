@@ -40,10 +40,12 @@
 3. Click on the project to open settings
 
 #### Step 2: Build Settings (Settings → Build & Development)
-1. **Build Command**: Set to `pnpm build`
+1. **Build Command**: Set to `npm run build` (auto-detected from vercel.json)
 2. **Output Directory**: Set to `.next/out`
-3. **Install Command**: Set to `pnpm install --frozen-lockfile`
+3. **Install Command**: Leave empty or set to `npm ci` (auto-detected from package-lock.json)
 4. Click **Save**
+
+**Note**: The project uses **npm** (not pnpm) because package-lock.json is present. Vercel auto-detects this.
 
 #### Step 3: Environment Variables (Settings → Environment Variables)
 1. Click **Add New**
@@ -74,9 +76,9 @@
 
 Print this and check off as you configure Vercel:
 
-- [ ] Build Command set to `pnpm build`
+- [ ] Build Command set to `npm run build`
 - [ ] Output Directory set to `.next/out`
-- [ ] Install Command set to `pnpm install --frozen-lockfile`
+- [ ] Install Command set to `npm ci` (or left empty for auto-detect)
 - [ ] NEXT_PUBLIC_SITE_URL = `https://kits.agentii.ai`
 - [ ] Node.js version = 18.x
 - [ ] Vercel Analytics = OFF

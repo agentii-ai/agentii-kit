@@ -38,24 +38,24 @@ This project is intentionally separated from the main Vite frontend for agentii.
 | MDX | @mdx-js | ^3.0.0 |
 | Syntax Highlighting | rehype-highlight | ^6.1.0 |
 | Language | TypeScript | ^5.3.0 |
-| Package Manager | pnpm | ^8.0.0 |
+| Package Manager | npm | (built-in) |
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 
 - Node.js 18+ ([Download](https://nodejs.org/))
-- pnpm 8+ (`npm install -g pnpm`)
+- npm (comes with Node.js)
 - Git
 
 ### Setup
 
 ```bash
 # Install dependencies
-pnpm install
+npm install
 
 # Start development server
-pnpm dev
+npm run dev
 
 # Open http://localhost:3000 in your browser
 ```
@@ -63,14 +63,14 @@ pnpm dev
 ### Development Commands
 
 ```bash
-pnpm dev              # Start development server
-pnpm build            # Build for production
-pnpm start            # Run production build
-pnpm lint             # Run ESLint
-pnpm type-check       # Check TypeScript types
-pnpm validate-frontmatter  # Validate all blog/doc frontmatter
-pnpm check-links      # Check for broken links
-pnpm generate-sitemap # Generate XML sitemap (runs post-build)
+npm run dev              # Start development server
+npm run build            # Build for production
+npm run start            # Run production build
+npm run lint             # Run ESLint
+npm run type-check       # Check TypeScript types
+npm run validate-frontmatter  # Validate all blog/doc frontmatter
+npm run check-links      # Check for broken links
+npm run generate-sitemap # Generate XML sitemap (runs post-build)
 ```
 
 ## 📁 Project Structure
