@@ -10,9 +10,7 @@
     "lint": "next lint",
     "type-check": "tsc --noEmit",
     "validate-frontmatter": "ts-node scripts/validate-frontmatter.ts",
-    "check-links": "ts-node scripts/check-links.ts",
-    "generate-sitemap": "ts-node scripts/generate-sitemap.ts",
-    "postbuild": "npm run generate-sitemap"
+    "check-links": "ts-node scripts/check-links.ts"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.0.0",
