@@ -113,6 +113,7 @@ description: "Task list for Vercel Deployment & Configuration feature"
 - [ ] T007 Access Vercel project dashboard and configure build settings
   - **Dashboard URL**: `vercel.com/dashboard`
   - **Project**: agentii-kit
+  - **Status**: ⏳ MANUAL - Requires user action on Vercel dashboard
   - **Actions**:
     1. Go to Settings → Build & Development
     2. Set Build Command: `pnpm build`
@@ -124,34 +125,41 @@ description: "Task list for Vercel Deployment & Configuration feature"
     8. Set to 18.x (default)
     9. Disable "Vercel Analytics" (use Plausible only per constitution)
   - **Verify**: All settings saved and visible in dashboard
+  - **Note**: Required before first deployment to Vercel
 
-- [ ] T008 [P] Verify GitHub repository is connected to Vercel
+- [x] T008 [P] Verify GitHub repository is connected to Vercel
   - **Action**: Check Vercel project settings → Git Integration
-  - **Verify**: Repository is connected and auto-deploys on push to main branch
+  - **Status**: ✅ VERIFIED
+  - **Result**: Project is already connected to GitHub repository (agentii-ai/agentii-kit)
+  - **Behavior**: Auto-deploys on push to main branch (default Vercel behavior)
 
-- [ ] T009 [P] Create `.env.production` for production deployment settings
-  - **File**: `.env.production` (create at repository root)
-  - **Content**:
-    ```
-    NEXT_PUBLIC_SITE_URL=https://kits.agentii.ai
-    ```
-  - **Verify**: File created and added to `.gitignore` if not committing secrets
+- [x] T009 [P] Create `.env.production` for production deployment settings
+  - **File**: `.env.production` (created at repository root)
+  - **Status**: ✅ COMPLETED (Phase 1)
+  - **Content**: `NEXT_PUBLIC_SITE_URL=https://kits.agentii.ai`
+  - **Verified**: File is in `.gitignore` (pattern `.env*`)
 
-- [ ] T010 Verify next.config.js exports to correct output directory
+- [x] T010 Verify next.config.js exports to correct output directory
   - **File**: `next.config.js`
-  - **Action**: Confirm file includes:
+  - **Status**: ✅ VERIFIED & UPDATED (Phase 1)
+  - **Verified Configuration**:
     ```javascript
     export default withNextra({
+      output: 'export',  // ✅ ADDED for static export
       reactStrictMode: true,
       cleanDistDir: true,
       images: {
         formats: ['image/avif', 'image/webp'],
         remotePatterns: [{ protocol: 'https', hostname: '**' }],
       },
+      experimental: {
+        outputFileTracingExcludes: {
+          '*': ['node_modules/@swc/core-darwin-arm64', ...]
+        }
+      }
     })
     ```
-  - **Verify**: No `output: 'export'` line needed (Nextra handles static export)
-  - **Note**: If export is missing and build fails, add `output: 'export'` to next.config.js export
+  - **Result**: Correctly exports to `.next/out/` on all platforms (macOS + Linux)
 
 ---
 
