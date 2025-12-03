@@ -1,0 +1,6 @@
+{
+  "data-overview": { "title": "Data Overview", "display": "page" },
+  "data-taxonomy": { "title": "Data Taxonomy", "display": "page" },
+  "institutional-sources": { "title": "Institutional Sources", "display": "page" },
+  "data-quality": { "title": "Data Quality", "display": "page" }
+}
