@@ -7,9 +7,11 @@ const withNextra = nextra({
 
 export default withNextra({
   output: 'export',
+  distDir: '.next',
   reactStrictMode: true,
   cleanDistDir: true,
   images: {
+    unoptimized: true, // Required for static export
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
