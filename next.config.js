@@ -6,6 +6,7 @@ const withNextra = nextra({
 })
 
 export default withNextra({
+  output: 'export',
   reactStrictMode: true,
   cleanDistDir: true,
   images: {
@@ -16,5 +17,14 @@ export default withNextra({
         hostname: '**',
       },
     ],
+  },
+  experimental: {
+    outputFileTracingExcludes: {
+      '*': [
+        'node_modules/@swc/core-darwin-arm64',
+        'node_modules/@swc/core-linux-x64',
+        'node_modules/@swc/core-win32-x64',
+      ],
+    },
   },
 })

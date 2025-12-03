@@ -1,0 +1,13 @@
+{
+  "buildCommand": "pnpm build",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "outputDirectory": ".next/out",
+  "nodeVersion": "18.x",
+  "env": {
+    "NEXT_PUBLIC_SITE_URL": "@next-public-site-url"
+  },
+  "github": {
+    "enabled": true,
+    "autoAlias": false
+  }
+}
