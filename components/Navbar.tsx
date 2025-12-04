@@ -14,7 +14,6 @@ export function Navbar() {
     { href: "/kits", label: "Kits" },
     { href: "/blog", label: "Blog" },
     { href: "/about", label: "About" },
-    { href: "/donate", label: "Donate" },
   ];
 
   return (
@@ -72,11 +71,10 @@ export function Navbar() {
               <span className="text-xs text-muted-foreground">⌘K</span>
             </Button>
 
-            {/* Donate Button */}
+            {/* Donate Button - Primary CTA matching screenshot */}
             <Button
-              variant="outline"
               size="sm"
-              className="hidden md:flex items-center gap-2"
+              className="hidden md:flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground"
               asChild
             >
               <Link href="/donate">
@@ -140,9 +138,8 @@ export function Navbar() {
                 Search
               </Button>
               <Button
-                variant="outline"
                 size="sm"
-                className="w-full justify-start"
+                className="w-full justify-start bg-primary hover:bg-primary/90 text-primary-foreground"
                 asChild
               >
                 <Link href="/donate" onClick={() => setMobileMenuOpen(false)}>

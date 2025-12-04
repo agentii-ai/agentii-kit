@@ -7,8 +7,10 @@ const withNextra = nextra({
 
 export default withNextra({
   reactStrictMode: true,
+  output: 'export',
   images: {
     formats: ['image/avif', 'image/webp'],
+    unoptimized: true, // Required for static export
     remotePatterns: [
       {
         protocol: 'https',
