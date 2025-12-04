@@ -1,16 +1,16 @@
 "use client";
 
 import * as React from "react";
-import { ChevronLeft, ChevronRight, Code, Briefcase, Scale, Megaphone, Palette, Zap } from "lucide-react";
+import { ChevronLeft, ChevronRight, Code, Briefcase, Scale, Megaphone, Palette, Zap, Sparkles } from "lucide-react";
 import { Button } from "./ui/button";
 
 const categories = [
-  { label: "Development", icon: Code },
-  { label: "Product", icon: Briefcase },
-  { label: "Marketing", icon: Megaphone },
-  { label: "Design", icon: Palette },
-  { label: "Legal", icon: Scale },
-  { label: "Operations", icon: Zap },
+  { label: "Development", icon: Code, color: "text-emerald-400", bg: "bg-emerald-400/10", border: "border-emerald-400/30", hover: "hover:border-emerald-400/50" },
+  { label: "Product", icon: Briefcase, color: "text-amber-400", bg: "bg-amber-400/10", border: "border-amber-400/30", hover: "hover:border-amber-400/50" },
+  { label: "Marketing", icon: Megaphone, color: "text-pink-400", bg: "bg-pink-400/10", border: "border-pink-400/30", hover: "hover:border-pink-400/50" },
+  { label: "Design", icon: Palette, color: "text-purple-400", bg: "bg-purple-400/10", border: "border-purple-400/30", hover: "hover:border-purple-400/50" },
+  { label: "Legal", icon: Scale, color: "text-sky-400", bg: "bg-sky-400/10", border: "border-sky-400/30", hover: "hover:border-sky-400/50" },
+  { label: "Operations", icon: Zap, color: "text-orange-400", bg: "bg-orange-400/10", border: "border-orange-400/30", hover: "hover:border-orange-400/50" },
 ];
 
 interface BlogHeroProps {
@@ -51,23 +51,48 @@ export function BlogHero({ featuredArticles = [] }: BlogHeroProps) {
   };
 
   return (
-    <section className="pt-24 pb-16 border-b border-border">
-      <div className="container mx-auto px-4">
+    <section className="relative pt-24 pb-16 border-b border-border overflow-hidden">
+      {/* Background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-background to-background" />
+      
+      {/* Grid pattern overlay */}
+      <div
+        className="absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
+          backgroundSize: "60px 60px",
+        }}
+      />
+
+      {/* Decorative glows */}
+      <div className="absolute top-20 left-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 right-10 w-60 h-60 bg-purple-500/10 rounded-full blur-3xl" />
+      <div className="absolute top-1/2 right-1/3 w-32 h-32 bg-amber-500/10 rounded-full blur-3xl" />
+
+      <div className="relative container mx-auto px-4">
         {/* Main Hero Row */}
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
           {/* Left: Text Content */}
           <div className="max-w-xl">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-6">
+              <Sparkles className="w-4 h-4 text-primary" />
+              <span className="text-sm text-primary font-medium">Blog & Insights</span>
+            </div>
+
             <h1 className="text-4xl md:text-5xl font-semibold leading-tight mb-6">
               <span className="text-foreground">Insights for </span>
-              <span className="text-primary">every agent.</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-emerald-400 to-sky-400">every agent.</span>
             </h1>
 
-            <p className="text-text-secondary text-lg mb-8 leading-relaxed">
-              Guides, case studies, and troubleshooting tips for autonomous AI agents. Learn how to build and deploy spec-kits with Claude Code, Cursor, and modern development tools.
+            <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
+              Guides, case studies, and troubleshooting tips for autonomous AI agents. Learn how to build and deploy spec-kits with{" "}
+              <span className="text-purple-400 font-medium">Claude Code</span>,{" "}
+              <span className="text-sky-400 font-medium">Cursor</span>, and modern development tools.
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <Button variant="primary" size="lg" asChild>
+              <Button variant="primary" size="lg" className="shadow-lg shadow-primary/25" asChild>
                 <a href="#articles">Browse articles</a>
               </Button>
               <Button variant="outline" size="lg" asChild>
@@ -80,9 +105,19 @@ export function BlogHero({ featuredArticles = [] }: BlogHeroProps) {
           {currentArticle && (
             <div className="relative">
               {/* Article Card */}
-              <div className="bg-card border border-border rounded-lg overflow-hidden">
-                {/* Header Gradient */}
-                <div className="h-32 bg-gradient-to-r from-primary to-primary/60" />
+              <div className="bg-card border border-border rounded-xl overflow-hidden shadow-xl shadow-primary/5 hover:shadow-primary/10 transition-shadow">
+                {/* Header Gradient - changes based on index */}
+                <div className={`h-36 bg-gradient-to-br ${
+                  activeIndex === 0 ? 'from-primary via-emerald-500 to-sky-500' :
+                  activeIndex === 1 ? 'from-purple-500 via-pink-500 to-rose-500' :
+                  'from-amber-500 via-orange-500 to-red-500'
+                }`}>
+                  {/* Decorative pattern */}
+                  <div className="w-full h-full opacity-20" style={{
+                    backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
+                    backgroundSize: "20px 20px"
+                  }} />
+                </div>
 
                 {/* Content */}
                 <div className="p-6">
@@ -160,16 +195,23 @@ export function BlogHero({ featuredArticles = [] }: BlogHeroProps) {
 
         {/* Browse by Topic */}
         <div>
-          <h2 className="text-2xl font-semibold text-foreground mb-8">Browse by topic</h2>
+          <div className="flex items-center gap-3 mb-8">
+            <h2 className="text-2xl font-semibold text-foreground">Browse by topic</h2>
+            <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-muted text-muted-foreground">
+              {categories.length} categories
+            </span>
+          </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {categories.map((category) => {
               const Icon = category.icon;
               return (
                 <div
                   key={category.label}
-                  className="bg-card border border-border rounded-lg p-4 text-center hover:border-primary/40 transition-colors cursor-pointer"
+                  className={`group bg-card border rounded-lg p-4 text-center transition-all cursor-pointer ${category.border} ${category.hover} hover:shadow-lg`}
                 >
-                  <Icon className="h-6 w-6 text-primary mx-auto mb-2" />
+                  <div className={`w-10 h-10 rounded-lg ${category.bg} flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform`}>
+                    <Icon className={`h-5 w-5 ${category.color}`} />
+                  </div>
                   <p className="text-sm font-medium text-foreground">{category.label}</p>
                 </div>
               );

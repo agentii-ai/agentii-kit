@@ -47,7 +47,7 @@ export default {
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content="agentii-kit Blog" />
-      <meta name="twitter:site" content="@agentiiai" />
+      <meta name="twitter:site" content="@agentii_ai" />
       <meta name="description" content="Insights and guides for building AI agents with agentii-kit specification templates." />
 
       {/* Favicon */}

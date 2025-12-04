@@ -41,7 +41,7 @@ export function Testimonials() {
                   <Github className="h-5 w-5" />
                 </a>
                 <a
-                  href="https://twitter.com"
+                  href="https://x.com/agentii_ai"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-foreground transition-colors"

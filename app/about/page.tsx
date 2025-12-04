@@ -270,28 +270,47 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Portfolio Section */}
-      <section className="py-16 border-b border-border">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-3xl font-bold text-foreground mb-12">Featured Projects</h2>
+      {/* Testimonials Section */}
+      <section className="relative py-16 border-b border-border overflow-hidden">
+        {/* Subtle gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-purple-500/5 via-background to-background" />
+        
+        {/* Decorative glow */}
+        <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl" />
+
+        <div className="relative container mx-auto px-4 max-w-5xl">
+          <div className="text-center mb-12">
+            <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-purple-400/10 text-purple-400 border border-purple-400/20 mb-4">
+              💬 Community Voices
+            </span>
+            <h2 className="text-3xl font-bold text-foreground">
+              What <span className="text-purple-400">People</span> Say
+            </h2>
+          </div>
 
           <div className="grid md:grid-cols-2 gap-6">
-            {portfolio.map((project) => (
-              <div
-                key={project.title}
-                className="bg-card border border-border rounded-lg p-6 hover:border-primary/40 transition-colors"
+            {testimonials.map((testimonial, index) => (
+              <div 
+                key={testimonial.author} 
+                className={`group relative bg-card border rounded-xl p-6 hover:border-purple-400/50 transition-all ${
+                  index === 0 ? 'border-purple-400/30' : 'border-border'
+                }`}
               >
-                <h3 className="text-lg font-semibold text-foreground mb-2">{project.title}</h3>
-                <p className="text-text-secondary text-sm mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-xs px-2 py-1 bg-primary/10 text-primary rounded"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                {/* Quote mark */}
+                <div className="absolute -top-3 left-6 text-4xl text-purple-400/30 font-serif">"</div>
+                
+                <p className="text-muted-foreground mb-6 leading-relaxed pt-2">
+                  {testimonial.quote}
+                </p>
+                
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center text-white font-semibold text-sm">
+                    {testimonial.author.split(' ').map(n => n[0]).join('')}
+                  </div>
+                  <div>
+                    <p className="text-foreground font-semibold">{testimonial.author}</p>
+                    <p className="text-muted-foreground text-sm">{testimonial.role}</p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -299,57 +318,64 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-16 border-b border-border">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-3xl font-bold text-foreground mb-12">What People Say</h2>
+      {/* Contact / CTA Section */}
+      <section className="relative py-20 overflow-hidden">
+        {/* Background gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
+        
+        {/* Grid pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.02]"
+          style={{
+            backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
+            backgroundSize: "40px 40px",
+          }}
+        />
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {testimonials.map((testimonial) => (
-              <div key={testimonial.author} className="bg-card border border-border rounded-lg p-6">
-                <p className="text-text-secondary mb-4 italic">"{testimonial.quote}"</p>
-                <div>
-                  <p className="text-foreground font-semibold">{testimonial.author}</p>
-                  <p className="text-text-secondary text-sm">{testimonial.role}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+        {/* Decorative glows */}
+        <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-primary/10 rounded-full blur-3xl" />
+        <div className="absolute top-0 right-1/4 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl" />
 
-      {/* Contact Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4 max-w-4xl text-center">
-          <h2 className="text-4xl font-bold text-foreground mb-6">
-            Let's create something beautiful together
+        <div className="relative container mx-auto px-4 max-w-4xl text-center">
+          <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary border border-primary/20 mb-6">
+            🤝 Join the Community
+          </span>
+
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+            Let's create something{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-emerald-400 to-sky-400">
+              beautiful
+            </span>{" "}
+            together
           </h2>
 
-          <p className="text-text-secondary text-lg mb-12 max-w-2xl mx-auto">
-            Have questions about agentii-kit? Want to contribute? Let's connect.
+          <p className="text-muted-foreground text-lg mb-10 max-w-2xl mx-auto">
+            Have questions about <span className="text-primary font-medium">agentii-kit</span>? 
+            Want to <span className="text-emerald-400 font-medium">contribute</span>? 
+            Let's <span className="text-sky-400 font-medium">connect</span>.
           </p>
 
           <div className="flex flex-wrap justify-center gap-4">
-            <Button variant="primary" size="lg" asChild>
+            <Button variant="primary" size="lg" className="shadow-lg shadow-primary/25" asChild>
               <a href="mailto:contact@agentii-kit.com">Get in Touch</a>
             </Button>
 
-            <Button variant="outline" size="lg" asChild>
-              <a href="https://github.com/agentii-kit" target="_blank" rel="noopener noreferrer">
+            <Button variant="outline" size="lg" className="hover:border-[#333] hover:bg-[#161B22]" asChild>
+              <a href="https://github.com/agentii-ai" target="_blank" rel="noopener noreferrer">
                 <Github className="h-4 w-4 mr-2" />
                 GitHub
               </a>
             </Button>
 
-            <Button variant="outline" size="lg" asChild>
+            <Button variant="outline" size="lg" className="hover:border-[#0A66C2] hover:text-[#0A66C2]" asChild>
               <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
                 <Linkedin className="h-4 w-4 mr-2" />
                 LinkedIn
               </a>
             </Button>
 
-            <Button variant="outline" size="lg" asChild>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+            <Button variant="outline" size="lg" className="hover:border-[#1DA1F2] hover:text-[#1DA1F2]" asChild>
+              <a href="https://x.com/agentii_ai" target="_blank" rel="noopener noreferrer">
                 <Twitter className="h-4 w-4 mr-2" />
                 Twitter
               </a>

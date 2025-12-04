@@ -61,14 +61,29 @@ async function BlogIndexPage() {
       <BlogHero featuredArticles={heroPosts} />
 
       {/* Articles Grid Section */}
-      <section id="articles" className="py-16 border-b border-border">
-        <div className="container mx-auto px-4 max-w-7xl">
+      <section id="articles" className="relative py-16 border-b border-border overflow-hidden">
+        {/* Subtle gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-purple-500/5 to-background" />
+        
+        {/* Decorative glow */}
+        <div className="absolute top-1/3 right-0 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+
+        <div className="relative container mx-auto px-4 max-w-7xl">
           <div className="mb-12">
+            <div className="flex items-center gap-3 mb-2">
+              <span className="px-3 py-1 text-xs font-medium rounded-full bg-purple-400/10 text-purple-400 border border-purple-400/20">
+                📚 Library
+              </span>
+              <span className="text-sm text-muted-foreground">
+                {articlePosts.length} articles
+              </span>
+            </div>
             <h2 className="text-3xl font-bold text-foreground mb-2">
-              All Articles
+              All <span className="text-purple-400">Articles</span>
             </h2>
-            <p className="text-text-secondary">
-              Browse all our articles and guides
+            <p className="text-muted-foreground">
+              Browse all our <span className="text-primary">articles</span> and <span className="text-emerald-400">guides</span>
             </p>
           </div>
 
@@ -79,8 +94,12 @@ async function BlogIndexPage() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-12">
-              <p className="text-text-secondary">No articles yet</p>
+            <div className="text-center py-16 bg-card border border-border rounded-xl">
+              <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">📝</span>
+              </div>
+              <p className="text-muted-foreground text-lg">No articles yet</p>
+              <p className="text-sm text-muted-foreground mt-2">Check back soon for new content!</p>
             </div>
           )}
         </div>

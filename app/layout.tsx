@@ -56,7 +56,7 @@ export const metadata = {
     description:
       'Curated spec-kits for Claude Code, Cursor, and modern dev tools.',
     images: ['/og-image.png'],
-    creator: '@agentiiai',
+    creator: '@agentii_ai',
   },
   alternates: {
     canonical: 'https://agentii.ai',
