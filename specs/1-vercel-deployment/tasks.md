@@ -73,8 +73,8 @@ description: "Task list for Vercel Deployment & Configuration feature"
 - [x] T004 Create `.env.local` for local development
   - **File**: `.env.local` (created at repository root)
   - **Status**: ✅ COMPLETED
-  - **Content**: `NEXT_PUBLIC_SITE_URL=http://localhost:3001`
-  - **Use**: Development on macOS - localhost port 3001
+  - **Content**: `NEXT_PUBLIC_SITE_URL=http://localhost:3002`
+  - **Use**: Development on macOS - localhost port 3002
 
 - [x] T005 [P] Verify Node.js version compatibility in package.json
   - **File**: `package.json`

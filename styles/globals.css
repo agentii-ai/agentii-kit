@@ -1,17 +1,49 @@
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Syntax highlighting styles - Atom One Light theme (from Atom editor) */
-/* This is a popular, well-designed light theme with excellent readability */
-@import 'highlight.js/styles/atom-one-light.css';
+/* Syntax highlighting - Atom One Dark for dark theme */
+@import "highlight.js/styles/atom-one-dark.css";
 
-/* Wall Street Classic Typography System */
 @layer base {
-  /* Root typography settings */
   :root {
-    color-scheme: light;
-    /* Font sizes (Wall Street scale) */
+    color-scheme: dark;
+
+    /* Dark Theme - GitHub Geek Inspired HSL Values */
+    --background: 216 28% 7%;
+    --foreground: 216 12% 92%;
+    --surface: 216 22% 14%;
+    --surface-hover: 216 22% 18%;
+
+    /* Text Colors */
+    --text-primary: 216 12% 92%;
+    --text-secondary: 215 14% 64%;
+    --text-muted: 215 14% 46%;
+
+    /* Accent Colors */
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --accent: 217 91% 60%;
+    --success: 142 71% 45%;
+    --warning: 38 92% 50%;
+    --error: 0 84% 60%;
+
+    /* Component Colors */
+    --card: 216 22% 11%;
+    --card-foreground: 216 12% 92%;
+    --border: 215 19% 18%;
+    --muted: 215 19% 15%;
+    --secondary: 215 19% 15%;
+
+    /* Radius */
+    --radius: 0.5rem;
+
+    /* Font sizes (kept for compatibility) */
     --font-size-h1: 48px;
     --font-size-h2: 36px;
     --font-size-h3: 28px;
@@ -26,34 +58,26 @@
     --line-height-tight: 1.2;
     --line-height-normal: 1.5;
     --line-height-relaxed: 1.6;
-
-    /* Colors (Wall Street palette) */
-    --color-navy: #1A1A33;
-    --color-blue: #003366;
-    --color-blue-light: #E8EEF7;
-    --color-gray: #666666;
-    --color-gray-light: #E8E8E8;
-    --color-off-white: #F9F9F9;
-    --color-white: #FFFFFF;
   }
 
   body {
-    @apply bg-ws-off-white text-ws-navy transition-colors duration-200;
-    font-family: Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    @apply bg-background text-foreground transition-colors duration-200;
+    font-family: "Inter", "system-ui", "-apple-system", "BlinkMacSystemFont",
+      "Segoe UI", sans-serif;
     font-size: 16px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Heading hierarchy - serif fonts (Georgia/Garamond for Wall Street authority) */
+  /* Heading hierarchy */
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    @apply font-serif text-ws-navy font-bold;
+    @apply text-foreground font-semibold;
     letter-spacing: -0.01em;
     margin-top: 32px;
     margin-bottom: 16px;
@@ -100,256 +124,225 @@
   h6 {
     @apply text-base md:text-lg;
     font-size: 14px;
-    line-height: 1.6;
+    line-height: 1.5;
     font-weight: 600;
-    letter-spacing: 0.02em;
   }
 
-  /* Paragraph spacing */
+  /* Paragraph styling */
   p {
-    @apply mb-6 text-ws-navy;
+    @apply mb-4;
+    font-size: 16px;
     line-height: 1.6;
-    max-width: 75ch;
   }
 
   /* Links */
   a {
-    @apply text-ws-blue hover:text-ws-blue-medium underline transition-colors;
+    @apply text-primary hover:text-accent transition-colors duration-200;
   }
 
-  /* Code and monospace */
+  /* Code blocks */
   code {
-    @apply bg-ws-off-white text-ws-red px-2 py-1 rounded text-sm font-mono font-medium;
+    @apply bg-surface text-text-secondary px-2 py-1 rounded font-mono text-sm;
   }
 
   pre {
-    @apply bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-4 overflow-x-auto mb-6;
+    @apply bg-card border border-border rounded-lg p-4 overflow-x-auto mb-4;
   }
 
   pre code {
     @apply bg-transparent px-0 py-0;
   }
 
-  /* Syntax highlighting - Using Atom One Light theme */
-  /* The theme is imported above, we just need to ensure proper integration */
-  pre code.hljs {
-    @apply bg-transparent p-0;
-    display: block;
-    overflow-x: auto;
-    padding: 1em;
+  /* Lists */
+  ul,
+  ol {
+    @apply mb-4 ml-6;
   }
 
-  /* Ensure Atom One Light theme colors are applied correctly */
-  /* Background: #fafafa (light grey), Text: #383a42 (dark grey/black) */
-  .hljs {
-    background: #fafafa !important; /* Atom One Light background */
-    color: #383a42 !important; /* Atom One Light text color */
-  }
-
-  /* Dark mode syntax highlighting (if needed in future) */
-  .dark .hljs,
-  [data-theme='dark'] .hljs {
-    background: #0d1117 !important;
-    color: #c9d1d9 !important;
-  }
-
-  .dark .hljs-keyword,
-  [data-theme='dark'] .hljs-keyword,
-  .dark .hljs-selector-tag,
-  [data-theme='dark'] .hljs-selector-tag {
-    color: #ff7b72 !important;
-  }
-
-  .dark .hljs-string,
-  [data-theme='dark'] .hljs-string {
-    color: #a5d6ff !important;
-  }
-
-  .dark .hljs-comment,
-  [data-theme='dark'] .hljs-comment {
-    color: #8b949e !important;
-  }
-
-  .dark .hljs-function,
-  [data-theme='dark'] .hljs-function,
-  .dark .hljs-title,
-  [data-theme='dark'] .hljs-title {
-    color: #d2a8ff !important;
-  }
-
-  .dark .hljs-number,
-  [data-theme='dark'] .hljs-number {
-    color: #79c0ff !important;
-  }
-
-  .dark .hljs-variable,
-  [data-theme='dark'] .hljs-variable {
-    color: #ffa657 !important;
-  }
-
-  /* Ensure code blocks have proper spacing */
-  .markdown-content pre {
-    @apply my-6 bg-gray-100;
-  }
-
-  .markdown-content pre code {
-    @apply text-sm;
-    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
-    background: transparent !important;
-  }
-
-  /* Override any dark backgrounds on code blocks - use Atom One Light theme */
-  .markdown-content pre code.hljs {
-    background: #fafafa !important; /* Atom One Light background */
-    color: #383a42 !important; /* Atom One Light text color */
+  ul li,
+  ol li {
+    @apply mb-2;
   }
 
   /* Blockquotes */
   blockquote {
-    @apply border-l-4 border-ws-blue pl-6 italic text-ws-gray my-6 py-0;
+    @apply border-l-4 border-primary pl-4 italic text-text-secondary my-4;
   }
 
-  /* Lists */
-  ul,
-  ol {
-    @apply ml-6 mb-6;
-    list-style: disc;
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
   }
 
-  li {
-    @apply mb-3 text-ws-navy;
+  ::-webkit-scrollbar-track {
+    @apply bg-background;
   }
 
-  /* Horizontal rule */
-  hr {
-    @apply border-none border-b border-ws-gray-light my-12;
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full;
   }
 
-  /* Tables */
-  table {
-    @apply w-full border-collapse my-6;
-  }
-
-  thead {
-    @apply bg-ws-blue-light;
-  }
-
-  thead th {
-    @apply px-4 py-3 text-left font-semibold text-ws-blue border-b-2 border-ws-gray-light;
-  }
-
-  tbody td {
-    @apply px-4 py-3 border-b border-ws-gray-light text-ws-navy;
-  }
-
-  tbody tr:hover {
-    @apply bg-ws-blue-light bg-opacity-30;
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-surface-hover;
   }
 }
 
-/* Component styles for Wall Street design */
 @layer components {
-  /* Card component */
-  .ws-card {
-    @apply bg-ws-white border border-ws-gray-light rounded-lg p-6 shadow-sm;
+  /* Tag pill component */
+  .tag-pill {
+    @apply inline-block px-3 py-1 rounded-full text-xs font-medium border transition-all duration-200 cursor-pointer;
   }
 
-  .ws-card:hover {
-    @apply shadow-md border-ws-gray transition-all;
+  /* Card hover effect */
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-lg;
   }
 
-  /* Button components */
-  .ws-button-primary {
-    @apply px-6 py-3 bg-ws-blue text-white font-semibold rounded-lg hover:bg-ws-blue-medium transition-colors;
-    min-height: 44px;
+  /* Glow accent effect */
+  .glow-accent {
+    @apply shadow-lg shadow-primary/20;
   }
 
-  .ws-button-secondary {
-    @apply px-6 py-3 border-2 border-ws-blue text-ws-blue font-semibold rounded-lg hover:bg-ws-blue-light transition-colors;
-    min-height: 44px;
+  /* Fade edges for scrolling */
+  .fade-edges {
+    position: relative;
+    overflow: hidden;
   }
 
-  /* Badge/tag styles */
-  .ws-badge {
-    @apply inline-block bg-ws-blue-light text-ws-blue px-3 py-1 rounded text-xs font-semibold uppercase;
+  .fade-edges::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    background: linear-gradient(
+      to right,
+      hsl(var(--background)),
+      transparent
+    );
+    z-index: 10;
   }
 
-  /* Badge for financial data */
-  .ws-badge-positive {
-    @apply inline-block bg-ws-green-light text-ws-green px-3 py-1 rounded text-xs font-semibold;
+  .fade-edges::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    background: linear-gradient(to left, hsl(var(--background)), transparent);
+    z-index: 10;
   }
 
-  .ws-badge-negative {
-    @apply inline-block bg-ws-red-light text-ws-red px-3 py-1 rounded text-xs font-semibold;
+  /* Prose styling for markdown content */
+  .prose-custom {
+    @apply text-foreground;
   }
 
-  /* Section header styling */
-  .ws-section-header {
-    @apply border-b-2 border-ws-blue pb-4 mb-8;
+  .prose-custom h1 {
+    @apply text-3xl md:text-4xl font-bold mb-4 mt-6;
   }
 
-  /* Financial data highlighting */
-  .ws-positive {
-    @apply text-ws-green font-semibold;
+  .prose-custom h2 {
+    @apply text-2xl md:text-3xl font-semibold mb-3 mt-5;
   }
 
-  .ws-negative {
-    @apply text-ws-red font-semibold;
+  .prose-custom h3 {
+    @apply text-xl md:text-2xl font-semibold mb-2 mt-4;
   }
 
-  /* Metadata/caption styling */
-  .ws-meta {
-    @apply text-ws-gray text-sm;
+  .prose-custom p {
+    @apply mb-4;
   }
 
-  /* Navigation link styling */
-  .ws-nav-link {
-    @apply text-ws-navy font-semibold hover:text-ws-blue transition-colors;
+  .prose-custom ul,
+  .prose-custom ol {
+    @apply mb-4 ml-6;
   }
 
-  .ws-nav-link.active {
-    @apply text-ws-blue border-b-2 border-ws-blue;
+  .prose-custom li {
+    @apply mb-2;
   }
 
-  /* Breadcrumb styling */
-  .ws-breadcrumb {
-    @apply text-ws-gray text-sm;
+  .prose-custom blockquote {
+    @apply border-l-4 border-primary pl-4 italic text-text-secondary my-4;
   }
 
-  .ws-breadcrumb a {
-    @apply text-ws-blue hover:underline no-underline;
+  .prose-custom code {
+    @apply bg-surface text-primary px-2 py-1 rounded font-mono text-sm;
   }
 
-  /* Alert/callout boxes */
-  .ws-alert {
-    @apply border-l-4 border-ws-blue bg-ws-blue-light rounded px-4 py-3 my-4 text-ws-blue;
+  .prose-custom pre {
+    @apply bg-card border border-border rounded-lg p-4 overflow-x-auto mb-4;
   }
 
-  .ws-alert-warning {
-    @apply border-ws-red bg-ws-red-light text-ws-red;
+  .prose-custom pre code {
+    @apply bg-transparent px-0 py-0 text-foreground;
   }
 
-  .ws-alert-success {
-    @apply border-ws-green bg-ws-green-light text-ws-green;
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out forwards;
   }
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  h1 {
-    font-size: 36px;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
-
-  h2 {
-    font-size: 28px;
-  }
-
-  h3 {
-    font-size: 22px;
-  }
-
-  p {
-    max-width: 100%;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scrollLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scrollRight {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}

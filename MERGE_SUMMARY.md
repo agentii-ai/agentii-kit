@@ -65,7 +65,7 @@ eaf9af1 task: generate comprehensive tasks for vercel deployment
 Development (macOS):
 ├─ .env.local
 ├─ package.json (no platform-specific SWC)
-└─ Command: pnpm dev (port 3001)
+└─ Command: pnpm dev (port 3002)
 
 Production (Vercel):
 ├─ .env.production
@@ -220,7 +220,7 @@ Phase N (T037-T040): Create documentation
 ### ✅ On Your macOS Machine
 ```bash
 pnpm install    # Install dependencies
-pnpm dev        # Start development server on localhost:3001
+pnpm dev        # Start development server on localhost:3002
 pnpm build      # Build for production (.next/out/)
 pnpm lint       # Check code quality
 ```
@@ -232,7 +232,7 @@ Push to main → GitHub webhook → Vercel auto-builds → Deploy to kits.agenti
 
 ### ✅ Environment Separation
 ```
-macOS:  .env.local → http://localhost:3001
+macOS:  .env.local → http://localhost:3002
 Vercel: .env.production → https://kits.agentii.ai
 ```
 

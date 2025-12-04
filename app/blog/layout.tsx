@@ -2,7 +2,7 @@
 
 import React, { ReactNode } from 'react'
 import Link from 'next/link'
-import Footer from '@/components/Footer'
+import Footer from '@/components/Footer_bak'
 
 /**
  * Blog Layout Component

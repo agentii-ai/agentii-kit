@@ -1,26 +1,30 @@
 import '../styles/globals.css'
 import { ReactNode } from 'react'
 import { ThemeProvider } from '@/components/ThemeProvider'
+import { Navbar } from '@/components/Navbar'
+import { FooterKit } from '@/components/FooterKit'
 
 export const metadata = {
   metadataBase: new URL('https://agentii.ai'),
   title: {
-    default: 'Agentii Blog & Docs',
-    template: '%s – Agentii',
+    default: 'agentii-kit - Power Your AI Agents',
+    template: '%s – agentii-kit',
   },
   description:
-    'Insights on AI-powered financial analysis, product updates, and comprehensive developer documentation for Agentii platforms.',
+    'Curated spec-kits for Claude Code, Cursor, and modern dev tools. Production-ready workflows for developers, PMs, designers, and more.',
   keywords: [
     'AI',
-    'Financial Analysis',
-    'Agentii',
-    'Documentation',
-    'Blog',
-    'Agent Technology',
+    'Claude Code',
+    'Cursor',
+    'Windsurf',
+    'Spec Kits',
+    'AI Agents',
+    'Development Tools',
+    'agentii-kit',
   ],
-  authors: [{ name: 'Agentii Team', url: 'https://agentii.ai' }],
-  creator: 'Agentii',
-  publisher: 'Agentii',
+  authors: [{ name: 'agentii-kit Team', url: 'https://agentii.ai' }],
+  creator: 'agentii-kit',
+  publisher: 'agentii-kit',
   robots: {
     index: true,
     follow: true,
@@ -36,21 +40,21 @@ export const metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://agentii.ai',
-    siteName: 'Agentii Blog & Docs',
+    siteName: 'agentii-kit',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Agentii Blog & Docs',
+        alt: 'agentii-kit - Power Your AI Agents',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Agentii Blog & Docs',
+    title: 'agentii-kit - Power Your AI Agents',
     description:
-      'Insights on AI-powered financial analysis, product updates, and developer documentation.',
+      'Curated spec-kits for Claude Code, Cursor, and modern dev tools.',
     images: ['/og-image.png'],
     creator: '@agentiiai',
   },
@@ -67,7 +71,7 @@ export const metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
-    title: 'Agentii',
+    title: 'agentii-kit',
   },
   verification: {
     google: 'google_verification_code', // Add actual verification code
@@ -95,11 +99,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {/* Mobile web app */}
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="apple-mobile-web-app-title" content="Agentii" />
+        <meta name="apple-mobile-web-app-title" content="agentii-kit" />
       </head>
-      <body className="bg-white text-gray-900 transition-colors duration-200">
-        <ThemeProvider defaultTheme="light">
-          {children}
+      <body className="bg-background text-foreground transition-colors duration-200">
+        <ThemeProvider defaultTheme="dark">
+          <Navbar />
+          <main>{children}</main>
+          <FooterKit />
         </ThemeProvider>
       </body>
     </html>
