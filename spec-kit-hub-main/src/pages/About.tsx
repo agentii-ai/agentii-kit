@@ -1,31 +1,53 @@
 import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { ExternalLink, Github, Briefcase, GraduationCap, Mail, Phone, FileText, Twitter, Linkedin } from "lucide-react";
+import { Github, Briefcase, Mail, Phone, FileText, Twitter, Linkedin, Zap, Database, BarChart3, Bot, Layers, GitBranch, CheckCircle2, Sparkles } from "lucide-react";
 
 const About = () => {
-  const education = [
-    "Computer Science, MIT",
-    "Machine Learning, Stanford",
-    "Systems Design, Berkeley",
+  // Spec-Kit categories from the overview
+  const specKitTypes = [
+    { name: "PM-Kit", description: "Product Management workflows for launching products and finding PMF", icon: "📊" },
+    { name: "Marketing-Kit", description: "Campaign operations and brand management for growth teams", icon: "📢" },
+    { name: "Legal-Kit", description: "Contract review and compliance automation", icon: "⚖️" },
+    { name: "Startup-Kit", description: "Founder workflows from idea to funding", icon: "🚀" },
+    { name: "Edu-Kit", description: "Course creation and educational content development", icon: "🎓" },
+    { name: "Dev-Kit", description: "Software development specifications and workflows", icon: "💻" },
   ];
 
-  const workHistory = [
-    { company: "Google", year: "2014" },
-    { company: "Amazon", year: "2018" },
-    { company: "Microsoft", year: "2022" },
+  // Spec-Kit 4-file architecture
+  const specKitArchitecture = [
+    { file: "constitution.md", purpose: "The Laws", description: "Immutable rules, standards, and constraints", icon: Layers },
+    { file: "spec.md", purpose: "The Goal", description: "Detailed requirements for your project", icon: FileText },
+    { file: "plan.md", purpose: "The Strategy", description: "High-level phases and research notes", icon: GitBranch },
+    { file: "tasks.md", purpose: "The Execution", description: "Granular, checkable implementation steps", icon: CheckCircle2 },
   ];
 
-  const portfolio = [
+  // Supported AI Agents
+  const supportedAgents = [
+    "Claude Code", "Cursor", "GitHub Copilot", "Windsurf", "Gemini CLI", "Codex CLI", "Qoder CLI", "Roo Code"
+  ];
+
+  // agentii.ai core capabilities from branding_uvp.md
+  const agentiiCapabilities = [
     {
-      title: "Agent Framework",
-      description: "A comprehensive toolkit for building autonomous AI agents with modular architecture.",
-      tags: ["AI", "Python", "Framework"],
+      title: "Agentic Analytics",
+      description: "Human-like iterative search & reasoning. The system approaches each question like a senior analyst—breaking it down, searching intelligently, and refining until the answer is decision-ready.",
+      icon: Bot,
     },
     {
-      title: "Kit Manager",
-      description: "CLI tool for managing and deploying agentii-kits across multiple environments.",
-      tags: ["CLI", "DevOps", "Go"],
+      title: "Smart Data Unification",
+      description: "Unify public info and proprietary data into one harmonized layer. Captures signals from reports, transcripts, spreadsheets, and videos—automatically contextualized and ranked.",
+      icon: Database,
+    },
+    {
+      title: "Multi-Agent Orchestration",
+      description: "Planner, Retriever, Extractor, Verifier, and Synthesizer Agents coordinate in real time to produce clear, trustworthy outputs.",
+      icon: Zap,
+    },
+    {
+      title: "Smart Synthesis",
+      description: "Turn inputs into insightful narratives & interactive dashboards. Combine insights across documents into crisp summaries for IC meetings and portfolio reviews.",
+      icon: BarChart3,
     },
   ];
 
@@ -60,133 +82,182 @@ const About = () => {
               <div>
                 <div className="flex items-center gap-2 mb-4">
                   <span className="w-2 h-2 rounded-full bg-primary" />
-                  <h1 className="text-3xl font-semibold text-foreground">About</h1>
+                  <h1 className="text-3xl font-semibold text-foreground">About agentii-kit</h1>
                 </div>
+                <p className="text-sm text-primary font-medium">
+                  Open Source by agentii.ai
+                </p>
               </div>
 
               {/* Right Column - Content */}
               <div className="space-y-8">
                 <div className="space-y-4">
                   <p className="text-text-secondary leading-relaxed">
-                    Agentii-kit is an open-source ecosystem of curated templates, specifications, and 
-                    toolkits designed to accelerate the development of AI-powered agents. Built by 
-                    developers, for developers—but <span className="text-foreground font-medium">accessible 
-                    to product managers, designers, and technical writers</span> who want to understand 
-                    and contribute to agent-based systems.
+                    <span className="text-primary font-semibold">agentii-kit</span> is an open-source 
+                    ecosystem of curated templates built on{" "}
+                    <span className="text-amber-400 font-medium">Spec-Driven Development (SDD)</span>
+                    —a methodology that <span className="text-emerald-400 font-medium">flips the script</span> on 
+                    traditional software development. Built by{" "}
+                    <a href="https://agentii.ai" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                      agentii.ai
+                    </a>.
                   </p>
                   <p className="text-text-secondary leading-relaxed">
-                    Our mission is to <span className="text-foreground font-medium">democratize agent 
-                    development</span> by providing battle-tested patterns, clear documentation, and a 
-                    community-driven approach to building the next generation of intelligent software. 
-                    Whether you're building <span className="text-foreground font-medium">autonomous 
-                    workflows, conversational interfaces, or complex multi-agent systems</span>, 
-                    agentii-kit provides the foundation you need.
+                    For decades, code has been king—specifications were just scaffolding. SDD changes this: 
+                    <span className="text-sky-400 font-medium"> specifications become executable</span>, 
+                    directly generating working implementations rather than just guiding them.
+                  </p>
+                  <p className="text-text-secondary leading-relaxed">
+                    All kits are based on{" "}
+                    <a href="https://github.com/github/spec-kit" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:underline font-medium">
+                      GitHub's Spec Kit
+                    </a>
+                    —an open-source toolkit that lets you focus on{" "}
+                    <span className="text-foreground font-medium">product scenarios</span> and{" "}
+                    <span className="text-foreground font-medium">predictable outcomes</span> instead of 
+                    vibe coding from scratch.
                   </p>
                 </div>
 
-                {/* Education */}
-                <div className="pt-6 border-t border-border">
-                  <div className="flex items-center gap-2 mb-4">
-                    <GraduationCap className="w-4 h-4 text-text-muted" />
-                    <h2 className="text-lg font-semibold text-foreground">Education</h2>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {education.map((item) => (
-                      <span
-                        key={item}
-                        className="px-3 py-1.5 text-sm text-text-secondary bg-surface border border-border rounded-lg"
-                      >
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Work History */}
+                {/* Spec-Kit Types */}
                 <div className="pt-6 border-t border-border">
                   <div className="flex items-center gap-2 mb-4">
                     <Briefcase className="w-4 h-4 text-text-muted" />
-                    <h2 className="text-lg font-semibold text-foreground">Work history</h2>
+                    <h2 className="text-lg font-semibold text-foreground">Available Spec-Kits</h2>
                   </div>
-                  <div className="flex flex-wrap items-center gap-2">
-                    {workHistory.map((item) => (
-                      <span
-                        key={item.company}
-                        className="px-3 py-1.5 text-sm text-text-secondary bg-surface border border-border rounded-lg"
+                  <div className="grid grid-cols-2 gap-2">
+                    {specKitTypes.map((kit) => (
+                      <div
+                        key={kit.name}
+                        className="px-3 py-2 text-sm bg-surface border border-border rounded-lg"
                       >
-                        {item.company} • {item.year}
-                      </span>
+                        <span className="mr-2">{kit.icon}</span>
+                        <span className="text-foreground font-medium">{kit.name}</span>
+                      </div>
                     ))}
-                    <Button variant="outline" size="sm" className="rounded-lg">
-                      See all
-                    </Button>
                   </div>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* Portfolio Section */}
-          <section>
+          {/* Spec-Driven Development Section */}
+          <section className="mb-16">
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               {/* Left Column - Title */}
               <div>
                 <div className="flex items-center gap-2 mb-4">
-                  <span className="w-2 h-2 rounded-full bg-primary" />
-                  <h2 className="text-3xl font-semibold text-foreground">Portfolio</h2>
+                  <span className="w-2 h-2 rounded-full bg-amber-400" />
+                  <h2 className="text-3xl font-semibold text-foreground">Spec-Driven Development</h2>
                 </div>
+                <p className="text-text-secondary">
+                  The <span className="text-amber-400 font-medium">4-file architecture</span> that powers every kit.
+                </p>
               </div>
 
               {/* Right Column - Description */}
               <div className="space-y-4">
                 <p className="text-text-secondary leading-relaxed">
-                  Explore our featured projects and contributions to the agent ecosystem. Each project 
-                  represents <span className="text-foreground font-medium">months of research, 
-                  development, and community feedback</span> to ensure the highest quality tooling 
-                  for agent development.
+                  Every agentii-kit project uses a structured <span className="text-foreground font-medium">file-based workflow</span> that 
+                  forces AI to <span className="text-emerald-400 font-medium">"think" before it acts</span>. 
+                  Instead of chat-based improvisation, the AI reads and writes to specific context files.
+                </p>
+                <p className="text-text-secondary leading-relaxed">
+                  Works with <span className="text-purple-400 font-medium">Claude Code</span>,{" "}
+                  <span className="text-sky-400 font-medium">Cursor</span>,{" "}
+                  <span className="text-emerald-400 font-medium">GitHub Copilot</span>,{" "}
+                  <span className="text-amber-400 font-medium">Windsurf</span>, and 15+ other AI agents.
                 </p>
               </div>
             </div>
 
-            {/* Portfolio Cards */}
-            <div className="grid md:grid-cols-2 gap-6 mt-8">
-              {portfolio.map((project) => (
+            {/* 4-File Architecture Cards */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+              {specKitArchitecture.map((item, index) => (
                 <div
-                  key={project.title}
-                  className="group relative overflow-hidden rounded-lg border border-border bg-surface hover:border-primary/50 transition-all duration-200"
+                  key={item.file}
+                  className="group relative overflow-hidden rounded-lg border border-border bg-surface hover:border-amber-400/50 transition-all duration-200 p-5"
                 >
-                  {/* Card Header */}
-                  <div className="absolute top-4 left-4 z-10">
-                    <span className="px-3 py-1 text-sm font-medium text-primary bg-primary/10 rounded-md">
-                      {project.title}
-                    </span>
-                  </div>
-
-                  {/* Card Content */}
-                  <div className="p-6 pt-16 min-h-[280px] flex flex-col justify-end bg-gradient-to-b from-surface via-surface to-surface-hover">
-                    <p className="text-text-secondary text-sm mb-4">
-                      {project.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-2 py-1 text-xs font-mono text-text-muted bg-background rounded"
-                        >
-                          {tag}
-                        </span>
-                      ))}
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="p-2 rounded-lg bg-amber-400/10">
+                      <item.icon className="w-4 h-4 text-amber-400" />
                     </div>
+                    <span className="text-xs font-mono text-amber-400">{item.file}</span>
+                  </div>
+                  <h3 className="text-base font-semibold text-foreground mb-1">
+                    {item.purpose}
+                  </h3>
+                  <p className="text-text-secondary text-sm">
+                    {item.description}
+                  </p>
+                </div>
+              ))}
+            </div>
 
-                    {/* Hover Actions */}
-                    <div className="flex gap-2 mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Button variant="outline" size="sm" className="flex-1">
-                        <ExternalLink className="w-3 h-3 mr-2" />
-                        View Project
-                      </Button>
-                      <Button variant="ghost" size="sm">
-                        <Github className="w-4 h-4" />
-                      </Button>
+            {/* Supported Agents */}
+            <div className="mt-8 p-4 rounded-lg bg-surface border border-border">
+              <div className="flex items-center gap-2 mb-3">
+                <Sparkles className="w-4 h-4 text-primary" />
+                <span className="text-sm font-medium text-foreground">Supported AI Agents</span>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {supportedAgents.map((agent) => (
+                  <span
+                    key={agent}
+                    className="px-2 py-1 text-xs font-medium rounded-md bg-primary/10 text-primary border border-primary/20"
+                  >
+                    {agent}
+                  </span>
+                ))}
+                <span className="px-2 py-1 text-xs font-medium rounded-md bg-text-muted/10 text-text-muted">
+                  +8 more
+                </span>
+              </div>
+            </div>
+          </section>
+
+          {/* agentii.ai Capabilities Section */}
+          <section className="mb-16">
+            <div className="grid lg:grid-cols-2 gap-12 items-start">
+              {/* Left Column - Title */}
+              <div>
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="w-2 h-2 rounded-full bg-primary" />
+                  <h2 className="text-3xl font-semibold text-foreground">Powered by agentii.ai</h2>
+                </div>
+                <p className="text-text-secondary">
+                  The agentic intelligence platform redefining investment research for institutions.
+                </p>
+              </div>
+
+              {/* Right Column - Description */}
+              <div className="space-y-4">
+                <p className="text-text-secondary leading-relaxed">
+                  agentii.ai is <span className="text-foreground font-medium">the first agentic-native 
+                  intelligence platform</span> built for institutional investors. We help analysts see 
+                  market shifts before they happen with AI-powered research.
+                </p>
+              </div>
+            </div>
+
+            {/* Capabilities Cards */}
+            <div className="grid md:grid-cols-2 gap-6 mt-8">
+              {agentiiCapabilities.map((capability) => (
+                <div
+                  key={capability.title}
+                  className="group relative overflow-hidden rounded-lg border border-border bg-surface hover:border-primary/50 transition-all duration-200 p-6"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="p-2 rounded-lg bg-primary/10">
+                      <capability.icon className="w-5 h-5 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-foreground mb-2">
+                        {capability.title}
+                      </h3>
+                      <p className="text-text-secondary text-sm leading-relaxed">
+                        {capability.description}
+                      </p>
                     </div>
                   </div>
                 </div>

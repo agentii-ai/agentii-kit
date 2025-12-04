@@ -32,20 +32,21 @@ export function FooterKit() {
           {/* Brand Column */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <div className="h-8 w-8 rounded-md bg-gradient-to-br from-accent to-primary flex items-center justify-center font-bold text-accent-foreground text-sm">
-                AK
-              </div>
               <span className="text-lg font-semibold text-foreground">
                 agentii-kit
               </span>
             </div>
             <p className="text-sm text-muted-foreground max-w-xs">
-              Curated AI agent workflows for Claude Code, Cursor, and modern dev
-              tools. Power your AI agents with production-ready spec-kits.
+              Open source from{" "}
+              <a href="https://agentii.ai" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                agentii.ai
+              </a>
+              {" "}— <br></br>The first agentic-native intelligence platform built for institutional investors
+
             </p>
             <div className="flex items-center gap-4">
               <a
-                href="https://github.com/agentii-kit"
+                href="https://github.com/agentii-ai"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-foreground transition-colors"

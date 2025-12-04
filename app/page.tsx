@@ -1,8 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { Navbar } from "@/components/Navbar";
-import { FooterKit } from "@/components/FooterKit";
 import { HeroSection } from "@/components/HeroSection";
 import { FeaturedArticles } from "@/components/FeaturedArticles";
 import { LatestKits } from "@/components/LatestKits";
@@ -42,10 +40,6 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
-
-      {/* Navbar spacing */}
-      <div className="h-16" />
 
       {/* Hero Section */}
       <HeroSection />
@@ -99,9 +93,6 @@ export default function HomePage() {
 
       {/* Use Cases */}
       <UseCases />
-
-      {/* Footer */}
-      <FooterKit />
     </div>
   );
 }

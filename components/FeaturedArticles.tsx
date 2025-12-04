@@ -2,9 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { ArrowRight, Calendar, User } from "lucide-react";
-import { Badge } from "./ui/badge";
-import { Button } from "./ui/button";
+import { ArrowRight } from "lucide-react";
 
 interface Article {
   id: string;
@@ -13,141 +11,112 @@ interface Article {
   slug: string;
   date: string;
   author: string;
-  category: string;
-  gradientFrom: string;
-  gradientTo: string;
+  gradient: string;
 }
 
+// Articles matching screenshot design with large gradient images
 const mockArticles: Article[] = [
   {
     id: "1",
-    title: "Building Production-Ready AI Agents with Spec-Kits",
+    title: "Building Autonomous PM Agents with Claude",
     excerpt:
-      "Learn how to leverage agentii-kit's spec-kits to build robust, production-ready AI agents in days instead of weeks.",
-    slug: "building-production-ready-ai-agents",
-    date: "2025-01-10",
-    author: "Sarah Chen",
-    category: "Tutorial",
-    gradientFrom: "from-blue-500",
-    gradientTo: "to-purple-500",
+      "A comprehensive guide on creating spec-kits that help product managers automate routine tasks while maintaining strategic control.",
+    slug: "building-autonomous-pm-agents",
+    date: "Jun 1, 2025",
+    author: "agentii.ai",
+    gradient: "from-emerald-400 via-green-500 to-teal-500",
   },
   {
     id: "2",
-    title: "The Future of AI-Powered Development Tools",
+    title: "How We Designed the Legal-Kit Framework",
     excerpt:
-      "Explore how Claude Code, Cursor, and Windsurf are transforming the way developers build software with AI assistance.",
-    slug: "future-of-ai-powered-development",
-    date: "2025-01-08",
-    author: "Alex Kumar",
-    category: "Insights",
-    gradientFrom: "from-purple-500",
-    gradientTo: "to-pink-500",
+      "With the help of Claude and Cursor, we built a compliance-first approach to autonomous legal document review.",
+    slug: "legal-kit-framework-design",
+    date: "Jun 25, 2025",
+    author: "agentii.ai",
+    gradient: "from-cyan-400 via-teal-400 to-emerald-400",
   },
   {
     id: "3",
-    title: "5 Spec-Kits Every Product Manager Should Know",
+    title: "Troubleshooting: Agent Memory Persistence",
     excerpt:
-      "Discover the essential spec-kits that can streamline your product management workflow and improve team collaboration.",
-    slug: "spec-kits-for-product-managers",
-    date: "2025-01-05",
-    author: "Maya Patel",
-    category: "Guide",
-    gradientFrom: "from-green-500",
-    gradientTo: "to-teal-500",
+      "Common issues and solutions when implementing long-term memory in your autonomous agents using spec-kits.",
+    slug: "troubleshooting-agent-memory",
+    date: "Jun 28, 2025",
+    author: "agentii.ai",
+    gradient: "from-yellow-300 via-amber-400 to-orange-400",
   },
 ];
 
 export function FeaturedArticles() {
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-    });
-  };
-
   return (
-    <section className="py-12 mb-12">
+    <section className="py-16">
       <div className="container mx-auto px-4">
-        {/* Section Header */}
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h2 className="text-3xl font-bold text-foreground mb-2">
-              Latest from Our Blog
-            </h2>
-            <p className="text-muted-foreground">
-              Insights, tutorials, and updates from the agentii-kit team
-            </p>
-          </div>
-          <Button variant="outline" className="gap-2 hidden md:flex" asChild>
-            <Link href="/blog">
-              View All
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </Button>
+        {/* Section Header - matching screenshot */}
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-2xl font-bold text-foreground">
+            Latest <span className="text-primary">Articles</span>
+          </h2>
+          <Link
+            href="/blog"
+            className="hidden md:flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground border border-border rounded-lg px-4 py-2 transition-colors"
+          >
+            View All Articles
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
 
-        {/* Articles Grid */}
+        {/* Subtitle */}
+        <p className="text-muted-foreground mb-8">
+          Fresh insights and lessons from our recent explorations.
+        </p>
+
+        {/* Articles Grid - cards with large gradient images */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {mockArticles.map((article) => (
-            <article
+            <Link
               key={article.id}
-              className="group border border-border rounded-lg bg-card overflow-hidden hover:border-primary/40 transition-all duration-300"
+              href={`/blog/${article.slug}`}
+              className="group"
             >
-              {/* Gradient Header Bar */}
-              <div
-                className={`h-2 bg-gradient-to-r ${article.gradientFrom} ${article.gradientTo}`}
-              />
+              <article className="border border-border rounded-lg bg-card overflow-hidden hover:border-primary/40 transition-all duration-300">
+                {/* Large Gradient Image Area - matching screenshot */}
+                <div
+                  className={`h-40 bg-gradient-to-br ${article.gradient} opacity-90 group-hover:opacity-100 transition-opacity`}
+                />
 
-              {/* Content */}
-              <div className="p-6 space-y-4">
-                {/* Category Badge */}
-                <Badge variant="outline">{article.category}</Badge>
+                {/* Content */}
+                <div className="p-5 space-y-3">
+                  {/* Title */}
+                  <h3 className="text-base font-semibold text-foreground line-clamp-2 group-hover:text-primary transition-colors">
+                    {article.title}
+                  </h3>
 
-                {/* Title */}
-                <h3 className="text-xl font-semibold text-foreground line-clamp-2 group-hover:text-primary transition-colors">
-                  {article.title}
-                </h3>
+                  {/* Excerpt */}
+                  <p className="text-sm text-muted-foreground line-clamp-3">
+                    {article.excerpt}
+                  </p>
 
-                {/* Excerpt */}
-                <p className="text-sm text-muted-foreground line-clamp-3">
-                  {article.excerpt}
-                </p>
-
-                {/* Meta */}
-                <div className="flex items-center gap-4 text-xs text-muted-foreground pt-4 border-t border-border">
-                  <div className="flex items-center gap-1">
-                    <Calendar className="h-3.5 w-3.5" />
-                    <span>{formatDate(article.date)}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <User className="h-3.5 w-3.5" />
+                  {/* Meta - Date and Author */}
+                  <div className="flex items-center justify-between text-xs text-muted-foreground pt-3">
+                    <span>{article.date}</span>
                     <span>{article.author}</span>
                   </div>
                 </div>
-
-                {/* Read More Link */}
-                <Link
-                  href={`/blog/${article.slug}`}
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-accent transition-colors group"
-                >
-                  Read More
-                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </div>
-            </article>
+              </article>
+            </Link>
           ))}
         </div>
 
         {/* Mobile View All Button */}
         <div className="flex justify-center mt-8 md:hidden">
-          <Button variant="outline" className="gap-2" asChild>
-            <Link href="/blog">
-              View All Articles
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </Button>
+          <Link
+            href="/blog"
+            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground border border-border rounded-lg px-4 py-2 transition-colors"
+          >
+            View All Articles
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </div>
     </section>

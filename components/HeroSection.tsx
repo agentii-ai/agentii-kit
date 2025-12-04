@@ -69,11 +69,16 @@ export function HeroSection() {
         </h1>
 
         {/* Subcopy with colored highlights - matching screenshot exactly */}
-        <p 
+        <p
           className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto mb-2 animate-fade-in-up"
           style={{ animationDelay: "0.1s" }}
         >
-          Curated <span className="text-primary">spec-kits</span> with working principles, plans, and tasking methods
+          Curated <a
+            href="https://github.com/github/spec-kit"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary hover:underline"
+          >spec-kits</a> with working principles, plans, and tasking methods
         </p>
         
         {/* Secondary line with colored tool names */}
@@ -99,7 +104,7 @@ export function HeroSection() {
           </Button>
           <Button variant="ghost" size="lg" className="gap-2 text-muted-foreground hover:text-foreground" asChild>
             <a
-              href="https://github.com/agentii-kit"
+              href="https://github.com/agentii-ai"
               target="_blank"
               rel="noopener noreferrer"
             >

@@ -2,20 +2,27 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { Star, Github, FileText } from "lucide-react";
-import { Card, CardContent } from "./ui/card";
-import { Badge } from "./ui/badge";
-import { Button } from "./ui/button";
-import { Kit, categoryMetadata, CategoryColor } from "@/data/kits";
+import { Star, Github, Clock } from "lucide-react";
+import { Kit, categoryMetadata } from "@/data/kits";
 
 interface KitCardProps {
   kit: Kit;
 }
 
+// Category badge color mapping to match screenshot
+const categoryBadgeStyles: Record<string, string> = {
+  green: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
+  amber: "bg-amber-500/20 text-amber-400 border-amber-500/30",
+  pink: "bg-pink-500/20 text-pink-400 border-pink-500/30",
+  blue: "bg-blue-500/20 text-blue-400 border-blue-500/30",
+  purple: "bg-purple-500/20 text-purple-400 border-purple-500/30",
+  orange: "bg-orange-500/20 text-orange-400 border-orange-500/30",
+  violet: "bg-violet-500/20 text-violet-400 border-violet-500/30",
+};
+
 export function KitCard({ kit }: KitCardProps) {
-  const [isHovered, setIsHovered] = React.useState(false);
   const categoryMeta = categoryMetadata[kit.category];
-  const colorVariant = categoryMeta.color as keyof typeof categoryColorMap;
+  const badgeStyle = categoryBadgeStyles[categoryMeta.color] || categoryBadgeStyles.blue;
 
   // Format date
   const formatDate = (dateString: string) => {
@@ -38,87 +45,47 @@ export function KitCard({ kit }: KitCardProps) {
   // Extract repo name from GitHub URL or use kit slug
   const repoName = kit.github
     ? kit.github.split("/").slice(-2).join("/")
-    : `agentii-kit/${kit.slug}`;
+    : `agentii/${kit.slug}`;
 
   return (
-    <Card
-      className="relative h-full border-border bg-card hover:border-primary/40 transition-all duration-300 overflow-hidden group"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <CardContent className="p-6 h-full flex flex-col">
-        {/* Category Badge */}
-        <div className="mb-3">
-          <Badge variant={colorVariant}>{kit.category}</Badge>
+    <Link href={`/kits/${kit.slug}`} className="block h-full">
+      <article className="h-full border border-border rounded-lg bg-card p-5 hover:border-primary/50 transition-all duration-300 flex flex-col">
+        {/* Category Badge - matching screenshot pill style */}
+        <div className="mb-4">
+          <span className={`inline-flex items-center px-2.5 py-1 text-xs font-medium rounded border ${badgeStyle}`}>
+            {kit.category}
+          </span>
         </div>
 
         {/* Title */}
-        <h3 className="text-lg font-semibold text-foreground mb-2 line-clamp-2">
+        <h3 className="text-base font-semibold text-foreground mb-2 line-clamp-1">
           {kit.name}
         </h3>
 
         {/* Description */}
-        <p className="text-sm text-muted-foreground mb-4 flex-grow line-clamp-3">
+        <p className="text-sm text-muted-foreground mb-4 flex-grow line-clamp-2">
           {kit.description}
         </p>
 
-        {/* Meta Row */}
-        <div className="flex items-center justify-between text-xs text-muted-foreground border-t border-border pt-3">
-          <div className="flex items-center gap-3">
-            <span className="font-mono truncate max-w-[120px]">{repoName}</span>
-            <div className="flex items-center gap-1">
-              <Star className="h-3 w-3 fill-amber-500 text-amber-500" />
-              <span>{kit.stars.toLocaleString()}</span>
-            </div>
+        {/* Meta Row - matching screenshot exactly */}
+        <div className="flex items-center gap-4 text-xs text-muted-foreground">
+          {/* GitHub Repo */}
+          <div className="flex items-center gap-1.5 min-w-0">
+            <Github className="h-3.5 w-3.5 shrink-0" />
+            <span className="truncate">{repoName}</span>
           </div>
-          <span>{formatDate(kit.lastUpdated)}</span>
+          {/* Stars */}
+          <div className="flex items-center gap-1 shrink-0">
+            <Star className="h-3 w-3 fill-amber-500 text-amber-500" />
+            <span>{kit.stars.toLocaleString()}</span>
+          </div>
+          {/* Last Updated */}
+          <div className="flex items-center gap-1 shrink-0">
+            <Clock className="h-3 w-3" />
+            <span>{formatDate(kit.lastUpdated)}</span>
+          </div>
         </div>
-
-        {/* Hover Action Buttons */}
-        <div
-          className={`absolute inset-x-0 bottom-0 bg-gradient-to-t from-card via-card to-transparent p-6 pt-12 flex gap-2 transition-all duration-300 ${
-            isHovered
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-4 pointer-events-none"
-          }`}
-        >
-          <Button size="sm" className="flex-1 gap-2" asChild>
-            <Link href={`/kits/${kit.slug}`}>
-              <FileText className="h-4 w-4" />
-              View Spec
-            </Link>
-          </Button>
-          {kit.github && (
-            <Button
-              size="sm"
-              variant="outline"
-              className="flex-1 gap-2"
-              asChild
-            >
-              <a
-                href={kit.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <Github className="h-4 w-4" />
-                GitHub
-              </a>
-            </Button>
-          )}
-        </div>
-      </CardContent>
-    </Card>
+      </article>
+    </Link>
   );
 }
-
-// Map category colors to badge variants
-const categoryColorMap = {
-  blue: "blue",
-  purple: "purple",
-  pink: "pink",
-  amber: "amber",
-  green: "green",
-  violet: "violet",
-  orange: "orange",
-} as const;

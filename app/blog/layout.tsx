@@ -1,8 +1,4 @@
-"use client";
-
-import React, { ReactNode } from "react";
-import { Navbar } from "@/components/Navbar";
-import { FooterKit } from "@/components/FooterKit";
+import { ReactNode } from "react";
 
 interface BlogLayoutProps {
   children: ReactNode;
@@ -11,16 +7,8 @@ interface BlogLayoutProps {
 export default function BlogLayout({ children }: BlogLayoutProps) {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Navbar />
-
-      {/* Navbar spacing */}
-      <div className="h-16" />
-
       {/* Main content */}
       <main>{children}</main>
-
-      {/* Footer */}
-      <FooterKit />
     </div>
   );
 }

@@ -3,7 +3,6 @@
 import * as React from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { KitCard } from "./KitCard";
-import { Button } from "./ui/button";
 import { Kit, KitCategory } from "@/data/kits";
 
 interface KitsGridProps {
@@ -105,35 +104,35 @@ export function KitsGrid({
 
   return (
     <div className="flex-1 space-y-6">
-      {/* Results count */}
+      {/* Section Header - matching screenshot */}
       <div className="flex items-center justify-between">
-        <p className="text-sm text-muted-foreground">
-          Showing {startIndex + 1}-{Math.min(endIndex, filteredKits.length)} of{" "}
-          {filteredKits.length} kits
-        </p>
+        <h2 className="text-2xl font-bold text-foreground">
+          Available Kits{" "}
+          <span className="text-muted-foreground font-normal text-base">
+            ({filteredKits.length} results)
+          </span>
+        </h2>
       </div>
 
-      {/* Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Grid - 3 columns matching screenshot */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {paginatedKits.map((kit) => (
           <KitCard key={kit.id} kit={kit} />
         ))}
       </div>
 
-      {/* Pagination Controls */}
+      {/* Pagination Controls - matching screenshot style */}
       {totalPages > 1 && (
-        <div className="flex items-center justify-center gap-2 pt-8">
+        <div className="flex items-center justify-center gap-1 pt-8">
           {/* Previous Button */}
-          <Button
-            variant="outline"
-            size="sm"
+          <button
             onClick={() => onPageChange(currentPage - 1)}
             disabled={currentPage === 1}
-            className="gap-1"
+            className="flex items-center gap-1 px-3 py-2 text-sm text-muted-foreground hover:text-foreground disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
           >
             <ChevronLeft className="h-4 w-4" />
-            <span className="sr-only md:not-sr-only">Previous</span>
-          </Button>
+            <span className="hidden sm:inline">Previous</span>
+          </button>
 
           {/* Page Numbers */}
           <div className="flex items-center gap-1">
@@ -153,32 +152,31 @@ export function KitsGrid({
               const isActive = pageNum === currentPage;
 
               return (
-                <Button
+                <button
                   key={pageNum}
-                  variant={isActive ? "primary" : "outline"}
-                  size="sm"
                   onClick={() => onPageChange(pageNum)}
-                  className={`min-w-[40px] ${
-                    isActive ? "pointer-events-none" : ""
+                  disabled={isActive}
+                  className={`min-w-[36px] h-9 rounded-lg text-sm font-medium transition-colors ${
+                    isActive
+                      ? "bg-primary text-primary-foreground"
+                      : "text-muted-foreground hover:text-foreground hover:bg-surface"
                   }`}
                 >
                   {pageNum}
-                </Button>
+                </button>
               );
             })}
           </div>
 
           {/* Next Button */}
-          <Button
-            variant="outline"
-            size="sm"
+          <button
             onClick={() => onPageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
-            className="gap-1"
+            className="flex items-center gap-1 px-3 py-2 text-sm text-muted-foreground hover:text-foreground disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
           >
-            <span className="sr-only md:not-sr-only">Next</span>
+            <span className="hidden sm:inline">Next</span>
             <ChevronRight className="h-4 w-4" />
-          </Button>
+          </button>
         </div>
       )}
     </div>
