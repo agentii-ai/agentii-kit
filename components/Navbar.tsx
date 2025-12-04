@@ -14,6 +14,7 @@ export function Navbar() {
     { href: "/kits", label: "Kits" },
     { href: "/blog", label: "Blog" },
     { href: "/about", label: "About" },
+    { href: "/donate", label: "Donate" },
   ];
 
   return (
@@ -78,14 +79,10 @@ export function Navbar() {
               className="hidden md:flex items-center gap-2"
               asChild
             >
-              <a
-                href="https://github.com/sponsors/agentii-kit"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <Link href="/donate">
                 <Heart className="h-4 w-4" />
                 Donate
-              </a>
+              </Link>
             </Button>
 
             {/* Mobile Menu Toggle */}
@@ -108,7 +105,7 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-border bg-background">
+        <div className="md:hidden border-t border-border bg-background animate-in fade-in slide-in-from-top-2 duration-200">
           <div className="container mx-auto px-4 py-4 space-y-3">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
@@ -148,14 +145,10 @@ export function Navbar() {
                 className="w-full justify-start"
                 asChild
               >
-                <a
-                  href="https://github.com/sponsors/agentii-kit"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <Link href="/donate" onClick={() => setMobileMenuOpen(false)}>
                   <Heart className="h-4 w-4 mr-2" />
                   Donate
-                </a>
+                </Link>
               </Button>
             </div>
           </div>

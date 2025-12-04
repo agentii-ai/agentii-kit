@@ -8,7 +8,7 @@ export function FooterKit() {
     { href: "/kits", label: "Browse Kits" },
     { href: "/blog", label: "Blog" },
     { href: "/about", label: "About" },
-    { href: "/docs", label: "Documentation" },
+    { href: "/donate", label: "Donate" },
   ];
 
   const resourceLinks = [
@@ -111,15 +111,13 @@ export function FooterKit() {
             <p className="text-sm text-muted-foreground">
               Help us maintain and grow the agentii-kit community.
             </p>
-            <a
-              href="https://github.com/sponsors/agentii-kit"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/donate"
               className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent/90 transition-colors"
             >
               <Heart className="h-4 w-4" />
-              Sponsor Project
-            </a>
+              Support Us
+            </Link>
           </div>
         </div>
 

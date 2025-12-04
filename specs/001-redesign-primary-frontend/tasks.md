@@ -100,28 +100,28 @@ This is a Next.js 14 web application with the following structure:
 
 ### Kit Components
 
-- [ ] T030 [P] [US1] Create KitCard component with category pill, title, description, meta row, hover actions in components/KitCard.tsx
-- [ ] T031 [P] [US1] Create FilterSidebar component with search input, category checkboxes, sort options, clear action in components/FilterSidebar.tsx
-- [ ] T032 [US1] Create KitsGrid component with filtering, pagination, empty state in components/KitsGrid.tsx
-- [ ] T033 [P] [US1] Create FeaturedKits component showing top 3 kits by stars in components/FeaturedKits.tsx
-- [ ] T034 [P] [US1] Create LatestKits component showing recent kits in 3-column grid in components/LatestKits.tsx
-- [ ] T035 [P] [US1] Create RecentlyUpdatedTable component with table-style kit listing in components/RecentlyUpdatedTable.tsx
+- [x] T030 [P] [US1] Create KitCard component with category pill, title, description, meta row, hover actions in components/KitCard.tsx
+- [x] T031 [P] [US1] Create FilterSidebar component with search input, category checkboxes, sort options, clear action in components/FilterSidebar.tsx
+- [x] T032 [US1] Create KitsGrid component with filtering, pagination, empty state in components/KitsGrid.tsx
+- [x] T033 [P] [US1] Create FeaturedKits component showing top 3 kits by stars in components/FeaturedKits.tsx
+- [x] T034 [P] [US1] Create LatestKits component showing recent kits in 3-column grid in components/LatestKits.tsx
+- [x] T035 [P] [US1] Create RecentlyUpdatedTable component with table-style kit listing in components/RecentlyUpdatedTable.tsx
 
 ### Supporting Sections
 
-- [ ] T036 [P] [US1] Create Testimonials component with split layout (quote left, avatar right) in components/Testimonials.tsx
-- [ ] T037 [P] [US1] Create UseCases component with metrics row and use case cards in components/UseCases.tsx
-- [ ] T038 [P] [US1] Create FeaturedArticles component as blog teaser section in components/FeaturedArticles.tsx
+- [x] T036 [P] [US1] Create Testimonials component with split layout (quote left, avatar right) in components/Testimonials.tsx
+- [x] T037 [P] [US1] Create UseCases component with metrics row and use case cards in components/UseCases.tsx
+- [x] T038 [P] [US1] Create FeaturedArticles component as blog teaser section in components/FeaturedArticles.tsx
 
 ### Landing Page Assembly
 
-- [ ] T039 [US1] Rewrite app/page.tsx to compose all sections: HeroSection, FeaturedArticles, LatestKits, FilterSidebar + KitsGrid, RecentlyUpdatedTable, Testimonials, UseCases in /Users/frank/X/agentii-kit/app/page.tsx
-- [ ] T040 [US1] Test landing page visual consistency with secondary frontend (side-by-side comparison, target 90% match)
-- [ ] T041 [US1] Test filtering functionality (search and category checkboxes update grid)
-- [ ] T042 [US1] Test pagination controls (page numbers, condensation like "1 ... 4 5 6 ... 12")
-- [ ] T043 [US1] Test mobile responsiveness on homepage (all sections render correctly on mobile)
-- [ ] T044 [US1] Test kit card hover effects (border change, action buttons reveal in 150-250ms)
-- [ ] T045 [US1] Run npm run build and verify static export succeeds
+- [x] T039 [US1] Rewrite app/page.tsx to compose all sections: HeroSection, FeaturedArticles, LatestKits, FilterSidebar + KitsGrid, RecentlyUpdatedTable, Testimonials, UseCases in /Users/frank/X/agentii-kit/app/page.tsx
+- [x] T040 [US1] Test landing page visual consistency with secondary frontend (side-by-side comparison, target 90% match)
+- [x] T041 [US1] Test filtering functionality (search and category checkboxes update grid)
+- [x] T042 [US1] Test pagination controls (page numbers, condensation like "1 ... 4 5 6 ... 12")
+- [x] T043 [US1] Test mobile responsiveness on homepage (all sections render correctly on mobile)
+- [x] T044 [US1] Test kit card hover effects (border change, action buttons reveal in 150-250ms)
+- [x] T045 [US1] Run npm run build and verify static export succeeds
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently. The homepage matches the secondary frontend design visually and all interactions work.
 
