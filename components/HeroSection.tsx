@@ -8,30 +8,34 @@ import { FloatingTags } from "./FloatingTags";
 
 // Tags matching the screenshot exactly - row 1 (top)
 const topTagsRow1 = [
-  "troubleshooting", "devops", "coding-cli", "how-it-works", "transformer",
-  "feature-engineering", "evaluation", "vibe-coding", "time-series", "llm",
-  "rag", "memory", "security", "openai", "anthropic", "agent", "ai", "prompt-engineering"
+  "spec-driven", "spec-kit", "job-kits", "constitution-engineering", "ai-agents",
+  "claude-code", "cursor", "windsurf", "agent-ready", "pm-kit",
+  "marketing-kit", "startup-kit", "edu-kit", "legal-kit", "seo-kit",
+  "launch-kit", "lecture-kit", "research-kit"
 ];
 
 // Tags matching the screenshot exactly - row 2
 const topTagsRow2 = [
-  "evaluation", "vibe-coding", "time-series", "llm", "rag", "memory", "security",
-  "openai", "anthropic", "agent", "ai", "prompt-engineering", "troubleshooting",
-  "devops", "coding-cli", "how-it-works", "transformer", "feature-engineering"
+  "pmf-kit", "blog-tech-kit", "twitter-init-kit", "product-management", "product-design",
+  "roadmap", "sprint-planning", "backlog", "experimentation", "growth-loops",
+  "content-strategy", "twitter-campaigns", "blog-workflow", "founder-ops", "growth-marketing",
+  "user-research", "persona-mapping", "kpi-tracking"
 ];
 
 // Tags matching the screenshot exactly - row 3 (bottom area)
 const bottomTagsRow1 = [
-  "fine-tuning", "knowledge-graph", "embeddings", "retrieval", "tokenization",
-  "multi-agent", "workflow", "reasoning", "web3", "sampling", "text-generation",
-  "vector-database", "ocr", "document-conversion", "vision-model", "in-context-learning"
+  "spec.md", "plan.md", "tasks.md", "constitution.md", "slash-commands",
+  "workflow-design", "multi-agent", "prompt-architecture", "memory", "refs",
+  "templates", "cli-tooling", "project-setup", "quality-gates", "pdca-cycles",
+  "agentic-workflows"
 ];
 
 // Tags matching the screenshot exactly - row 4
 const bottomTagsRow2 = [
-  "ocr", "document-conversion", "vision-model", "in-context-learning", "hallucination",
-  "fine-tuning", "knowledge-graph", "embeddings", "retrieval", "tokenization",
-  "multi-agent", "workflow", "reasoning", "web3", "sampling", "text-generation"
+  "pmf-discovery", "market-research", "campaign-briefs", "launch-checklists", "spec-review",
+  "feature-specs", "gtm-plan", "onboarding-flows", "support-runbooks", "ops-playbooks",
+  "design-system-kits", "data-pipelines", "incident-response", "analytics-instrumentation",
+  "documentation-kits", "team-handbooks"
 ];
 
 export function HeroSection() {

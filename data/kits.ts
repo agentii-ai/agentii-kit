@@ -176,6 +176,23 @@ export const mockKits: Kit[] = [
       avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Emily",
     },
   },
+  {
+    id: "18",
+    name: "PMF Kit",
+    slug: "pmf-kit",
+    description:
+      "Spec-driven toolkit for discovering and validating product-market fit for AI SaaS products. Includes PMF workflows, templates, and AI agent commands.",
+    category: KitCategory.PM,
+    tags: ["pmf", "product-market-fit", "research", "ai-saas"],
+    stars: 2100,
+    lastUpdated: "2025-02-05T09:00:00Z",
+    github: "https://github.com/agentii-ai/pmf-kit",
+    author: {
+      name: "agentii-ai",
+      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=PMF",
+    },
+    featured: true,
+  },
 
   // MARKETING-KIT
   {
@@ -224,6 +241,40 @@ export const mockKits: Kit[] = [
       name: "David Kim",
       avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=David",
     },
+  },
+  {
+    id: "19",
+    name: "Blog-Tech-Kit",
+    slug: "blog-tech-kit",
+    description:
+      "Spec-driven toolkit for building authority and product blogs with AI agents. Define content strategy, editorial workflows, and production tasks.",
+    category: KitCategory.MARKETING,
+    tags: ["blog", "content", "authority", "spec-kit"],
+    stars: 1950,
+    lastUpdated: "2025-02-04T18:30:00Z",
+    github: "https://github.com/agentii-ai/blog-tech-kit",
+    author: {
+      name: "agentii-ai",
+      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Blog",
+    },
+    featured: true,
+  },
+  {
+    id: "20",
+    name: "Twitter-Init-Kit",
+    slug: "twitter-init-kit",
+    description:
+      "Spec-driven Twitter marketing toolkit for AI SaaS launches. Includes CLI and AI agent workflows for campaigns, growth loops, and founder-led content.",
+    category: KitCategory.MARKETING,
+    tags: ["twitter", "launch", "campaigns", "growth"],
+    stars: 1875,
+    lastUpdated: "2025-02-03T20:15:00Z",
+    github: "https://github.com/agentii-ai/twitter-init-kit",
+    author: {
+      name: "agentii-ai",
+      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Twitter",
+    },
+    featured: true,
   },
 
   // LEGAL-KIT
