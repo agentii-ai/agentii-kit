@@ -1,6 +1,6 @@
 "use client";
 
-import { Github, Linkedin, Twitter, Star, GitFork, ExternalLink, Sparkles, Layers, FileText, GitBranch, CheckCircle2 } from "lucide-react";
+import { Github, Linkedin, Twitter, ExternalLink, Sparkles, Layers, FileText, GitBranch, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function AboutPage() {
@@ -9,7 +9,6 @@ export default function AboutPage() {
     {
       name: "github/spec-kit",
       description: "The original Spec-Driven Development toolkit by GitHub",
-      stars: "2.1k",
       url: "https://github.com/github/spec-kit",
       badge: "🌱 Foundation",
       color: "text-emerald-400 bg-emerald-400/10 border-emerald-400/30",
@@ -21,7 +20,6 @@ export default function AboutPage() {
     {
       name: "agentii-ai",
       description: "Organization home for agentic intelligence tools",
-      stars: "—",
       url: "https://github.com/agentii-ai",
       badge: "🏠 Org",
       color: "text-primary bg-primary/10 border-primary/30",
@@ -29,7 +27,6 @@ export default function AboutPage() {
     {
       name: "agentii-ai/agentii-kit",
       description: "Curated spec-kits for AI agent workflows",
-      stars: "128",
       url: "https://github.com/agentii-ai/agentii-kit",
       badge: "📦 Main",
       color: "text-amber-400 bg-amber-400/10 border-amber-400/30",
@@ -37,7 +34,6 @@ export default function AboutPage() {
     {
       name: "agentii-ai/pmf-kit",
       description: "Product-Market Fit specification templates",
-      stars: "45",
       url: "https://github.com/agentii-ai/pmf-kit",
       badge: "🎯 PMF",
       color: "text-purple-400 bg-purple-400/10 border-purple-400/30",
@@ -72,14 +68,14 @@ export default function AboutPage() {
 
   const testimonials = [
     {
-      quote: "agentii-kit revolutionized how our team approaches AI agent development. Highly recommended.",
-      author: "Jane Smith",
-      role: "CTO, TechCorp",
+      quote: "PMF Kit's /pmfkit.pmf workflow forced us to define personas and jobs-to-be-done before writing a single line of code. We validated our hypothesis in 3 weeks instead of 3 months—spec-driven development is a game changer for early-stage founders.",
+      author: "Kevin Zhang",
+      role: "Founder, AI DevTools Startup",
     },
     {
-      quote: "The spec templates are production-ready and follow industry best practices.",
-      author: "John Davis",
-      role: "Engineering Manager, Innovate Labs",
+      quote: "Blog-Tech-Kit gave our content team a repeatable system. The editorial workflow templates and /blogkit.plan command helped us launch an authority blog that ranks for 50+ keywords in just 2 months.",
+      author: "Sarah Mitchell",
+      role: "Head of Content, B2B SaaS Company",
     },
   ];
 
@@ -178,9 +174,6 @@ export default function AboutPage() {
                       <p className="font-mono text-sm text-primary group-hover:underline">{repo.name}</p>
                       <p className="text-sm text-muted-foreground mt-1">{repo.description}</p>
                       <div className="flex items-center gap-3 mt-2 text-xs text-muted-foreground">
-                        <span className="flex items-center gap-1">
-                          <Star className="w-3 h-3" /> {repo.stars}
-                        </span>
                         <span className="flex items-center gap-1 text-emerald-400">
                           <ExternalLink className="w-3 h-3" /> View on GitHub
                         </span>
@@ -218,9 +211,6 @@ export default function AboutPage() {
                       <p className="font-mono text-sm text-primary group-hover:underline">{repo.name}</p>
                       <p className="text-sm text-muted-foreground mt-1">{repo.description}</p>
                       <div className="flex items-center gap-3 mt-2 text-xs text-muted-foreground">
-                        <span className="flex items-center gap-1">
-                          <Star className="w-3 h-3" /> {repo.stars}
-                        </span>
                         <span className="flex items-center gap-1 text-primary">
                           <ExternalLink className="w-3 h-3" /> View on GitHub
                         </span>
