@@ -9,7 +9,7 @@ import { KitsGrid } from "@/components/KitsGrid";
 import { RecentlyUpdatedTable } from "@/components/RecentlyUpdatedTable";
 import { Testimonials } from "@/components/Testimonials";
 import { UseCases } from "@/components/UseCases";
-import { mockKits, KitCategory } from "@/data/kits";
+import { allKits, KitCategory } from "@/data/kits";
 
 export default function HomePage() {
   // State for search and filtering
@@ -74,7 +74,7 @@ export default function HomePage() {
 
             {/* Kits Grid */}
             <KitsGrid
-              kits={mockKits}
+              kits={allKits}
               searchQuery={searchQuery}
               selectedCategories={selectedCategories}
               currentPage={currentPage}

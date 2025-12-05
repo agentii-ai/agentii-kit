@@ -30,7 +30,7 @@ export function KitsGrid({
     return kits.filter(
       (kit) =>
         kit.name.toLowerCase().includes(query) ||
-        kit.description.toLowerCase().includes(query) ||
+        (kit.description?.toLowerCase() || '').includes(query) ||
         kit.tags.some((tag) => tag.toLowerCase().includes(query))
     );
   }, [kits, searchQuery]);

@@ -13,11 +13,11 @@
 
 **Purpose**: Project initialization and core data structure setup
 
-- [ ] T001 Create Kit interface in `data/kits.ts` with all required fields: id, name, emoji, shortTagline, longDescription, domain, githubUrl, status, cli config, workflows, etc. per spec Key Entities section
-- [ ] T002 [P] Create supporting interfaces in `specs/002-kits-data-update/contracts/kit-schema.ts`: KitWorkflowPhase, KitCliConfig, KitProjectStructureNode, KitTemplate, KitConstitution
-- [ ] T003 [P] Setup TypeScript validation rules in `lib/kit-utils.ts` for kit data (validateKit function, field constraints)
-- [ ] T004 Create admin extraction workflow guide in `.specify/docs/kit-extraction-workflow.md` with 8-step process and examples
-- [ ] T005 Create `data/kits.json` schema documentation showing JSON export structure for future API use (FR-009)
+- [x] T001 Create Kit interface in `data/kits.ts` with all required fields: id, name, emoji, shortTagline, longDescription, domain, githubUrl, status, cli config, workflows, etc. per spec Key Entities section
+- [x] T002 [P] Create supporting interfaces in `specs/002-kits-data-update/contracts/kit-schema.ts`: KitWorkflowPhase, KitCliConfig, KitProjectStructureNode, KitTemplate, KitConstitution
+- [x] T003 [P] Setup TypeScript validation rules in `lib/kit-utils.ts` for kit data (validateKit function, field constraints)
+- [x] T004 Create admin extraction workflow guide in `.specify/docs/kit-extraction-workflow.md` with 8-step process and examples
+- [x] T005 Create `data/kits.json` schema documentation showing JSON export structure for future API use (FR-009)
 
 **Checkpoint**: Core infrastructure ready. Kit interface defined. Validation framework in place. Ready for user story implementation.
 
@@ -29,13 +29,13 @@
 
 **⚠️ CRITICAL**: These tasks MUST complete before user stories can be tested
 
-- [ ] T006 Extract metadata for pmf-kit from `https://github.com/agentii-ai/pmf-kit` using Claude Code/WebFetch: name, description, workflows, CLI commands, project structure. Document in research notes.
-- [ ] T007 Extract metadata for blog-tech-kit from `https://github.com/agentii-ai/blog-tech-kit` using Claude Code/WebFetch: name, description, workflows, CLI commands, project structure. Document in research notes.
-- [ ] T008 Extract metadata for twitter-init-kit from `https://github.com/agentii-ai/twitter-init-kit` using Claude Code/WebFetch: name, description, workflows, CLI commands, project structure. Document in research notes.
-- [ ] T009 Validate all three extracted kit records against Kit interface in `data/kits.ts`. Ensure no missing required fields. Document any discrepancies.
-- [ ] T010 Delete mock kit data from existing `data/kits.ts` mockKits array (mockKits array or similar placeholder data)
-- [ ] T011 Delete `data/featured_kits.md` file completely (mock data file - no longer needed)
-- [ ] T012 Run `npm run type-check` to verify TypeScript interfaces are correctly defined before adding real data
+- [x] T006 Extract metadata for pmf-kit from `https://github.com/agentii-ai/pmf-kit` using Claude Code/WebFetch: name, description, workflows, CLI commands, project structure. Document in research notes.
+- [x] T007 Extract metadata for blog-tech-kit from `https://github.com/agentii-ai/blog-tech-kit` using Claude Code/WebFetch: name, description, workflows, CLI commands, project structure. Document in research notes.
+- [x] T008 Extract metadata for twitter-init-kit from `https://github.com/agentii-ai/twitter-init-kit` using Claude Code/WebFetch: name, description, workflows, CLI commands, project structure. Document in research notes.
+- [x] T009 Validate all three extracted kit records against Kit interface in `data/kits.ts`. Ensure no missing required fields. Document any discrepancies.
+- [x] T010 Delete mock kit data from existing `data/kits.ts` mockKits array (mockKits array or similar placeholder data)
+- [x] T011 Delete `data/featured_kits.md` file completely (mock data file - no longer needed)
+- [x] T012 Run `npm run type-check` to verify TypeScript interfaces are correctly defined before adding real data
 
 **Checkpoint**: Real data extracted and validated. Mock data removed. Ready for user story implementation.
 

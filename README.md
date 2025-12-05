@@ -35,6 +35,11 @@
 
 ## 🎯 What is agentii-kit?
 
+<div align="center">
+  <img src="public/herosection.png" alt="agentii-kit Hero Section" width="800"/>
+  <p><em>The agentii-kit landing page — Browse curated spec-kits for AI agents</em></p>
+</div>
+
 **agentii-kit** is an open-source ecosystem built on **Spec-Driven Development (SDD)**—a methodology that makes specifications executable, not just documentation. We provide curated, battle-tested specification templates (called "kits") that empower:
 
 - **Developers** to build high-quality software faster
@@ -67,18 +72,19 @@ The mechanism underlying SDD is **domain-agnostic**. It's essentially a standard
 ### The Workflow
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                    SPEC-DRIVEN WORKFLOW                         │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│  /specify  →  /clarify  →  /plan  →  /tasks  →  /implement     │
-│      │           │          │          │            │          │
-│      ▼           ▼          ▼          ▼            ▼          │
-│  spec.md   clarifications  plan.md  tasks.md   execution       │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────────────────────┐
+│                           SPEC-DRIVEN WORKFLOW                                   │
+├──────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                  │
+│  /constitution  →  /specify  →  /clarify  →  /plan  →  /tasks  →  /implement    │
+│        │              │           │           │          │            │         │
+│        ▼              ▼           ▼           ▼          ▼            ▼         │
+│  constitution.md   spec.md   clarifications  plan.md  tasks.md   execution      │
+│                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────┘
 ```
 
+0. **`/constitution`** — Establish project principles, rules, and development guidelines
 1. **`/specify`** — Define what you want to build (requirements, user stories)
 2. **`/clarify`** — Resolve ambiguities before planning
 3. **`/plan`** — Create technical implementation plans

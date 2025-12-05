@@ -4,7 +4,7 @@ import * as React from "react";
 import { FeaturedKits } from "@/components/FeaturedKits";
 import { FilterSidebar } from "@/components/FilterSidebar";
 import { KitsGrid } from "@/components/KitsGrid";
-import { mockKits, KitCategory } from "@/data/kits";
+import { allKits, KitCategory } from "@/data/kits";
 
 export default function KitsPage() {
   const [searchQuery, setSearchQuery] = React.useState("");
@@ -71,7 +71,7 @@ export default function KitsPage() {
               📦 Catalog
             </span>
             <span className="text-sm text-muted-foreground">
-              {mockKits.length}+ production-ready kits
+              {allKits.length}+ production-ready kits
             </span>
           </div>
 
@@ -146,7 +146,7 @@ export default function KitsPage() {
             {/* Kits Grid */}
             <div className="lg:col-span-3">
               <KitsGrid
-                kits={mockKits}
+                kits={allKits}
                 searchQuery={searchQuery}
                 selectedCategories={selectedCategories}
                 currentPage={currentPage}

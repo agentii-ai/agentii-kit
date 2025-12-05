@@ -4,7 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { Star, ExternalLink } from "lucide-react";
 import { Badge } from "./ui/badge";
-import { sortKitsByDate, mockKits, categoryMetadata } from "@/data/kits";
+import { sortKitsByDate, allKits, categoryMetadata } from "@/data/kits";
 
 interface RecentlyUpdatedTableProps {
   maxItems?: number;
@@ -13,7 +13,7 @@ interface RecentlyUpdatedTableProps {
 export function RecentlyUpdatedTable({ maxItems = 8 }: RecentlyUpdatedTableProps) {
   // Get recently updated kits
   const recentKits = React.useMemo(() => {
-    return sortKitsByDate(mockKits, false).slice(0, maxItems);
+    return sortKitsByDate(allKits, false).slice(0, maxItems);
   }, [maxItems]);
 
   // Format date

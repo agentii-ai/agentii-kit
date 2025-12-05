@@ -13,20 +13,23 @@ export function Testimonials() {
             <div className="space-y-6">
               <Quote className="h-12 w-12 text-primary opacity-50" />
               <blockquote className="text-xl md:text-2xl font-medium text-foreground leading-relaxed">
-                "agentii-kit has revolutionized how we build AI agents. The
-                spec-kits are production-ready and save us weeks of development
-                time. It's become an essential part of our workflow."
+                "PMF Kit transformed how we validate product-market fit. Instead of 
+                wandering through vague user research, the /pmfkit.pmf workflow forced us to 
+                define personas, jobs-to-be-done, and success metrics upfront. We ran 
+                structured discovery interviews and had evidence-backed go/no-go decisions 
+                in weeks, not months. Spec-driven development isn't just for code—it's an 
+                operating system for any knowledge work."
               </blockquote>
               <div className="flex items-center gap-4">
                 <div className="h-12 w-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-lg">
-                  SC
+                  HL
                 </div>
                 <div>
                   <div className="font-semibold text-foreground">
-                    Sarah Chen
+                    Harvey Lau
                   </div>
                   <div className="text-sm text-muted-foreground">
-                    Senior Engineering Lead, TechCorp
+                    Founder & CEO, AI DevTools Startup
                   </div>
                 </div>
               </div>
@@ -66,7 +69,7 @@ export function Testimonials() {
               <div className="relative">
                 <div className="h-64 w-64 rounded-2xl bg-gradient-to-br from-primary/20 via-accent/20 to-purple-500/20 border border-border flex items-center justify-center">
                   <div className="h-48 w-48 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-6xl">
-                    SC
+                    HL
                   </div>
                 </div>
                 {/* Decorative elements */}

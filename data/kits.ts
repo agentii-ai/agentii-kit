@@ -1,3 +1,29 @@
+/**
+ * Unified Kit interface for agentii-kit data model
+ * Aligns with Spec-Driven Development (SDD) specification
+ * See: specs/002-kits-data-update/spec.md
+ */
+
+// ============================================================================
+// Type Definitions
+// ============================================================================
+
+/** Kit domain categories */
+export type KitDomain = 'pmf' | 'blog' | 'twitter' | 'growth' | 'sales' | 'seo' | 'launch' | 'edu' | 'legal' | 'startup' | 'design-system' | 'dev';
+
+/** Kit visibility and lifecycle status */
+export type KitStatus = 'featured' | 'experimental' | 'archived';
+
+/** Workflow phase identifiers */
+export type WorkflowPhaseId = 'specification' | 'clarification' | 'planning' | 'task-breakdown' | 'execution';
+
+/** Project structure node categories */
+export type StructureCategory = 'commands' | 'templates' | 'memory' | 'scripts' | 'refs' | 'specs' | 'other';
+
+/** Template types */
+export type TemplateType = 'spec' | 'plan' | 'tasks' | 'checklist' | 'post' | 'campaign';
+
+// Legacy enums for backward compatibility with existing code
 export enum KitCategory {
   DEV = "DEV-KIT",
   PM = "PM-KIT",
@@ -18,20 +44,340 @@ export enum CategoryColor {
   OPS = "orange",
 }
 
-export interface Kit {
-  id: string;
+// ============================================================================
+// Unified Kit Interface & Supporting Types
+// ============================================================================
+
+/**
+ * Workflow phase configuration for a kit
+ * Defines the steps users take when using an AI agent with this kit
+ */
+export interface KitWorkflowPhase {
+  /** Unique workflow phase identifier */
+  id: WorkflowPhaseId;
+
+  /** Display name (e.g., "Specification", "Planning") */
   name: string;
-  slug: string;
+
+  /** Description of what this phase accomplishes */
   description: string;
+
+  /** Associated agent slash command (e.g., "/pmfkit.pmf") */
+  slashCommand: string;
+
+  /** Key outputs and deliverables from this phase */
+  keyOutputs: string[];
+}
+
+/**
+ * CLI installation and execution configuration
+ * Defines how users install and run the kit locally
+ */
+export interface KitCliConfig {
+  /** One-time install command (e.g., "uvx pmf-kit@latest") */
+  oneTimeCommand: string;
+
+  /** Command to verify successful installation */
+  checkCommand: string;
+
+  /** Persistent installation command (e.g., "uv tool install pmf-kit") */
+  installCommand: string;
+
+  /** Binary/command name in shell (e.g., "pmf", "blog") */
+  binaryName: string;
+}
+
+/**
+ * Project structure node for kit template organization
+ * Describes key directories and files in the kit
+ */
+export interface KitProjectStructureNode {
+  /** File or directory path (e.g., "/.claude/commands", "/specs") */
+  path: string;
+
+  /** Display label for documentation */
+  label: string;
+
+  /** Category for organization and filtering */
+  category: StructureCategory;
+}
+
+/**
+ * Reusable template metadata
+ * References templates available in the kit
+ */
+export interface KitTemplate {
+  /** Template identifier (e.g., "spec-template", "tasks-checklist") */
+  id: string;
+
+  /** Path to template file in kit repo */
+  path: string;
+
+  /** Type of template for categorization */
+  type: TemplateType;
+
+  /** Brief description of template purpose */
+  description: string;
+}
+
+/**
+ * Constitution/principles configuration for kit
+ * Defines the kit's core guidelines and constraints
+ */
+export interface KitConstitution {
+  /** Path to constitution.md or guidelines file */
+  path: string;
+
+  /** Core principles defined in the constitution */
+  principles: string[];
+}
+
+/**
+ * Unified Kit data structure
+ * Represents a complete specification kit used with AI agents
+ *
+ * Example Kit ID: 'pmf-kit', 'blog-tech-kit', 'twitter-init-kit'
+ *
+ * NOTE: During transition phase (Phase 2), new fields are optional to support mock data.
+ * After Phase 3, all new fields will be required for real kit data.
+ */
+export interface Kit {
+  // ========================================================================
+  // Core Identity Fields
+  // ========================================================================
+
+  /**
+   * Unique kit identifier (lowercase, hyphen-separated)
+   * Examples: 'pmf-kit', 'blog-tech-kit', 'twitter-init-kit'
+   * Constraint: Must be globally unique, no spaces
+   */
+  id: string;
+
+  /**
+   * Display name for UI rendering
+   * Examples: 'PMF Kit', 'Blog-Tech-Kit', 'Twitter-Init-Kit'
+   */
+  name: string;
+
+  /**
+   * Unicode emoji icon for visual identification
+   * Example: '🎯', '📝', '🐦'
+   * NOTE: Optional during transition, required for real kits (Phase 3+)
+   */
+  emoji?: string;
+
+  /**
+   * One-line tagline for featured sections
+   * Constraint: Max 120 characters (fits in meta descriptions)
+   * Example: "Discover and validate product-market fit faster with AI agents."
+   * NOTE: Optional during transition, required for real kits (Phase 3+)
+   */
+  shortTagline?: string;
+
+  /**
+   * Multi-sentence description of kit purpose and value
+   * Used in full kit documentation and SEO
+   * NOTE: Optional during transition, required for real kits (Phase 3+)
+   */
+  longDescription?: string;
+
+  /**
+   * Kit domain category
+   * Constraint: Must be one of the defined KitDomain values
+   * NOTE: Optional during transition, required for real kits (Phase 3+)
+   */
+  domain?: KitDomain;
+
+  /**
+   * Public GitHub repository URL
+   * Constraint: Must be valid and accessible
+   * Example: 'https://github.com/agentii-ai/pmf-kit'
+   * NOTE: Optional during transition, required for real kits (Phase 3+)
+   */
+  githubUrl?: string;
+
+  /**
+   * Kit visibility and lifecycle status
+   * 'featured': Shown prominently on website
+   * 'experimental': Development/beta state
+   * 'archived': No longer maintained
+   * NOTE: Optional during transition, use legacy 'featured' field, required for real kits (Phase 3+)
+   */
+  status?: KitStatus;
+
+  // ========================================================================
+  // Optional Reference URLs
+  // ========================================================================
+
+  /** Optional link to specification documentation */
+  specDocUrl?: string;
+
+  /** Optional link to implementation plan */
+  implementationPlanUrl?: string;
+
+  /** Optional link to upstream spec-kit or reference */
+  upstreamSpecKitUrl?: string;
+
+  // ========================================================================
+  // CLI Configuration
+  // ========================================================================
+
+  /**
+   * CLI installation and execution configuration
+   * NOTE: Optional during transition, required for real kits (Phase 3+)
+   */
+  cli?: KitCliConfig;
+
+  // ========================================================================
+  // AI Agent Integration
+  // ========================================================================
+
+  /**
+   * List of supported AI coding agents
+   * Examples: ['Claude Code', 'Cursor', 'Windsurf']
+   * NOTE: Optional during transition, required for real kits (Phase 3+)
+   */
+  aiAgentsSupported?: string[];
+
+  /**
+   * Agent slash command namespace
+   * Pattern: '/[domain]kit.*'
+   * Example: '/pmfkit.*', '/blogkit.*'
+   * NOTE: Optional during transition, required for real kits (Phase 3+)
+   */
+  slashCommandNamespace?: string;
+
+  /**
+   * Core slash commands available for this kit
+   * Examples: ['/pmfkit.pmf', '/pmfkit.plan', '/pmfkit.tasks']
+   * Constraint: Must be at least 3 core commands (specification, planning, execution)
+   * NOTE: Optional during transition, required for real kits (Phase 3+)
+   */
+  coreSlashCommands?: string[];
+
+  // ========================================================================
+  // Workflows & Structure
+  // ========================================================================
+
+  /**
+   * Workflow phases for this kit
+   * Constraint: Must contain at least 3 phases (specification, planning, execution)
+   * NOTE: Optional during transition, required for real kits (Phase 3+)
+   */
+  workflows?: KitWorkflowPhase[];
+
+  /**
+   * Key directories and files in kit repository
+   * Used for documentation and navigation
+   * NOTE: Optional during transition, required for real kits (Phase 3+)
+   */
+  projectStructure?: KitProjectStructureNode[];
+
+  /**
+   * Reusable templates included with this kit
+   * NOTE: Optional during transition, required for real kits (Phase 3+)
+   */
+  templates?: KitTemplate[];
+
+  /**
+   * Constitution and core principles
+   * NOTE: Optional during transition, required for real kits (Phase 3+)
+   */
+  constitution?: KitConstitution;
+
+  // ========================================================================
+  // Metadata & Categorization
+  // ========================================================================
+
+  /**
+   * Real-world use case examples
+   * Examples: ['SaaS founders', 'Content creators', 'Marketing teams']
+   * NOTE: Optional during transition, required for real kits (Phase 3+)
+   */
+  examplesByUseCase?: string[];
+
+  /**
+   * Prerequisites to use this kit
+   * Examples: ['Node.js 18+', 'Claude Code or similar AI agent']
+   * NOTE: Optional during transition, required for real kits (Phase 3+)
+   */
+  prerequisites?: string[];
+
+  /**
+   * Target audience for this kit
+   * Examples: ['Founders', 'Product Managers', 'Content Teams']
+   * NOTE: Optional during transition, required for real kits (Phase 3+)
+   */
+  targetUsers?: string[];
+
+  /**
+   * Key value propositions and benefits
+   * Examples: ['Move from vibe coding to predictable outcomes', 'Enable cross-functional collaboration']
+   * NOTE: Optional during transition, required for real kits (Phase 3+)
+   */
+  benefits?: string[];
+
+  // ========================================================================
+  // Backward Compatibility (Legacy Fields)
+  // ========================================================================
+
+  /**
+   * Slug for URL routing (derived from id with dashes)
+   * Required for backward compatibility with existing routes
+   */
+  slug: string;
+
+  /**
+   * Legacy category field
+   * Required for backward compatibility with existing components
+   */
   category: KitCategory;
+
+  /**
+   * Tags for search and filtering
+   * Required for backward compatibility
+   */
   tags: string[];
-  stars: number;
-  lastUpdated: string; // ISO date string
+
+  /**
+   * GitHub repository URL (legacy field name)
+   * Maintained for backward compatibility with existing components
+   * Maps to githubUrl for new code
+   */
   github?: string;
+
+  /**
+   * Legacy description field (use longDescription for new code)
+   * Optional for new kits, used by existing components
+   */
+  description?: string;
+
+  /**
+   * GitHub star count (can be auto-updated by future cron jobs)
+   * Maintained for backward compatibility
+   */
+  stars: number;
+
+  /**
+   * Last updated timestamp (ISO date string)
+   * Can be auto-updated by future cron jobs
+   * Maintained for backward compatibility
+   */
+  lastUpdated: string;
+
+  /**
+   * Author information
+   * Maintained for backward compatibility
+   */
   author: {
     name: string;
     avatar?: string;
   };
+
+  /**
+   * Legacy featured flag
+   * Maintained for backward compatibility (use status field instead)
+   */
   featured?: boolean;
 }
 
@@ -76,382 +422,476 @@ export const categoryMetadata: Record<
   },
 };
 
-export const mockKits: Kit[] = [
-  // DEV-KIT
-  {
-    id: "1",
-    name: "React Component Generator",
-    slug: "react-component-generator",
-    description:
-      "Generate production-ready React components with TypeScript, tests, and Storybook stories. Includes best practices for hooks, props validation, and accessibility.",
-    category: KitCategory.DEV,
-    tags: ["react", "typescript", "testing", "storybook"],
-    stars: 1243,
-    lastUpdated: "2025-01-15T10:30:00Z",
-    github: "https://github.com/agentii-kit/react-component-gen",
-    author: {
-      name: "Sarah Chen",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah",
-    },
-    featured: true,
-  },
-  {
-    id: "2",
-    name: "API Documentation Writer",
-    slug: "api-documentation-writer",
-    description:
-      "Automatically generate comprehensive API documentation from your code. Supports OpenAPI, REST, GraphQL, and gRPC with interactive examples.",
-    category: KitCategory.DEV,
-    tags: ["documentation", "api", "openapi", "graphql"],
-    stars: 892,
-    lastUpdated: "2025-01-10T14:20:00Z",
-    github: "https://github.com/agentii-kit/api-doc-writer",
-    author: {
-      name: "Alex Kumar",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Alex",
-    },
-  },
-  {
-    id: "3",
-    name: "Database Schema Designer",
-    slug: "database-schema-designer",
-    description:
-      "Design and optimize database schemas with AI assistance. Generate migrations, validate relationships, and suggest indexes for PostgreSQL, MySQL, and MongoDB.",
-    category: KitCategory.DEV,
-    tags: ["database", "sql", "migrations", "postgresql"],
-    stars: 756,
-    lastUpdated: "2024-12-28T09:15:00Z",
-    author: {
-      name: "Jordan Lee",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Jordan",
-    },
-    featured: true,
-  },
+// ============================================================================
+// Types exported for consumers (defined above)
+// ============================================================================
 
-  // PM-KIT
+// All types are exported via their inline definitions above
+
+// ============================================================================
+// Real Kit Data (Phase 2: Real kits populated from featured_kits.md extraction)
+// ============================================================================
+
+export const realKits: Kit[] = [
+  // PMF Kit
   {
-    id: "4",
-    name: "Product Spec Generator",
-    slug: "product-spec-generator",
-    description:
-      "Create detailed product specifications from ideas. Includes user stories, acceptance criteria, technical requirements, and success metrics.",
-    category: KitCategory.PM,
-    tags: ["specs", "requirements", "user-stories", "roadmap"],
-    stars: 1567,
-    lastUpdated: "2025-01-12T11:45:00Z",
-    github: "https://github.com/agentii-kit/product-spec-gen",
-    author: {
-      name: "Maya Patel",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Maya",
-    },
-    featured: true,
-  },
-  {
-    id: "5",
-    name: "Sprint Planning Assistant",
-    slug: "sprint-planning-assistant",
-    description:
-      "Plan and organize sprints efficiently. Break down epics, estimate story points, balance team capacity, and generate sprint goals.",
-    category: KitCategory.PM,
-    tags: ["agile", "scrum", "sprint", "jira"],
-    stars: 634,
-    lastUpdated: "2025-01-08T16:00:00Z",
-    author: {
-      name: "Chris Thompson",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Chris",
-    },
-  },
-  {
-    id: "6",
-    name: "Roadmap Builder",
-    slug: "roadmap-builder",
-    description:
-      "Build strategic product roadmaps with timeline visualization. Prioritize features, align with business goals, and communicate plans to stakeholders.",
-    category: KitCategory.PM,
-    tags: ["roadmap", "strategy", "planning", "okr"],
-    stars: 823,
-    lastUpdated: "2024-12-20T13:30:00Z",
-    author: {
-      name: "Emily Rodriguez",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Emily",
-    },
-  },
-  {
-    id: "18",
+    id: "pmf-kit",
     name: "PMF Kit",
+    emoji: "🎯",
+    shortTagline: "Discover and validate product-market fit faster with AI agents.",
+    longDescription: "A spec-driven toolkit for systematic PMF discovery and validation of AI SaaS products, built on the foundations of spec-kit.",
+    domain: "pmf",
+    githubUrl: "https://github.com/agentii-ai/pmf-kit",
+    upstreamSpecKitUrl: "https://github.com/github/spec-kit",
+    status: "featured",
+    cli: {
+      oneTimeCommand: "uvx --from git+https://github.com/agentii-ai/pmf-kit.git pmf init my-product",
+      checkCommand: "uvx --from git+https://github.com/agentii-ai/pmf-kit.git pmf check",
+      installCommand: "uv tool install pmf-cli --from git+https://github.com/agentii-ai/pmf-kit.git",
+      binaryName: "pmf",
+    },
+    aiAgentsSupported: ["Claude Code", "Cursor", "Windsurf"],
+    slashCommandNamespace: "/pmfkit.*",
+    coreSlashCommands: [
+      "/pmfkit.constitution",
+      "/pmfkit.pmf",
+      "/pmfkit.clarify",
+      "/pmfkit.plan",
+      "/pmfkit.tasks",
+      "/pmfkit.implement",
+    ],
+    workflows: [
+      {
+        id: "specification",
+        name: "Specification",
+        description: "Define what you're trying to learn and why.",
+        slashCommand: "/pmfkit.pmf",
+        keyOutputs: ["Target personas", "Jobs-to-be-done", "Hero workflows", "Success metrics", "Constraints & risks"],
+      },
+      {
+        id: "clarification",
+        name: "Clarification",
+        description: "Resolve ambiguities before running discovery.",
+        slashCommand: "/pmfkit.clarify",
+        keyOutputs: ["Sharpened personas", "Clarified hypotheses", "Precise metrics"],
+      },
+      {
+        id: "planning",
+        name: "Planning",
+        description: "Design the research execution plan.",
+        slashCommand: "/pmfkit.plan",
+        keyOutputs: ["Research methodology", "Sample sizes", "Evidence instruments", "Analysis approach"],
+      },
+      {
+        id: "task-breakdown",
+        name: "Task Breakdown",
+        description: "Generate actionable research tasks.",
+        slashCommand: "/pmfkit.tasks",
+        keyOutputs: ["Recruitment tasks", "Research tasks", "Analysis tasks", "Validation tasks"],
+      },
+      {
+        id: "execution",
+        name: "Execution",
+        description: "Execute PMF discovery systematically with AI assistance.",
+        slashCommand: "/pmfkit.implement",
+        keyOutputs: ["Customer evidence", "PMF signals", "Go/no-go decisions", "Documented learnings"],
+      },
+    ],
+    projectStructure: [
+      { path: ".claude/commands/", label: "AI Agent Commands", category: "commands" },
+      { path: "memory/", label: "PMF-Kit Principles", category: "memory" },
+      { path: "templates/", label: "Reusable Templates", category: "templates" },
+      { path: "scripts/", label: "Workflow Scripts", category: "scripts" },
+      { path: "refs/", label: "Reference Documentation", category: "refs" },
+      { path: "specs/", label: "Feature Specifications", category: "specs" },
+    ],
+    templates: [
+      { id: "spec-template", path: "templates/spec-template.md", type: "spec", description: "PMF specification template" },
+      { id: "plan-template", path: "templates/plan-template.md", type: "plan", description: "PMF research plan template" },
+      { id: "tasks-template", path: "templates/tasks-template.md", type: "tasks", description: "Task breakdown template" },
+    ],
+    constitution: {
+      path: "memory/constitution.md",
+      principles: [
+        "Specification-first approach",
+        "Customer-evidence-driven",
+        "Iterative validation",
+        "Cross-functional integration",
+      ],
+    },
+    examplesByUseCase: [
+      "Developer tools (Cursor, Claude Code, Devin)",
+      "Creative tools (Runway, Pika, HeyGen)",
+      "Vertical AI tools (Harvey, Writer)",
+    ],
+    prerequisites: ["Linux/macOS/Windows", "AI coding agent", "uv", "Python 3.11+", "Git"],
+    targetUsers: ["Founders", "Product Managers"],
+    benefits: [
+      "Structured PMF discovery workflow",
+      "Reusable templates and commands",
+      "Agent-native workflows in Claude/Cursor/Windsurf",
+    ],
+    // Backward compatibility
     slug: "pmf-kit",
-    description:
-      "Spec-driven toolkit for discovering and validating product-market fit for AI SaaS products. Includes PMF workflows, templates, and AI agent commands.",
     category: KitCategory.PM,
     tags: ["pmf", "product-market-fit", "research", "ai-saas"],
-    stars: 2100,
+    stars: 3,
     lastUpdated: "2025-02-05T09:00:00Z",
-    github: "https://github.com/agentii-ai/pmf-kit",
-    author: {
-      name: "agentii-ai",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=PMF",
-    },
+    author: { name: "agentii-ai" },
     featured: true,
   },
 
-  // MARKETING-KIT
+  // Blog-Tech-Kit
   {
-    id: "7",
-    name: "SEO Content Optimizer",
-    slug: "seo-content-optimizer",
-    description:
-      "Optimize content for search engines with AI-powered keyword analysis, meta descriptions, and content structure recommendations.",
-    category: KitCategory.MARKETING,
-    tags: ["seo", "content", "keywords", "analytics"],
-    stars: 1891,
-    lastUpdated: "2025-01-14T08:45:00Z",
-    github: "https://github.com/agentii-kit/seo-optimizer",
-    author: {
-      name: "Marcus Brown",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Marcus",
-    },
-    featured: true,
-  },
-  {
-    id: "8",
-    name: "Social Media Campaign Manager",
-    slug: "social-media-campaign-manager",
-    description:
-      "Plan and execute social media campaigns across platforms. Generate post variations, schedule content, and track engagement metrics.",
-    category: KitCategory.MARKETING,
-    tags: ["social-media", "campaigns", "engagement", "analytics"],
-    stars: 1245,
-    lastUpdated: "2025-01-11T15:20:00Z",
-    author: {
-      name: "Lisa Wang",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Lisa",
-    },
-  },
-  {
-    id: "9",
-    name: "Email Marketing Assistant",
-    slug: "email-marketing-assistant",
-    description:
-      "Create compelling email campaigns with A/B testing suggestions, subject line optimization, and personalization strategies.",
-    category: KitCategory.MARKETING,
-    tags: ["email", "campaigns", "ab-testing", "personalization"],
-    stars: 678,
-    lastUpdated: "2025-01-05T10:00:00Z",
-    author: {
-      name: "David Kim",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=David",
-    },
-  },
-  {
-    id: "19",
+    id: "blog-tech-kit",
     name: "Blog-Tech-Kit",
+    emoji: "📝",
+    shortTagline: "Build authority blogs faster with AI agents.",
+    longDescription: "A spec-driven toolkit for systematic blog content strategy and execution, built on the foundations of spec-kit.",
+    domain: "blog",
+    githubUrl: "https://github.com/agentii-ai/blog-tech-kit",
+    specDocUrl: "https://github.com/agentii-ai/blog-tech-kit/blob/main/specs/000-blog-tech-kit-foundation/spec.md",
+    implementationPlanUrl: "https://github.com/agentii-ai/blog-tech-kit/blob/main/specs/000-blog-tech-kit-foundation/plan.md",
+    upstreamSpecKitUrl: "https://github.com/github/spec-kit",
+    status: "featured",
+    cli: {
+      oneTimeCommand: "uvx --from git+https://github.com/agentii-ai/blog-tech-kit.git blog init my-blog",
+      checkCommand: "uvx --from git+https://github.com/agentii-ai/blog-tech-kit.git blog check",
+      installCommand: "uv tool install blog-cli --from git+https://github.com/agentii-ai/blog-tech-kit.git",
+      binaryName: "blog",
+    },
+    aiAgentsSupported: ["Claude Code", "Cursor", "Windsurf"],
+    slashCommandNamespace: "/blogkit.*",
+    coreSlashCommands: [
+      "/blogkit.constitution",
+      "/blogkit.specify",
+      "/blogkit.clarify",
+      "/blogkit.plan",
+      "/blogkit.tasks",
+      "/blogkit.implement",
+    ],
+    workflows: [
+      {
+        id: "specification",
+        name: "Specification",
+        description: "Define what kind of blog you're building and why.",
+        slashCommand: "/blogkit.specify",
+        keyOutputs: ["Blog type", "Target audience", "Content pillars", "Publishing cadence", "Success criteria"],
+      },
+      {
+        id: "clarification",
+        name: "Clarification",
+        description: "Clarify strategy and assumptions before execution.",
+        slashCommand: "/blogkit.clarify",
+        keyOutputs: ["Sharpened audience", "Clarified pillars", "Precise metrics"],
+      },
+      {
+        id: "planning",
+        name: "Planning",
+        description: "Design editorial and technical plan.",
+        slashCommand: "/blogkit.plan",
+        keyOutputs: ["Editorial process", "Tech stack", "Tools & integrations", "AI discoverability plan"],
+      },
+      {
+        id: "task-breakdown",
+        name: "Task Breakdown",
+        description: "Generate concrete content production tasks.",
+        slashCommand: "/blogkit.tasks",
+        keyOutputs: ["Platform setup tasks", "Foundation posts", "Validation checkpoints"],
+      },
+      {
+        id: "execution",
+        name: "Execution",
+        description: "Execute content strategy with AI assistance.",
+        slashCommand: "/blogkit.implement",
+        keyOutputs: ["Published posts", "Quality-checked content", "Analytics-informed iterations"],
+      },
+    ],
+    projectStructure: [
+      { path: ".claude/commands/", label: "AI Agent Commands", category: "commands" },
+      { path: ".blogkit/memory/", label: "Blog-Tech-Kit Principles", category: "memory" },
+      { path: ".blogkit/templates/", label: "Reusable Templates", category: "templates" },
+      { path: "refs/", label: "Reference Documentation", category: "refs" },
+      { path: "specs/", label: "Feature Specifications", category: "specs" },
+    ],
+    templates: [
+      { id: "spec-template", path: ".blogkit/templates/spec-template.md", type: "spec", description: "Blog specification template" },
+      { id: "plan-template", path: ".blogkit/templates/plan-template.md", type: "plan", description: "Editorial plan template" },
+      { id: "tasks-template", path: ".blogkit/templates/tasks-template.md", type: "tasks", description: "Content task breakdown" },
+      { id: "blog-post-template", path: ".blogkit/templates/blog-post-template.md", type: "post", description: "Blog post structure" },
+    ],
+    constitution: {
+      path: ".blogkit/memory/constitution.md",
+      principles: [
+        "Content-first approach",
+        "AI-native distribution",
+        "Simplicity & focus",
+        "Evidence-driven optimization",
+      ],
+    },
+    examplesByUseCase: [
+      "Authority blog (Anthropic, LangChain style)",
+      "Product blog (Cursor, Vercel style)",
+      "Thought leadership blog (a16z style)",
+    ],
+    prerequisites: ["Linux/macOS/Windows", "AI coding agent", "uv", "Python 3.11+", "Git"],
+    targetUsers: ["Founders", "Content teams"],
+    benefits: [
+      "Structured content strategy and execution",
+      "Agent-native editorial workflows",
+      "Templates for specs, plans, tasks, and posts",
+    ],
+    // Backward compatibility
     slug: "blog-tech-kit",
-    description:
-      "Spec-driven toolkit for building authority and product blogs with AI agents. Define content strategy, editorial workflows, and production tasks.",
     category: KitCategory.MARKETING,
     tags: ["blog", "content", "authority", "spec-kit"],
-    stars: 1950,
+    stars: 3,
     lastUpdated: "2025-02-04T18:30:00Z",
-    github: "https://github.com/agentii-ai/blog-tech-kit",
-    author: {
-      name: "agentii-ai",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Blog",
-    },
+    author: { name: "agentii-ai" },
     featured: true,
   },
+
+  // Twitter-Init-Kit
   {
-    id: "20",
+    id: "twitter-init-kit",
     name: "Twitter-Init-Kit",
+    emoji: "🐦",
+    shortTagline: "Launch your AI product on Twitter with spec-driven marketing workflows.",
+    longDescription: "A spec-driven toolkit for systematic Twitter marketing of AI SaaS products, built on the foundations of spec-kit.",
+    domain: "twitter",
+    githubUrl: "https://github.com/agentii-ai/twitter-init-kit",
+    specDocUrl: "https://github.com/agentii-ai/twitter-init-kit/blob/main/specs/000-twitter-init-kit-foundation/spec.md",
+    implementationPlanUrl: "https://github.com/agentii-ai/twitter-init-kit/blob/main/specs/000-twitter-init-kit-foundation/plan.md",
+    upstreamSpecKitUrl: "https://github.com/github/spec-kit",
+    status: "featured",
+    cli: {
+      oneTimeCommand: "uvx --from git+https://github.com/agentii-ai/twitter-init-kit.git twitterify init my-campaign",
+      checkCommand: "uvx --from git+https://github.com/agentii-ai/twitter-init-kit.git twitterify check",
+      installCommand: "uv tool install twitterify-cli --from git+https://github.com/agentii-ai/twitter-init-kit.git",
+      binaryName: "twitterify",
+    },
+    aiAgentsSupported: ["Claude Code", "Cursor", "Windsurf"],
+    slashCommandNamespace: "/twitterkit.*",
+    coreSlashCommands: [
+      "/twitterkit.constitution",
+      "/twitterkit.specify",
+      "/twitterkit.clarify",
+      "/twitterkit.plan",
+      "/twitterkit.tasks",
+      "/twitterkit.implement",
+    ],
+    workflows: [
+      {
+        id: "specification",
+        name: "Specification",
+        description: "Define what you're launching and who you're targeting on Twitter.",
+        slashCommand: "/twitterkit.specify",
+        keyOutputs: ["Target personas", "Campaign objectives", "Success metrics", "Growth loop hypotheses"],
+      },
+      {
+        id: "clarification",
+        name: "Clarification",
+        description: "Clarify campaign strategy before execution.",
+        slashCommand: "/twitterkit.clarify",
+        keyOutputs: ["Sharpened personas", "Clarified objectives", "Precise metrics"],
+      },
+      {
+        id: "planning",
+        name: "Planning",
+        description: "Design Twitter campaign plan and experiments.",
+        slashCommand: "/twitterkit.plan",
+        keyOutputs: ["Twitter sprint cycles", "Phased launch plan", "Growth loops", "Validation checkpoints"],
+      },
+      {
+        id: "task-breakdown",
+        name: "Task Breakdown",
+        description: "Turn campaign plan into actionable tasks.",
+        slashCommand: "/twitterkit.tasks",
+        keyOutputs: ["Setup & foundation tasks", "Alpha tasks", "Launch tasks", "Scale tasks"],
+      },
+      {
+        id: "execution",
+        name: "Execution",
+        description: "Execute Twitter campaigns with AI assistance.",
+        slashCommand: "/twitterkit.implement",
+        keyOutputs: ["Content created", "Engagement metrics", "Growth experiments", "Strategy iterations"],
+      },
+    ],
+    projectStructure: [
+      { path: ".claude/commands/", label: "AI Agent Commands", category: "commands" },
+      { path: ".twitterkit/memory/", label: "Twitter-Init Principles", category: "memory" },
+      { path: ".twitterkit/templates/", label: "Reusable Templates", category: "templates" },
+      { path: "refs/", label: "Reference Documentation", category: "refs" },
+      { path: "specs/", label: "Feature Specifications", category: "specs" },
+    ],
+    templates: [
+      { id: "spec-template", path: ".twitterkit/templates/spec-template.md", type: "spec", description: "Campaign spec template" },
+      { id: "plan-template", path: ".twitterkit/templates/plan-template.md", type: "plan", description: "Campaign plan template" },
+      { id: "tasks-template", path: ".twitterkit/templates/tasks-template.md", type: "tasks", description: "Marketing tasks template" },
+      { id: "checklist-template", path: ".twitterkit/templates/checklist-template.md", type: "checklist", description: "Quality checklist" },
+    ],
+    constitution: {
+      path: ".twitterkit/memory/constitution.md",
+      principles: [
+        "Specification-first approach",
+        "Demo-driven growth",
+        "Iterative validation",
+        "Founder-led authenticity",
+      ],
+    },
+    examplesByUseCase: [
+      "Developer tools (Cursor, Claude Code, Devin)",
+      "Creative tools (Runway, Pika, HeyGen)",
+      "Vertical AI tools (Harvey, Writer)",
+    ],
+    prerequisites: ["Linux/macOS/Windows", "AI coding agent", "uv", "Python 3.11+", "Git"],
+    targetUsers: ["Founders", "Growth leads"],
+    benefits: [
+      "Structured Twitter launch playbook",
+      "Growth loop design baked-in",
+      "Agent-native execution workflows",
+    ],
+    // Backward compatibility
     slug: "twitter-init-kit",
-    description:
-      "Spec-driven Twitter marketing toolkit for AI SaaS launches. Includes CLI and AI agent workflows for campaigns, growth loops, and founder-led content.",
     category: KitCategory.MARKETING,
     tags: ["twitter", "launch", "campaigns", "growth"],
-    stars: 1875,
+    stars: 2,
     lastUpdated: "2025-02-03T20:15:00Z",
-    github: "https://github.com/agentii-ai/twitter-init-kit",
-    author: {
-      name: "agentii-ai",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Twitter",
-    },
-    featured: true,
-  },
-
-  // LEGAL-KIT
-  {
-    id: "10",
-    name: "Contract Template Generator",
-    slug: "contract-template-generator",
-    description:
-      "Generate customizable legal contract templates for various business needs. Includes NDAs, employment agreements, and service contracts.",
-    category: KitCategory.LEGAL,
-    tags: ["contracts", "templates", "nda", "legal"],
-    stars: 543,
-    lastUpdated: "2024-12-15T09:30:00Z",
-    author: {
-      name: "Jennifer Martinez",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Jennifer",
-    },
-  },
-  {
-    id: "11",
-    name: "Privacy Policy Builder",
-    slug: "privacy-policy-builder",
-    description:
-      "Create GDPR and CCPA compliant privacy policies tailored to your business. Covers data collection, cookies, user rights, and more.",
-    category: KitCategory.LEGAL,
-    tags: ["privacy", "gdpr", "ccpa", "compliance"],
-    stars: 789,
-    lastUpdated: "2025-01-09T14:15:00Z",
-    github: "https://github.com/agentii-kit/privacy-policy-builder",
-    author: {
-      name: "Robert Johnson",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Robert",
-    },
-    featured: true,
-  },
-
-  // FINANCE-KIT
-  {
-    id: "12",
-    name: "Financial Model Builder",
-    slug: "financial-model-builder",
-    description:
-      "Build comprehensive financial models with revenue projections, cost analysis, and scenario planning. Export to Excel or Google Sheets.",
-    category: KitCategory.FINANCE,
-    tags: ["finance", "modeling", "forecasting", "analysis"],
-    stars: 1123,
-    lastUpdated: "2025-01-13T11:00:00Z",
-    author: {
-      name: "Amanda Foster",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Amanda",
-    },
-  },
-  {
-    id: "13",
-    name: "Budget Planning Assistant",
-    slug: "budget-planning-assistant",
-    description:
-      "Create and manage department budgets with variance analysis, approval workflows, and real-time tracking against actuals.",
-    category: KitCategory.FINANCE,
-    tags: ["budget", "planning", "tracking", "reporting"],
-    stars: 467,
-    lastUpdated: "2024-12-30T10:45:00Z",
-    author: {
-      name: "Michael Chen",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Michael",
-    },
-  },
-
-  // DESIGN-KIT
-  {
-    id: "14",
-    name: "Design System Generator",
-    slug: "design-system-generator",
-    description:
-      "Generate complete design systems with color palettes, typography scales, component libraries, and documentation.",
-    category: KitCategory.DESIGN,
-    tags: ["design-system", "tokens", "components", "documentation"],
-    stars: 2134,
-    lastUpdated: "2025-01-16T09:20:00Z",
-    github: "https://github.com/agentii-kit/design-system-gen",
-    author: {
-      name: "Sophia Anderson",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sophia",
-    },
-    featured: true,
-  },
-  {
-    id: "15",
-    name: "UI Copy Writer",
-    slug: "ui-copy-writer",
-    description:
-      "Generate user-friendly microcopy for UI elements. Includes button labels, error messages, empty states, and tooltips.",
-    category: KitCategory.DESIGN,
-    tags: ["ux-writing", "microcopy", "content", "ui"],
-    stars: 891,
-    lastUpdated: "2025-01-07T13:30:00Z",
-    author: {
-      name: "Daniel Park",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Daniel",
-    },
-  },
-
-  // OPS-KIT
-  {
-    id: "16",
-    name: "Incident Response Playbook",
-    slug: "incident-response-playbook",
-    description:
-      "Create and manage incident response procedures. Includes runbooks, escalation paths, and post-mortem templates.",
-    category: KitCategory.OPS,
-    tags: ["incidents", "sre", "devops", "runbooks"],
-    stars: 978,
-    lastUpdated: "2025-01-12T16:45:00Z",
-    author: {
-      name: "Kevin O'Brien",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Kevin",
-    },
-  },
-  {
-    id: "17",
-    name: "Kubernetes Config Generator",
-    slug: "kubernetes-config-generator",
-    description:
-      "Generate Kubernetes manifests, Helm charts, and CI/CD pipelines with best practices for security, scaling, and monitoring.",
-    category: KitCategory.OPS,
-    tags: ["kubernetes", "k8s", "devops", "infrastructure"],
-    stars: 1456,
-    lastUpdated: "2025-01-10T12:00:00Z",
-    github: "https://github.com/agentii-kit/k8s-config-gen",
-    author: {
-      name: "Rachel Green",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Rachel",
-    },
+    author: { name: "agentii-ai" },
     featured: true,
   },
 ];
 
-// Helper functions
+// ============================================================================
+// Mock Data (Deprecated - Phase 2 cleanup)
+// ============================================================================
 
+/**
+ * @deprecated Mock data has been replaced with real kit data in Phase 2.
+ * Archive kept below for reference only. DO NOT USE IN PRODUCTION.
+ * All kits should be accessed via allKits export which now uses realKits.
+ */
+// Mock kits removed - see git history for archived mock data
+
+// ============================================================================
+// Data Export (Phase 2: Will be populated with real kit data)
+// ============================================================================
+
+/**
+ * Unified export of all kits in the system
+ * Phase 2: Populated with real kit data (pmf-kit, blog-tech-kit, twitter-init-kit)
+ * Mock data preserved below for backward compatibility only
+ */
+export const allKits: Kit[] = realKits;
+
+// ============================================================================
+// Helper Functions (Backward Compatibility)
+// ============================================================================
+
+/**
+ * Get all kits by category
+ * @deprecated Use domain-based filtering from new Kit interface instead
+ */
 export function getKitsByCategory(category: KitCategory): Kit[] {
-  return mockKits.filter((kit) => kit.category === category);
+  return allKits.filter((kit) => kit.category === category);
 }
 
+/**
+ * Search kits by name, description, or tags
+ */
 export function searchKits(query: string): Kit[] {
   const lowercaseQuery = query.toLowerCase();
-  return mockKits.filter(
+  return allKits.filter(
     (kit) =>
       kit.name.toLowerCase().includes(lowercaseQuery) ||
-      kit.description.toLowerCase().includes(lowercaseQuery) ||
-      kit.tags.some((tag) => tag.toLowerCase().includes(lowercaseQuery))
+      (kit.longDescription || '').toLowerCase().includes(lowercaseQuery) ||
+      (kit.shortTagline || '').toLowerCase().includes(lowercaseQuery) ||
+      kit.tags?.some((tag) => tag.toLowerCase().includes(lowercaseQuery))
   );
 }
 
+/**
+ * Sort kits by star count
+ */
 export function sortKitsByStars(kits: Kit[], ascending = false): Kit[] {
-  return [...kits].sort((a, b) =>
-    ascending ? a.stars - b.stars : b.stars - a.stars
-  );
+  return [...kits].sort((a, b) => {
+    const starsA = a.stars ?? 0;
+    const starsB = b.stars ?? 0;
+    return ascending ? starsA - starsB : starsB - starsA;
+  });
 }
 
+/**
+ * Sort kits by last updated date
+ */
 export function sortKitsByDate(kits: Kit[], ascending = false): Kit[] {
   return [...kits].sort((a, b) => {
-    const dateA = new Date(a.lastUpdated).getTime();
-    const dateB = new Date(b.lastUpdated).getTime();
+    const dateA = a.lastUpdated ? new Date(a.lastUpdated).getTime() : 0;
+    const dateB = b.lastUpdated ? new Date(b.lastUpdated).getTime() : 0;
     return ascending ? dateA - dateB : dateB - dateA;
   });
 }
 
+/**
+ * Get featured kits
+ * Returns kits with status='featured' or legacy featured=true flag
+ */
 export function getFeaturedKits(): Kit[] {
-  return mockKits.filter((kit) => kit.featured);
+  return allKits.filter((kit) => kit.status === 'featured' || kit.featured);
 }
 
+/**
+ * Get kit by slug
+ * @deprecated Use getKitById instead
+ */
 export function getKitBySlug(slug: string): Kit | undefined {
-  return mockKits.find((kit) => kit.slug === slug);
+  return allKits.find((kit) => kit.slug === slug);
 }
 
+/**
+ * Get kit by id
+ */
+export function getKitById(id: string): Kit | undefined {
+  return allKits.find((kit) => kit.id === id);
+}
+
+/**
+ * Get all kits by domain (new interface)
+ */
+export function getKitsByDomain(domain: KitDomain | undefined): Kit[] {
+  if (!domain) return [];
+  return allKits.filter((kit) => kit.domain === domain);
+}
+
+/**
+ * Get all kits by status
+ */
+export function getKitsByStatus(status: KitStatus): Kit[] {
+  return allKits.filter((kit) => kit.status === status);
+}
+
+/**
+ * Get all unique tags from all kits
+ */
 export function getAllTags(): string[] {
   const tags = new Set<string>();
-  mockKits.forEach((kit) => kit.tags.forEach((tag) => tags.add(tag)));
+  allKits.forEach((kit) => {
+    if (kit.tags) {
+      kit.tags.forEach((tag) => tags.add(tag));
+    }
+  });
   return Array.from(tags).sort();
+}
+
+/**
+ * Get all unique domains from kits
+ */
+export function getAllDomains(): KitDomain[] {
+  const domains = new Set<KitDomain>();
+  allKits.forEach((kit) => {
+    if (kit.domain) {
+      domains.add(kit.domain);
+    }
+  });
+  return Array.from(domains).sort();
 }

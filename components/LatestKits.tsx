@@ -4,12 +4,12 @@ import * as React from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { KitCard } from "./KitCard";
-import { sortKitsByDate, mockKits } from "@/data/kits";
+import { sortKitsByDate, allKits } from "@/data/kits";
 
 export function LatestKits() {
   // Get 3 most recently updated kits
   const latestKits = React.useMemo(() => {
-    return sortKitsByDate(mockKits, false).slice(0, 3);
+    return sortKitsByDate(allKits, false).slice(0, 3);
   }, []);
 
   return (

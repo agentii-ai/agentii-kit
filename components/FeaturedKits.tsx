@@ -3,12 +3,12 @@
 import * as React from "react";
 import { Sparkles } from "lucide-react";
 import { KitCard } from "./KitCard";
-import { sortKitsByStars, mockKits } from "@/data/kits";
+import { sortKitsByStars, allKits } from "@/data/kits";
 
 export function FeaturedKits() {
   // Get top 3 kits by star count
   const featuredKits = React.useMemo(() => {
-    return sortKitsByStars(mockKits, false).slice(0, 3);
+    return sortKitsByStars(allKits, false).slice(0, 3);
   }, []);
 
   return (
