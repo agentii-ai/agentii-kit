@@ -2,10 +2,10 @@
 
 import * as React from "react";
 import { Search, Filter, ChevronDown } from "lucide-react";
-import { KitCategory, categoryMetadata } from "@/data/kits";
+import { KitCategory, categoryMetadata, allKits } from "@/data/kits";
 
 // Sort options matching screenshot
-type SortOption = "popular" | "recent" | "stars" | "name";
+export type SortOption = "popular" | "recent" | "stars" | "name";
 
 interface FilterSidebarProps {
   searchQuery: string;
@@ -73,9 +73,11 @@ export function FilterSidebar({
               const count = getKitCountForCategory(category);
 
               return (
-                <label
+                <button
                   key={category}
-                  className="flex items-center gap-3 py-1.5 cursor-pointer group"
+                  type="button"
+                  onClick={() => onCategoryChange(category, !isChecked)}
+                  className="flex items-center gap-3 py-1.5 cursor-pointer group w-full text-left"
                 >
                   {/* Square checkbox - matching screenshot */}
                   <div
@@ -84,7 +86,6 @@ export function FilterSidebar({
                         ? "bg-primary border-primary"
                         : "border-muted-foreground/50 group-hover:border-muted-foreground"
                     }`}
-                    onClick={() => onCategoryChange(category, !isChecked)}
                   >
                     {isChecked && (
                       <svg className="w-3 h-3 text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
@@ -94,7 +95,7 @@ export function FilterSidebar({
                   </div>
                   <span className="flex-1 text-sm text-foreground">{category}</span>
                   <span className="text-xs text-muted-foreground">{count}</span>
-                </label>
+                </button>
               );
             })}
           </div>
@@ -127,16 +128,7 @@ export function FilterSidebar({
   );
 }
 
-// Helper function to get kit count per category - matching screenshot counts
+// Helper function to get kit count per category - computed from real kit data
 function getKitCountForCategory(category: KitCategory): number {
-  const counts: Record<KitCategory, number> = {
-    [KitCategory.DEV]: 27,
-    [KitCategory.PM]: 11,
-    [KitCategory.MARKETING]: 8,
-    [KitCategory.LEGAL]: 6,
-    [KitCategory.FINANCE]: 4,
-    [KitCategory.DESIGN]: 11,
-    [KitCategory.OPS]: 5,
-  };
-  return counts[category] || 0;
+  return allKits.filter((kit) => kit.category === category).length;
 }

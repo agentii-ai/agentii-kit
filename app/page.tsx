@@ -4,7 +4,7 @@ import * as React from "react";
 import { HeroSection } from "@/components/HeroSection";
 import { FeaturedArticles } from "@/components/FeaturedArticles";
 import { LatestKits } from "@/components/LatestKits";
-import { FilterSidebar } from "@/components/FilterSidebar";
+import { FilterSidebar, SortOption } from "@/components/FilterSidebar";
 import { KitsGrid } from "@/components/KitsGrid";
 import { RecentlyUpdatedTable } from "@/components/RecentlyUpdatedTable";
 import { Testimonials } from "@/components/Testimonials";
@@ -18,6 +18,7 @@ export default function HomePage() {
     KitCategory[]
   >([]);
   const [currentPage, setCurrentPage] = React.useState(1);
+  const [sortBy, setSortBy] = React.useState<SortOption>("popular");
 
   // Handle category filter change
   const handleCategoryChange = (category: KitCategory, checked: boolean) => {
@@ -70,6 +71,8 @@ export default function HomePage() {
               selectedCategories={selectedCategories}
               onCategoryChange={handleCategoryChange}
               onClearFilters={handleClearFilters}
+              sortBy={sortBy}
+              onSortChange={setSortBy}
             />
 
             {/* Kits Grid */}
@@ -80,6 +83,7 @@ export default function HomePage() {
               currentPage={currentPage}
               onPageChange={setCurrentPage}
               itemsPerPage={9}
+              sortBy={sortBy}
             />
           </div>
         </div>

@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { FeaturedKits } from "@/components/FeaturedKits";
-import { FilterSidebar } from "@/components/FilterSidebar";
+import { FilterSidebar, SortOption } from "@/components/FilterSidebar";
 import { KitsGrid } from "@/components/KitsGrid";
 import { allKits, KitCategory } from "@/data/kits";
 
@@ -10,6 +10,7 @@ export default function KitsPage() {
   const [searchQuery, setSearchQuery] = React.useState("");
   const [selectedCategories, setSelectedCategories] = React.useState<KitCategory[]>([]);
   const [currentPage, setCurrentPage] = React.useState(1);
+  const [sortBy, setSortBy] = React.useState<SortOption>("popular");
 
   const handleCategoryChange = (category: KitCategory, checked: boolean) => {
     setSelectedCategories((prev) => {
@@ -140,6 +141,8 @@ export default function KitsPage() {
                 selectedCategories={selectedCategories}
                 onCategoryChange={handleCategoryChange}
                 onClearFilters={handleClearFilters}
+                sortBy={sortBy}
+                onSortChange={setSortBy}
               />
             </div>
 
@@ -152,6 +155,7 @@ export default function KitsPage() {
                 currentPage={currentPage}
                 onPageChange={setCurrentPage}
                 itemsPerPage={12}
+                sortBy={sortBy}
               />
             </div>
           </div>

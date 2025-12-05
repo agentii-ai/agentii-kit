@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
 import { Star, ExternalLink } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { sortKitsByDate, allKits, categoryMetadata } from "@/data/kits";
@@ -102,13 +101,15 @@ export function RecentlyUpdatedTable({ maxItems = 8 }: RecentlyUpdatedTableProps
                         {formatDate(kit.lastUpdated)}
                       </td>
                       <td className="px-6 py-4 text-right">
-                        <Link
-                          href={`/kits/${kit.slug}`}
+                        <a
+                          href={kit.githubUrl || kit.github || `https://github.com/agentii-ai/${kit.slug}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="inline-flex items-center gap-1 text-sm text-primary hover:text-accent transition-colors"
                         >
                           <span className="hidden sm:inline">View</span>
                           <ExternalLink className="h-4 w-4" />
-                        </Link>
+                        </a>
                       </td>
                     </tr>
                   );

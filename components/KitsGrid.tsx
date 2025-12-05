@@ -4,6 +4,7 @@ import * as React from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { KitCard } from "./KitCard";
 import { Kit, KitCategory } from "@/data/kits";
+import type { SortOption } from "./FilterSidebar";
 
 interface KitsGridProps {
   kits: Kit[];
@@ -12,6 +13,7 @@ interface KitsGridProps {
   currentPage: number;
   onPageChange: (page: number) => void;
   itemsPerPage?: number;
+  sortBy?: SortOption;
 }
 
 export function KitsGrid({
@@ -21,6 +23,7 @@ export function KitsGrid({
   currentPage,
   onPageChange,
   itemsPerPage = 9,
+  sortBy = "popular",
 }: KitsGridProps) {
   // Filter kits by search query
   const searchFilteredKits = React.useMemo(() => {
@@ -36,13 +39,37 @@ export function KitsGrid({
   }, [kits, searchQuery]);
 
   // Filter kits by selected categories
-  const filteredKits = React.useMemo(() => {
+  const categoryFilteredKits = React.useMemo(() => {
     if (selectedCategories.length === 0) return searchFilteredKits;
 
     return searchFilteredKits.filter((kit) =>
       selectedCategories.includes(kit.category)
     );
   }, [searchFilteredKits, selectedCategories]);
+
+  // Sort kits based on sortBy option
+  const filteredKits = React.useMemo(() => {
+    const sorted = [...categoryFilteredKits];
+    
+    switch (sortBy) {
+      case "popular":
+      case "stars":
+        // Sort by stars descending
+        return sorted.sort((a, b) => (b.stars ?? 0) - (a.stars ?? 0));
+      case "recent":
+        // Sort by lastUpdated descending
+        return sorted.sort((a, b) => {
+          const dateA = a.lastUpdated ? new Date(a.lastUpdated).getTime() : 0;
+          const dateB = b.lastUpdated ? new Date(b.lastUpdated).getTime() : 0;
+          return dateB - dateA;
+        });
+      case "name":
+        // Sort by name ascending (A-Z)
+        return sorted.sort((a, b) => a.name.localeCompare(b.name));
+      default:
+        return sorted;
+    }
+  }, [categoryFilteredKits, sortBy]);
 
   // Calculate pagination
   const totalPages = Math.ceil(filteredKits.length / itemsPerPage);

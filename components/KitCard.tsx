@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
 import { Star, Github, Clock } from "lucide-react";
 import { Kit, categoryMetadata } from "@/data/kits";
 
@@ -42,13 +41,14 @@ export function KitCard({ kit }: KitCardProps) {
     }
   };
 
-  // Extract repo name from GitHub URL or use kit slug
-  const repoName = kit.github
-    ? kit.github.split("/").slice(-2).join("/")
-    : `agentii/${kit.slug}`;
+  // Get GitHub URL (prefer new githubUrl field, fallback to legacy github field)
+  const githubLink = kit.githubUrl || kit.github || `https://github.com/agentii-ai/${kit.slug}`;
+
+  // Extract repo name from GitHub URL for display
+  const repoName = githubLink.split("/").slice(-2).join("/");
 
   return (
-    <Link href={`/kits/${kit.slug}`} className="block h-full">
+    <a href={githubLink} target="_blank" rel="noopener noreferrer" className="block h-full">
       <article className="h-full border border-border rounded-lg bg-card p-5 hover:border-primary/50 transition-all duration-300 flex flex-col">
         {/* Category Badge - matching screenshot pill style */}
         <div className="mb-4">
@@ -86,6 +86,6 @@ export function KitCard({ kit }: KitCardProps) {
           </div>
         </div>
       </article>
-    </Link>
+    </a>
   );
 }
