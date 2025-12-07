@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import '../styles/prose-override.css'
 import { ReactNode } from 'react'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import { Navbar } from '@/components/Navbar'

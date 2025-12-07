@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useMemo } from 'react'
+import React, { useMemo, useEffect, useRef } from 'react'
 import MermaidDiagram from './MermaidDiagram'
 
 interface MarkdownRendererProps {
@@ -94,8 +94,11 @@ export default function MarkdownRenderer({ content, processedContent, className 
       // Italic text
       html = html.replace(/\*(.*?)\*/g, '<em class="italic">$1</em>')
 
-      // Inline code
-      html = html.replace(/`([^`]+)`/g, '<code class="bg-gray-100 dark:bg-gray-800 text-red-600 dark:text-red-400 px-2 py-1 rounded text-sm font-mono border border-gray-200 dark:border-gray-700">$1</code>')
+      // Inline code (e.g. `specification.md`) - render as a subtle light pill
+      html = html.replace(
+        /`([^`]+)`/g,
+        '<code class="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-2 py-0.5 rounded text-sm font-mono border border-gray-200/70 dark:border-gray-700/70">$1</code>'
+      )
 
       // Code blocks (``` language)
       html = html.replace(/```(\w+)?\n?([\s\S]*?)```/g, (match, language, code) => {
@@ -295,8 +298,50 @@ export default function MarkdownRenderer({ content, processedContent, className 
     return <>{parts}</>
   }
 
+  // Attach copy buttons to code blocks after render
+  const containerRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    const container = containerRef.current
+    if (!container) return
+
+    const pres = Array.from(container.querySelectorAll('pre'))
+    pres.forEach((pre) => {
+      // Avoid adding multiple buttons
+      if (pre.querySelector('[data-copy-code-button]')) return
+
+      pre.classList.add('code-block-with-copy')
+
+      const button = document.createElement('button')
+      button.type = 'button'
+      button.setAttribute('data-copy-code-button', 'true')
+      button.className = 'code-copy-button'
+      button.textContent = 'Copy'
+
+      button.addEventListener('click', () => {
+        const code = pre.querySelector('code')
+        if (!code) return
+        const text = code.textContent || ''
+        if (!navigator.clipboard) {
+          return
+        }
+        navigator.clipboard.writeText(text).then(() => {
+          const original = button.textContent
+          button.textContent = 'Copied!'
+          window.setTimeout(() => {
+            button.textContent = original || 'Copy'
+          }, 1200)
+        }).catch(() => {
+          // noop on failure
+        })
+      })
+
+      pre.appendChild(button)
+    })
+  }, [htmlContent])
+
   return (
-    <div className={`markdown-content w-full ${className}`}>
+    <div ref={containerRef} className={`markdown-content w-full ${className}`}>
       {renderContent()}
     </div>
   )

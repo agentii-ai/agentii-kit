@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, Code, Briefcase, Scale, Megaphone, Palette, Zap, Sparkles } from "lucide-react";
 import { Button } from "./ui/button";
@@ -108,7 +109,10 @@ export function BlogHero({ featuredArticles = [] }: BlogHeroProps) {
           {currentArticle && (
             <div className="relative">
               {/* Article Card */}
-              <div className="bg-card border border-border rounded-xl overflow-hidden shadow-xl shadow-primary/5 hover:shadow-primary/10 transition-shadow">
+              <Link
+                href={`/blog/${currentArticle.slug}`}
+                className="block bg-card border border-border rounded-xl overflow-hidden shadow-xl shadow-primary/5 hover:shadow-primary/10 transition-shadow"
+              >
                 {/* Hero Image or Gradient */}
                 <div className="relative h-64 w-full overflow-hidden md:h-80">
                   {currentArticle.cover ? (
@@ -171,7 +175,7 @@ export function BlogHero({ featuredArticles = [] }: BlogHeroProps) {
                     {currentArticle.author && <span>by {currentArticle.author}</span>}
                   </div>
                 </div>
-              </div>
+              </Link>
 
               {/* Carousel Controls */}
               <div className="flex items-center justify-between mt-6">

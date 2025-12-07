@@ -145,12 +145,24 @@
     @apply bg-surface text-text-secondary px-2 py-1 rounded font-mono text-sm;
   }
 
+  /* Override Tailwind Typography prose-invert for inline code */
+  .prose code,
+  .prose-invert code {
+    @apply bg-gray-700 text-gray-100 px-2 py-1 rounded font-mono text-sm border border-gray-600;
+  }
+
   pre {
     @apply bg-card border border-border rounded-lg p-4 overflow-x-auto mb-4;
   }
 
   pre code {
     @apply bg-transparent px-0 py-0;
+  }
+
+  /* Ensure prose-invert pre code stays transparent */
+  .prose pre code,
+  .prose-invert pre code {
+    @apply bg-transparent px-0 py-0 border-0;
   }
 
   /* Lists */
@@ -271,7 +283,9 @@
   }
 
   .prose-custom code {
-    @apply bg-surface text-primary px-2 py-1 rounded font-mono text-sm;
+    /* Inline code in markdown articles (e.g. `specification.md`) */
+    /* Use a light gray pill instead of a dark block so it reads as a subtle label. */
+    @apply bg-gray-700 text-gray-100 px-2 py-1 rounded font-mono text-sm border border-gray-600;
   }
 
   .prose-custom pre {
@@ -279,7 +293,16 @@
   }
 
   .prose-custom pre code {
-    @apply bg-transparent px-0 py-0 text-foreground;
+    @apply bg-transparent px-0 py-0 text-foreground border-0;
+  }
+
+  /* Copy button for markdown code blocks */
+  .markdown-content pre.code-block-with-copy {
+    position: relative;
+  }
+
+  .markdown-content .code-copy-button {
+    @apply absolute top-2 right-2 text-xs px-2 py-1 rounded-md border border-white/20 bg-black/40 text-white/80 hover:bg-black/70 hover:text-white transition-colors;
   }
 
   /* Animation utilities */

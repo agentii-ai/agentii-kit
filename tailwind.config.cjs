@@ -54,11 +54,32 @@ module.exports = {
             '--tw-prose-quotes': 'hsl(var(--text-secondary))',
             '--tw-prose-quote-borders': 'hsl(var(--primary))',
             '--tw-prose-captions': 'hsl(var(--text-secondary))',
-            '--tw-prose-code': 'hsl(var(--accent))',
+            '--tw-prose-code': 'hsl(var(--foreground))',
             '--tw-prose-pre-bg': 'hsl(var(--card))',
             '--tw-prose-pre-code': 'hsl(var(--foreground))',
             '--tw-prose-th-borders': 'hsl(var(--border))',
             '--tw-prose-td-borders': 'hsl(var(--border))',
+            // Inline code styling - light gray background
+            'code': {
+              backgroundColor: 'hsl(215 19% 25%)',
+              color: 'hsl(var(--foreground))',
+              padding: '0.125rem 0.375rem',
+              borderRadius: '0.25rem',
+              fontWeight: '400',
+              border: '1px solid hsl(215 19% 30%)',
+            },
+            'code::before': {
+              content: '""',
+            },
+            'code::after': {
+              content: '""',
+            },
+            // Pre code blocks should not have background
+            'pre code': {
+              backgroundColor: 'transparent',
+              padding: '0',
+              border: 'none',
+            },
           },
         },
       },
