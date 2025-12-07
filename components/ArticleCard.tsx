@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 
 // Map tags to gradient colors
@@ -50,6 +51,8 @@ interface ArticleCardProps {
   date: string;
   author?: string;
   gradient?: string;
+  cover?: string;
+  coverAlt?: string;
 }
 
 export function ArticleCard({
@@ -59,21 +62,37 @@ export function ArticleCard({
   tags = [],
   date,
   author,
+  cover,
+  coverAlt,
 }: ArticleCardProps) {
   const cardGradient = getGradient(tags);
 
   return (
     <Link href={`/blog/${slug}`}>
       <div className="group bg-card border border-border rounded-xl overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5 transition-all cursor-pointer h-full flex flex-col">
-        {/* Header Gradient */}
-        <div className={`relative h-28 bg-gradient-to-br ${cardGradient}`}>
-          {/* Decorative pattern */}
-          <div className="absolute inset-0 opacity-20" style={{
-            backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-            backgroundSize: "16px 16px"
-          }} />
+        {/* Header Image or Gradient */}
+        <div className="relative h-44 w-full overflow-hidden bg-gradient-to-br md:h-52">
+          {cover ? (
+            <Image
+              src={cover}
+              alt={coverAlt || title}
+              fill
+              className="object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+          ) : (
+            <div className={`absolute inset-0 bg-gradient-to-br ${cardGradient}`}>
+              <div
+                className="absolute inset-0 opacity-20"
+                style={{
+                  backgroundImage:
+                    "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
+                  backgroundSize: "16px 16px",
+                }}
+              />
+            </div>
+          )}
           {/* Hover arrow */}
-          <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+          <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
             <ArrowUpRight className="w-4 h-4 text-white" />
           </div>
         </div>

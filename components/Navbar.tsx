@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Search, Github, Heart } from "lucide-react";
+import { Menu, X, Search, Github } from "lucide-react";
 import { Button } from "./ui/button";
 
 export function Navbar() {
@@ -72,18 +72,6 @@ export function Navbar() {
               <span className="text-xs text-muted-foreground">⌘K</span>
             </Button>
 
-            {/* Donate Button - Primary CTA matching screenshot */}
-            <Button
-              size="sm"
-              className="hidden md:flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground"
-              asChild
-            >
-              <Link href="/donate">
-                <Heart className="h-4 w-4" />
-                Donate
-              </Link>
-            </Button>
-
             {/* Mobile Menu Toggle */}
             <Button
               variant="ghost"
@@ -137,16 +125,6 @@ export function Navbar() {
               <Button variant="ghost" size="sm" className="w-full justify-start">
                 <Search className="h-4 w-4 mr-2" />
                 Search
-              </Button>
-              <Button
-                size="sm"
-                className="w-full justify-start bg-primary hover:bg-primary/90 text-primary-foreground"
-                asChild
-              >
-                <Link href="/donate" onClick={() => setMobileMenuOpen(false)}>
-                  <Heart className="h-4 w-4 mr-2" />
-                  Donate
-                </Link>
               </Button>
             </div>
           </div>

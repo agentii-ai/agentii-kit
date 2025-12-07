@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import { ChevronLeft, ChevronRight, Code, Briefcase, Scale, Megaphone, Palette, Zap, Sparkles } from "lucide-react";
 import { Button } from "./ui/button";
 
@@ -21,6 +22,8 @@ interface BlogHeroProps {
     date: string;
     author?: string;
     tags?: string[];
+    cover?: string;
+    coverAlt?: string;
   }>;
 }
 
@@ -106,17 +109,34 @@ export function BlogHero({ featuredArticles = [] }: BlogHeroProps) {
             <div className="relative">
               {/* Article Card */}
               <div className="bg-card border border-border rounded-xl overflow-hidden shadow-xl shadow-primary/5 hover:shadow-primary/10 transition-shadow">
-                {/* Header Gradient - changes based on index */}
-                <div className={`h-36 bg-gradient-to-br ${
-                  activeIndex === 0 ? 'from-primary via-emerald-500 to-sky-500' :
-                  activeIndex === 1 ? 'from-purple-500 via-pink-500 to-rose-500' :
-                  'from-amber-500 via-orange-500 to-red-500'
-                }`}>
-                  {/* Decorative pattern */}
-                  <div className="w-full h-full opacity-20" style={{
-                    backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-                    backgroundSize: "20px 20px"
-                  }} />
+                {/* Hero Image or Gradient */}
+                <div className="relative h-64 w-full overflow-hidden md:h-80">
+                  {currentArticle.cover ? (
+                    <Image
+                      src={currentArticle.cover}
+                      alt={currentArticle.coverAlt || currentArticle.title}
+                      fill
+                      priority
+                      className="object-cover"
+                    />
+                  ) : (
+                    <div className={`h-full w-full bg-gradient-to-br ${
+                      activeIndex === 0
+                        ? "from-primary via-emerald-500 to-sky-500"
+                        : activeIndex === 1
+                        ? "from-purple-500 via-pink-500 to-rose-500"
+                        : "from-amber-500 via-orange-500 to-red-500"
+                    }`}>
+                      <div
+                        className="w-full h-full opacity-20"
+                        style={{
+                          backgroundImage:
+                            "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
+                          backgroundSize: "20px 20px",
+                        }}
+                      />
+                    </div>
+                  )}
                 </div>
 
                 {/* Content */}

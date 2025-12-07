@@ -1,11 +1,7 @@
 import React from "react";
 import { ArticleCard } from "@/components/ArticleCard";
 import { BlogHero } from "@/components/BlogHero";
-import {
-  getFeaturedPosts,
-  getRecentPosts,
-  getPublishedPosts,
-} from "@/lib/content/blog-loader";
+import { getFeaturedPosts, getPublishedPosts } from "@/lib/content/blog-loader";
 
 export const revalidate = 3600; // Revalidate every hour
 
@@ -24,7 +20,7 @@ async function BlogIndexPage() {
   // Load featured posts and recent posts
   const [featuredPosts, allPosts] = await Promise.all([
     getFeaturedPosts(3),
-    getRecentPosts(12),
+    getPublishedPosts(),
   ]);
 
   // Convert blog posts for BlogHero (top 3 featured)
@@ -39,6 +35,8 @@ async function BlogIndexPage() {
     }),
     author: post.frontmatter.author,
     tags: post.frontmatter.tags || [],
+    cover: post.frontmatter.cover,
+    coverAlt: (post.frontmatter as any).cover_alt || post.frontmatter.title,
   }));
 
   // Convert all posts for article grid
@@ -53,6 +51,8 @@ async function BlogIndexPage() {
     }),
     author: post.frontmatter.author,
     tags: post.frontmatter.tags || [],
+    cover: post.frontmatter.cover,
+    coverAlt: (post.frontmatter as any).cover_alt || post.frontmatter.title,
   }));
 
   return (
@@ -73,7 +73,7 @@ async function BlogIndexPage() {
           <div className="mb-12">
             <div className="flex items-center gap-3 mb-2">
               <span className="px-3 py-1 text-xs font-medium rounded-full bg-purple-400/10 text-purple-400 border border-purple-400/20">
-                📚 Library
+                Blogs and Insights
               </span>
               <span className="text-sm text-muted-foreground">
                 {articlePosts.length} articles
