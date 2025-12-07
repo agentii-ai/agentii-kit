@@ -25,7 +25,9 @@ How to build your own spec-kit variant for any job—from PMF discovery to marke
 
 ---
 
-## Title Options (Short & Strong)
+## 
+there are more strong words and slogans, wisdom words, idiosyncratic words, they can be inserted in the markdown article between paragraphs, with a large font size and bold , italic, underline, etc.
+
 
 ### "Clone the Pattern. Own the Domain."
 **Subtitle**: How to build your own spec-kit variant for any job—from PMF discovery to marketing campaigns
