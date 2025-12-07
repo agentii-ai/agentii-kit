@@ -2,53 +2,47 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 
 interface Article {
-  id: string;
+  slug: string;
   title: string;
   excerpt: string;
-  slug: string;
   date: string;
-  author: string;
-  gradient: string;
+  author?: string | null;
+  cover?: string | null;
+  coverAlt?: string | null;
 }
 
-// Articles matching screenshot design with large gradient images
-const mockArticles: Article[] = [
-  {
-    id: "1",
-    title: "Building Autonomous PM Agents with Claude",
-    excerpt:
-      "A comprehensive guide on creating spec-kits that help product managers automate routine tasks while maintaining strategic control.",
-    slug: "building-autonomous-pm-agents",
-    date: "Jun 1, 2025",
-    author: "agentii.ai",
-    gradient: "from-emerald-400 via-green-500 to-teal-500",
-  },
-  {
-    id: "2",
-    title: "How We Designed the Legal-Kit Framework",
-    excerpt:
-      "With the help of Claude and Cursor, we built a compliance-first approach to autonomous legal document review.",
-    slug: "legal-kit-framework-design",
-    date: "Jun 25, 2025",
-    author: "agentii.ai",
-    gradient: "from-cyan-400 via-teal-400 to-emerald-400",
-  },
-  {
-    id: "3",
-    title: "Troubleshooting: Agent Memory Persistence",
-    excerpt:
-      "Common issues and solutions when implementing long-term memory in your autonomous agents using spec-kits.",
-    slug: "troubleshooting-agent-memory",
-    date: "Jun 28, 2025",
-    author: "agentii.ai",
-    gradient: "from-yellow-300 via-amber-400 to-orange-400",
-  },
-];
-
 export function FeaturedArticles() {
+  const [articles, setArticles] = React.useState<Article[]>([]);
+
+  React.useEffect(() => {
+    let cancelled = false;
+
+    async function load() {
+      try {
+        const res = await fetch("/api/blog/latest");
+        if (!res.ok) return;
+        const data: Article[] = await res.json();
+        if (!cancelled) {
+          // Sort by date just in case API changes
+          const sorted = [...data].sort(
+            (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+          );
+          setArticles(sorted.slice(0, 3));
+        }
+      } catch (e) {
+        console.error("Failed to load latest articles", e);
+      }
+    }
+
+    load();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
   return (
     <section className="py-16">
       <div className="container mx-auto px-4">
@@ -71,19 +65,26 @@ export function FeaturedArticles() {
           Fresh insights and lessons from our recent explorations.
         </p>
 
-        {/* Articles Grid - cards with large gradient images */}
+        {/* Articles Grid - cards with hero images matching blog cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {mockArticles.map((article) => (
+          {(articles.length > 0 ? articles : []).map((article) => (
             <Link
-              key={article.id}
+              key={article.slug}
               href={`/blog/${article.slug}`}
               className="group"
             >
               <article className="border border-border rounded-lg bg-card overflow-hidden hover:border-primary/40 transition-all duration-300">
-                {/* Large Gradient Image Area - matching screenshot */}
-                <div
-                  className={`h-40 bg-gradient-to-br ${article.gradient} opacity-90 group-hover:opacity-100 transition-opacity`}
-                />
+                {/* Hero Image or gradient fallback (1200x630 ratio) */}
+                <div className="relative w-full aspect-[1200/630] overflow-hidden bg-gradient-to-br from-primary via-emerald-500 to-sky-500">
+                  {article.cover ? (
+                    <Image
+                      src={article.cover}
+                      alt={article.coverAlt || article.title}
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                  ) : null}
+                </div>
 
                 {/* Content */}
                 <div className="p-5 space-y-3">
@@ -99,8 +100,14 @@ export function FeaturedArticles() {
 
                   {/* Meta - Date and Author */}
                   <div className="flex items-center justify-between text-xs text-muted-foreground pt-3">
-                    <span>{article.date}</span>
-                    <span>{article.author}</span>
+                    <span>
+                      {new Date(article.date).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      })}
+                    </span>
+                    {article.author && <span>{article.author}</span>}
                   </div>
                 </div>
               </article>

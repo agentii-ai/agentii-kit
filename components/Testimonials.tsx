@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import { Quote, Github, Twitter, Linkedin } from "lucide-react";
 
 export function Testimonials() {
@@ -67,10 +68,14 @@ export function Testimonials() {
             {/* Avatar Section */}
             <div className="flex justify-center lg:justify-end">
               <div className="relative">
-                <div className="h-64 w-64 rounded-2xl bg-gradient-to-br from-primary/20 via-accent/20 to-purple-500/20 border border-border flex items-center justify-center">
-                  <div className="h-48 w-48 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-6xl">
-                    HL
-                  </div>
+                <div className="h-80 w-80 md:h-96 md:w-96 rounded-2xl bg-gradient-to-br from-primary/20 via-accent/20 to-purple-500/20 border border-border flex items-center justify-center overflow-hidden">
+                  <Image
+                    src="/images/testimonial.jpg"
+                    alt="Testimonial portrait"
+                    width={256}
+                    height={256}
+                    className="h-full w-full object-cover"
+                  />
                 </div>
                 {/* Decorative elements */}
                 <div className="absolute -top-4 -right-4 h-16 w-16 rounded-full bg-primary/20 blur-xl" />
