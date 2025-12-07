@@ -46,6 +46,8 @@ That's **Spec-Driven Development**. And it's changing everything.
 
 ## Think of It Like Architecture
 
+![Option 1 vs Option 2: Building a House - Vibe Coding vs Spec-Driven Development](/images/blog/dont-code-specify/architecture-comparison.jpg)
+
 Imagine you want to build a house. You have two options:
 
 **Option 1**: Walk up to a construction crew and say, "Build me a house. You know, with walls and stuff. Make it nice." Then watch them guess what you want, tear down walls, rebuild, argue about where the bathroom goes, and deliver something six months late that sort of looks like a house.
@@ -63,6 +65,8 @@ Just like C compiles to assembly, **specifications compile to code**. The spec i
 This isn't about writing longer documentation. It's about fundamentally shifting **where the human effort goes**—from "coding and debugging" to "thinking and specifying."
 
 ### The Four-File Spec-Driven Architecture
+
+![The Four-File Specification Stack: Constitution, Spec, Plan, Tasks](/images/blog/dont-code-specify/four-file-stack.jpg)
 
 Think of this like a decision-making hierarchy—each file serves a distinct purpose:
 
@@ -164,6 +168,8 @@ With spec-driven development, the outcome is **determined before a single line o
 This is the shift from "prompt-and-pray" to "specify-and-verify."
 
 ## Getting Started with Spec-Kit
+
+![Spec-Kit Workflow: 6 Steps from Install to Implementation](/images/blog/dont-code-specify/speckit-workflow.jpg)
 
 You don't need a PhD in software architecture or a 50-page requirements document. The easiest way to get started is with **[Spec-Kit](https://github.com/github/spec-kit)**—an open-source toolkit that sets up the complete spec-driven workflow for you.
 
@@ -366,39 +372,17 @@ If the work is primarily creative (UI design, brand direction, content), specs a
 
 ## Key Takeaways
 
-Let's distill this down to what matters:
+**Vibe coding is dead. Spec-driven development is the future.**
 
-1. **"Vibe coding" is dead. Spec-driven development is the future.**
-   - Vibe coding = 40% accuracy, endless iteration
-   - Spec-driven = 95% accuracy, ships on time
+1. **Specs are the new source code.** Code becomes a compiled artifact—humans edit specs, AI generates code.
 
-2. **The specification is the new source code.**
-   - Code becomes a compiled artifact
-   - Humans edit specs; AI generates code
-   - The spec is the single source of truth
+2. **95% accuracy comes from clarity, not models.** A clear spec with a mid-tier model beats a vague spec with the best model.
 
-3. **Quality comes from clarity, not model capability.**
-   - A clear spec with a mid-tier model beats a vague spec with the best model
-   - The bottleneck is your instructions, not the AI
+3. **Four files run everything.** Constitution (laws) → Spec (what) → Plan (how) → Tasks (execution).
 
-4. **The three-layer spec stack scales infinitely.**
-   - Functional "what" → Language-agnostic "how" → Language-specific "how"
-   - Works for software, marketing, legal, HR—any knowledge work
+4. **AI agents work like real engineers with specs.** Without specs: guessing junior dev. With specs: disciplined senior engineer.
 
-5. **Specs are living documents, not prophecy.**
-   - Update them as you learn
-   - They evolve with your understanding
-   - They remain the source of truth
-
-6. **Edge cases prevent 80% of bugs.**
-   - Spend 20% of spec effort on edge cases
-   - Saves weeks of debugging later
-   - AI agents need explicit handling instructions
-
-7. **Start simple. One-page specs beat 50-page documents nobody reads.**
-   - Clarity > Complexity
-   - Precision > Verbosity
-   - Actionable > Theoretical
+5. **This is the new way of working.** Every major AI coding platform (Claude Code, Cursor, Windsurf, GitHub Copilot) is converging on spec-driven workflows.
 
 ## ***"Don't Code. Specify."***
 
@@ -421,10 +405,10 @@ You've read the theory. Now experience the practice.
 
 ### Choose Your Kit:
 
-- **[Spec-Kit](https://kits.agentii.ai/spec-kit)** — Software engineering workflows
-- **[PM-Kit](https://kits.agentii.ai/pm-kit)** — Product management frameworks
-- **[Marketing-Kit](https://kits.agentii.ai/marketing-kit)** — Growth playbooks and campaigns
-- **[Legal-Kit](https://kits.agentii.ai/legal-kit)** — Contract review and compliance
+- **[Spec-Kit](https://github.com/github/spec-kit)** — Software engineering workflows
+- **[PMF-Kit](https://github.com/agentii-ai/pmf-kit)** — Product-market fit discovery and validation
+- **[Blog-Tech-Kit](https://github.com/agentii-ai/blog-tech-kit)** — Authority blog content strategy
+- **[Twitter-Init-Kit](https://github.com/agentii-ai/twitter-init-kit)** — Twitter launch campaigns
 
 Or **build your own kit** for your domain. The architecture is universal. The principles are proven. The results are predictable.
 
@@ -443,54 +427,6 @@ So stop improvising. Stop vibe coding. Stop crossing your fingers and hoping the
 **Start specifying. Start shipping. Start winning.**
 
 👉 **[Get Started with Spec-Kit](https://kits.agentii.ai)** — Open source, free forever, ready to transform how you build.
-
----
-
-## Frequently Asked Questions
-
-**Q: Isn't writing detailed specs slower than just starting to code?**
-
-A: This is the most common objection—and the most expensive misconception. Writing a clear spec takes 1-2 hours. Reworking code that doesn't match requirements takes **weeks**.
-
-Think of it like surgery: Would you rather the surgeon spend 30 minutes planning the operation, or just "vibe it" and figure it out mid-surgery? The upfront investment in specs pays off immediately—usually within the first iteration.
-
-**Q: Won't specs become outdated as we learn?**
-
-A: **Yes—and that's exactly the point.**
-
-When the spec becomes outdated, you **update the spec**. Not the code. The spec stays the source of truth. Code follows the spec. This is the paradigm shift: specs are living documents that evolve with your understanding. The code is just the current compilation of those specs.
-
-**Q: Can non-technical people write specs?**
-
-A: Absolutely. **That's the beauty of the three-layer system.**
-
-Product managers, founders, designers—anyone can write the **functional spec** (Layer 1). It's written in plain English: "As a user, I want to log in so I can access my account."
-
-The **technical layers** (architecture and implementation) are for engineers. But the "what" layer? That's for anyone who understands the problem.
-
-**Q: How much detail is "enough" detail in a spec?**
-
-A: Here's the test: **If two different engineers implemented your spec independently, would they produce nearly identical results?**
-
-If yes, you have enough detail. If no, you need more clarity.
-
-Another test: Can you validate the output against the spec? If your acceptance criteria are vague ("the feature should be fast"), you can't. If they're precise ("page loads in <500ms on 4G"), you can.
-
-**Q: Do I need AI agents to benefit from spec-driven development?**
-
-A: No. **Spec-driven works beautifully with human developers too.**
-
-Clear specs eliminate ambiguity, reduce rework, and create shared understanding across teams. The productivity gains are real whether humans or AI execute the implementation.
-
-AI agents just **amplify the benefit**—they execute specs reliably without the constant clarification questions humans need. But the underlying methodology works for any execution model.
-
-**Q: What if I'm building something experimental? Should I still write specs?**
-
-A: **Do spike experiments first. Spec once you know it's possible.**
-
-If you're in pure exploration mode ("Can we even do this?"), specs are premature. Run quick prototypes, learn what works, discover the constraints.
-
-Once you have conviction—once you know the solution is feasible—**then** spec it. Spec-driven development works best when the problem space is understood, even if the solution isn't fully designed yet.
 
 ---
 
