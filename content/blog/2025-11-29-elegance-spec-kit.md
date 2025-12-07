@@ -54,7 +54,7 @@ Here's the beautiful simplicity: You describe **what** you want in plain English
 
 No coding required. No technical jargon. Just clear thinking, written down.
 
-### How It Works (Even Your CEO Can Understand This)
+### How It Works (Even Non-Technical People Can Understand This)
 
 **Step 1**: Write down your project's guiding principles
 *"We value speed over perfection. Test everything. Keep it simple."*
@@ -83,6 +83,8 @@ No coding required. No technical jargon. Just clear thinking, written down.
 This isn't just a workflow change. It's a **philosophical revolution** in how we think about building anything complex.
 
 When you need to modify your software, you don't hunt through code. You edit the specification—the source of truth—and regenerate. Clean. Predictable. Elegant.
+
+![Spec-Kit Paradigm Shift: Specs as Source of Truth](/images/blog/elegance-spec-kit/illustrator1.jpg)
 
 ## The Architecture: Four Files That Do Everything
 
@@ -330,54 +332,6 @@ CREATE INDEX idx_tasks_status ON tasks(status);
 CREATE INDEX idx_comments_task ON comments(task_id);
 ```
 
-## API Endpoints
-
-**REST API** (for CRUD operations):
-```
-POST   /api/v1/projects           - Create project
-GET    /api/v1/projects           - List user's projects
-GET    /api/v1/projects/:id/tasks - Get tasks for project
-POST   /api/v1/tasks              - Create task
-PATCH  /api/v1/tasks/:id          - Update task (status, assignment, etc.)
-POST   /api/v1/tasks/:id/comments - Add comment
-```
-
-**WebSocket Events** (for real-time updates):
-```
-// Client → Server
-join_project(projectId)    - Subscribe to project updates
-move_task(taskId, status, position) - Drag task to new column
-
-// Server → Client
-task_moved(task)           - Broadcast task position change
-task_updated(task)         - Broadcast task field changes
-comment_added(comment)     - Broadcast new comment
-```
-
-## Component Architecture
-
-```
-src/
-├── components/
-│   ├── ProjectList/        - List of projects
-│   ├── TaskBoard/          - Kanban board container
-│   │   ├── Column/         - Single status column
-│   │   ├── TaskCard/       - Individual task
-│   │   └── DragLayer/      - Custom drag preview
-│   ├── TaskDetail/         - Task modal with comments
-│   └── CommentThread/      - Comments list + input
-├── hooks/
-│   ├── useWebSocket.ts     - Socket.IO connection management
-│   ├── useTasks.ts         - Task state + optimistic updates
-│   └── useDragDrop.ts      - Drag-and-drop logic
-├── stores/
-│   ├── projectStore.ts     - Project state (Zustand)
-│   └── taskStore.ts        - Task state (Zustand)
-└── services/
-    ├── api.ts              - REST API client
-    └── socket.ts           - WebSocket event handlers
-```
-
 ## Real-time Strategy
 
 **Optimistic Updates**:
@@ -425,22 +379,243 @@ An AI agent reading this knows **exactly** what to build and which libraries to 
 
 ### File 4: `tasks.md` — The Execution Checklist
 
-**Think of it as**: The project manager's task board
+**Think of it as**: Atomic, dependency-ordered tasks with acceptance criteria
 
-**What it does**: Breaks the plan into checkable, actionable steps
+**What it does**: Breaks the implementation plan into executable steps
 
-**Written for**: Developers (human or AI) who execute the work
+**Written for**: Developers (human or AI) executing the work
 
-**Example content**:
-- ☐ Create database schema for albums and photos
-- ☐ Build photo upload component with drag-and-drop
-- ☐ Implement album grid with lazy loading
-- ☐ Add tests for album creation and deletion
-- ☐ Deploy to production and verify
+**Real coding scenario** (continuing the task board example):
 
-Each task is **atomic**—small enough to complete in one focused session. Each task has clear acceptance criteria. Each task can be checked off when done.
+```markdown
+# Task Breakdown: Collaborative Task Board
 
-This is the AI agent's to-do list. It reads this file, executes each task in order, and checks them off as it goes.
+## Phase 1: Database & Authentication (Foundation)
+
+### T001: Setup PostgreSQL database schema
+**Files**: `prisma/schema.prisma`, `prisma/migrations/`
+**Acceptance Criteria**:
+- Schema defines users, projects, tasks, comments tables
+- Foreign key relationships enforced
+- Indexes created for project_id, task_id queries
+- Migration runs without errors
+**Dependencies**: None
+**Estimate**: 2 hours
+
+### T002: Implement JWT authentication
+**Files**: `src/auth/jwt.ts`, `src/middleware/auth.ts`
+**Acceptance Criteria**:
+- `/auth/login` endpoint returns valid JWT
+- JWT expires in 15 minutes (per constitution)
+- Middleware validates JWT and attaches user to request
+- Unit tests: 3 test cases (valid token, expired token, missing token)
+**Dependencies**: T001
+**Estimate**: 3 hours
+
+### T003: Create user registration endpoint
+**Files**: `src/routes/auth.ts`, `src/services/users.ts`
+**Acceptance Criteria**:
+- `POST /api/v1/auth/register` accepts email + password
+- Password hashed with bcrypt (12 rounds)
+- Duplicate email returns 400 error
+- Returns JWT on successful registration
+**Dependencies**: T001, T002
+**Estimate**: 2 hours
+
+---
+
+## Phase 2: Project Management (Core CRUD)
+
+### T004: Create projects API endpoint
+**Files**: `src/routes/projects.ts`, `src/services/projects.ts`
+**Acceptance Criteria**:
+- `POST /api/v1/projects` creates project for authenticated user
+- Name validation: required, max 100 chars
+- Returns project with UUID, created_at timestamp
+- Integration test: Create project → Verify in database
+**Dependencies**: T002, T003
+**Estimate**: 2 hours
+
+### T005: List user's projects endpoint
+**Files**: `src/routes/projects.ts`
+**Acceptance Criteria**:
+- `GET /api/v1/projects` returns projects owned by authenticated user
+- Excludes archived projects by default
+- Results ordered by created_at DESC
+- Integration test: Create 3 projects → List returns 3 results
+**Dependencies**: T004
+**Estimate**: 1.5 hours
+
+---
+
+## Phase 3: Task Management (Kanban Logic)
+
+### T006: Create task endpoint
+**Files**: `src/routes/tasks.ts`, `src/services/tasks.ts`
+**Acceptance Criteria**:
+- `POST /api/v1/tasks` creates task in specified project
+- Auto-assigns position (max position + 1 in column)
+- Status defaults to 'todo'
+- Returns task with all fields populated
+**Dependencies**: T004
+**Estimate**: 2.5 hours
+
+### T007: Get tasks for project endpoint
+**Files**: `src/routes/tasks.ts`
+**Acceptance Criteria**:
+- `GET /api/v1/projects/:id/tasks` returns all tasks for project
+- Tasks grouped by status (todo, in_progress, done)
+- Ordered by position within each status
+- Query optimized with proper indexes (< 50ms for 100 tasks)
+**Dependencies**: T006
+**Estimate**: 2 hours
+
+### T008: Update task status endpoint (for drag-and-drop)
+**Files**: `src/routes/tasks.ts`, `src/services/tasks.ts`
+**Acceptance Criteria**:
+- `PATCH /api/v1/tasks/:id` updates status and position
+- Recalculates positions for affected tasks in both columns
+- Transaction ensures consistency (all position updates succeed or none)
+- Returns updated task + affected tasks (for optimistic UI updates)
+**Dependencies**: T006
+**Estimate**: 4 hours
+
+---
+
+## Phase 4: Real-time WebSocket Layer
+
+### T009: Setup Socket.IO server
+**Files**: `src/socket/server.ts`, `src/socket/events.ts`
+**Acceptance Criteria**:
+- WebSocket server runs on port 3001
+- CORS configured to allow frontend origin
+- Connection authenticated via JWT in handshake
+- Logs connections/disconnections
+**Dependencies**: T002
+**Estimate**: 2 hours
+
+### T010: Implement join_project room subscription
+**Files**: `src/socket/events.ts`
+**Acceptance Criteria**:
+- Client emits `join_project(projectId)` to subscribe
+- Server validates user has access to project
+- User joins Socket.IO room for that project
+- All subsequent task updates broadcast to room members
+**Dependencies**: T009
+**Estimate**: 2 hours
+
+### T011: Broadcast task moves in real-time
+**Files**: `src/socket/events.ts`, `src/services/tasks.ts`
+**Acceptance Criteria**:
+- When task status/position changes via API, emit `task_moved` event
+- Event payload includes full task object + affected tasks
+- All clients in project room receive event within 500ms
+- Integration test: Two clients, one moves task, other receives update
+**Dependencies**: T008, T010
+**Estimate**: 3 hours
+
+---
+
+## Phase 5: Frontend Components
+
+### T012: Build TaskBoard React component
+**Files**: `src/components/TaskBoard/TaskBoard.tsx`, `src/components/TaskBoard/Column.tsx`
+**Acceptance Criteria**:
+- TaskBoard renders 3 columns (To Do, In Progress, Done)
+- Fetches tasks on mount via API
+- Columns display tasks grouped by status
+- Styled with Tailwind CSS (matches design mockup)
+**Dependencies**: T007
+**Estimate**: 3 hours
+
+### T013: Implement drag-and-drop with @dnd-kit
+**Files**: `src/hooks/useDragDrop.ts`, `src/components/TaskBoard/TaskCard.tsx`
+**Acceptance Criteria**:
+- Tasks draggable between columns
+- Shows ghost preview during drag
+- Calls API to update task status on drop
+- Optimistic UI update (moves task immediately, reverts on error)
+- Keyboard accessible (per constitution)
+**Dependencies**: T012
+**Estimate**: 5 hours
+
+### T014: Integrate WebSocket for real-time updates
+**Files**: `src/hooks/useWebSocket.ts`, `src/stores/taskStore.ts`
+**Acceptance Criteria**:
+- Connects to Socket.IO server on component mount
+- Subscribes to project room via `join_project`
+- Listens for `task_moved` events and updates Zustand store
+- Handles reconnection on connection loss
+**Dependencies**: T010, T012
+**Estimate**: 4 hours
+
+### T015: Build CommentThread component
+**Files**: `src/components/TaskDetail/CommentThread.tsx`
+**Acceptance Criteria**:
+- Displays comments with author name + timestamp
+- Input field for new comments (max 1000 chars)
+- "Edit" button shows for own comments (< 5 min old)
+- "Delete" button shows for own comments
+- Markdown rendering support
+**Dependencies**: T012
+**Estimate**: 4 hours
+
+---
+
+## Phase 6: Testing & Deployment
+
+### T016: Write E2E tests for critical flow
+**Files**: `tests/e2e/task-management.spec.ts`
+**Acceptance Criteria**:
+- Test: Register → Login → Create project → Add task → Drag to Done → Add comment
+- Runs in headless Chrome via Playwright
+- Passes in CI environment
+- Test duration < 30 seconds
+**Dependencies**: T015
+**Estimate**: 3 hours
+
+### T017: Setup Railway deployment
+**Files**: `railway.toml`, `.github/workflows/deploy.yml`
+**Acceptance Criteria**:
+- Backend deploys to Railway on push to main
+- Database migrations run automatically in pre-deploy hook
+- Environment variables configured (JWT_SECRET, DATABASE_URL)
+- Health check endpoint `/health` returns 200
+**Dependencies**: T016
+**Estimate**: 2 hours
+
+### T018: Setup Vercel deployment
+**Files**: `vercel.json`
+**Acceptance Criteria**:
+- Frontend deploys to Vercel on push to main
+- Environment variables configured (API_URL, SOCKET_URL)
+- Build completes in < 2 minutes
+- Production URL accessible and serves app
+**Dependencies**: T017
+**Estimate**: 1 hour
+
+---
+
+## Execution Notes
+
+- **Total estimate**: 48.5 hours (~1.5 weeks for 1 developer)
+- **Critical path**: T001 → T002 → T004 → T006 → T008 → T011 → T012 → T013 → T014
+- **Parallelizable**: T015 (comments) can be built in parallel with T011-T014
+- **Quality gates**: All tests must pass before T017 (deployment)
+```
+
+**What makes this effective**:
+
+Each task is:
+- **Atomic**: Can be completed in one focused session (1-5 hours)
+- **Specific**: Names exact files to create/modify
+- **Testable**: Clear acceptance criteria
+- **Ordered**: Dependencies explicitly listed
+- **Estimated**: Time estimates for planning
+
+An AI agent can read this file, execute tasks sequentially, check them off, and build the entire application **without asking for clarification**.
+
+![Spec-Kit Four-File Architecture](/images/blog/elegance-spec-kit/illustrator2.jpg)
 
 ---
 
@@ -593,6 +768,8 @@ This is the mechanism that makes human-AI collaboration actually work. Not API c
 Try building that with JSON. Or proprietary formats. Or tools that shut down in three years.
 
 Markdown isn't just elegant. **It's the universal interface between human intention and machine execution.**
+
+![Markdown: The Universal Language for Human-AI Collaboration](/images/blog/elegance-spec-kit/illustrator3.jpg)
 
 ### 2. It's Modular and Reusable (Like LEGO Blocks)
 
