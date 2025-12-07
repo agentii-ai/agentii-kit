@@ -106,37 +106,22 @@ Here's where Spec-Kit's elegance truly shines. Most systems grow bloated—more 
 **Real coding example**:
 
 ```markdown
-# Constitution: Web Application Engineering Standards
-
-## Code Quality
-- TypeScript strict mode enabled: no `any` types allowed
-- All functions must have JSDoc comments with examples
-- Cyclomatic complexity < 10 per function
-- No functions longer than 50 lines
+# Constitution: Code Quality Principles
 
 ## Testing Requirements
-- Unit test coverage > 80%
-- Integration tests for all API endpoints
-- E2E tests for critical user flows
-- Tests must run in < 30 seconds
+- All code must have >80% unit test coverage
+- Integration tests for cross-module interactions
+...
+
+## TypeScript Standards
+- Strict mode enabled: no `any` types
+- Const by default, let only when necessary
+...
 
 ## Performance Constraints
-- Page load: < 2 seconds on 4G
-- First Contentful Paint: < 1 second
-- Time to Interactive: < 3 seconds
-- Bundle size: < 200KB gzipped
-
-## Security Standards
-- All user inputs sanitized
-- SQL queries parameterized (no string concatenation)
-- Authentication via JWT with 15-minute expiry
-- HTTPS only, no mixed content
-
-## API Design Principles
-- RESTful endpoints: `/api/v1/resource`
-- Status codes: 200 (success), 400 (client error), 500 (server error)
-- Response format: JSON with `{data, error, meta}` structure
-- Rate limiting: 100 requests/minute per IP
+- Page load target: <2 seconds (4G)
+- First Contentful Paint: <1 second
+...
 ```
 
 **Why this works**:
@@ -150,7 +135,7 @@ When an AI agent starts implementing a feature, it reads this constitution **fir
 
 **You never have to repeat these requirements.** They're baked into the project's DNA.
 
-This file is your project's **immune system**—it automatically rejects anything that violates your engineering standards. An AI agent won't write insecure code, skip tests, or violate performance budgets, just like your immune system won't accept foreign invaders.
+This file is your project's **law system**—it automatically rejects anything that violates your engineering standards. An AI agent won't write insecure code, skip tests, or violate performance budgets, just like your law system won't accept wrong doing.
 
 ### File 2: `spec.md` — What You're Building (And Why)
 
@@ -182,7 +167,7 @@ add tasks, and move them between status columns (To Do, In Progress, Done).
 - User can enter project name (required, max 100 chars)
 - User can enter description (optional, max 500 chars)
 - Project appears in project list immediately after creation
-- Project creation shows success notification
+...
 
 ### Story 2: Add Task to Project
 **As a** team member
@@ -192,9 +177,8 @@ add tasks, and move them between status columns (To Do, In Progress, Done).
 **Acceptance Criteria**:
 - User can create task with title (required, max 200 chars)
 - User can assign task to team member (optional)
-- User can add task description (optional, supports Markdown)
 - Task starts in "To Do" column by default
-- Task shows creation timestamp and creator name
+...
 
 ### Story 3: Move Task Between Columns
 **As a** team member
@@ -204,20 +188,7 @@ add tasks, and move them between status columns (To Do, In Progress, Done).
 **Acceptance Criteria**:
 - User can drag task from one column to another
 - Task position updates immediately for all users (real-time)
-- Dragging shows visual feedback (ghost preview)
-- Invalid drops (outside columns) revert task to original position
-
-### Story 4: Comment on Tasks
-**As a** team member
-**I want to** leave comments on tasks
-**So that** I can discuss details with teammates
-
-**Acceptance Criteria**:
-- User can add comments with text (max 1000 chars, Markdown supported)
-- Comments show author name and timestamp
-- User can edit their own comments (within 5 minutes)
-- User can delete their own comments
-- New comments trigger notifications to task assignee
+...
 
 ## Edge Cases & Constraints
 
@@ -228,11 +199,7 @@ add tasks, and move them between status columns (To Do, In Progress, Done).
 ### Performance
 - Project must handle 100+ tasks without lag
 - Page load time < 2 seconds even with 50 tasks visible
-
-### Data Integrity
-- Deleted projects archive tasks (don't delete permanently)
-- Users can't delete comments from other users
-- Project names must be unique per account
+...
 ```
 
 **Notice what's NOT here**:
@@ -330,7 +297,6 @@ CREATE TABLE comments (
 CREATE INDEX idx_tasks_project ON tasks(project_id);
 CREATE INDEX idx_tasks_status ON tasks(status);
 CREATE INDEX idx_comments_task ON comments(task_id);
-```
 
 ## Real-time Strategy
 
@@ -769,6 +735,11 @@ Try building that with JSON. Or proprietary formats. Or tools that shut down in 
 
 Markdown isn't just elegant. **It's the universal interface between human intention and machine execution.**
 
+---
+
+> ***"Markdown is the new code. Specs are the new source files."***
+
+
 ![Markdown: The Universal Language for Human-AI Collaboration](/images/blog/elegance-spec-kit/illustrator3.jpg)
 
 ### 2. It's Modular and Reusable (Like LEGO Blocks)
@@ -824,29 +795,7 @@ Most frameworks demand elaborate setup. Config files. Build tools. Runtime depen
 
 No `npm install` with 500 dependencies. No framework updates breaking your project. No debugging configuration files longer than your actual code.
 
-### 5. It Prevents "Vibe Coding" Chaos
-
-For three years, everyone worked with AI the same way:
-
-**Step 1**: Prompt the AI with a vague idea
-**Step 2**: Get back unpredictable code
-**Step 3**: Patch the bugs
-**Step 4**: Repeat until frustrated
-
-This is "**vibe coding**"—improvising your way through development, hoping the AI understands you.
-
-| Vibe Coding (Old Way) | Spec-Kit (New Way) |
-|----------------------|-------------------|
-| One-shot conversation | Multi-step workflow |
-| Context lost between sessions | Context persisted in files |
-| Unpredictable quality | Consistent, reviewable output |
-| No version control | Full Git history |
-| Hard to collaborate | Team-readable documents |
-| Model-specific prompts | Agent-agnostic specs |
-
-**The difference**: Spec-Kit teams report **95%+ accuracy on first implementation attempt**.
-
-That's not magic. That's the power of clarity.
+---
 
 > ***"Clear inputs produce correct outputs.***
 > ***The highest-leverage activity isn't finding better AI.***
@@ -854,36 +803,9 @@ That's not magic. That's the power of clarity.
 
 ---
 
-## The Philosophy: Intent-Driven Development
-
-Spec-Kit is built on three core principles:
-
-### Principle 1: Specifications Define Intent
-**Describe what you want to build, not how to build it.**
-
-You provide the "what" (user stories, requirements, constraints).
-The plan provides the "how" (architecture, tech stack).
-Implementation emerges from both.
-
-### Principle 2: Multi-Step Refinement
-**Each phase builds on the previous one. No "generate everything at once" chaos.**
-
-Constitution → Spec → Plan → Tasks → Implementation
-
-Each step adds detail and clarity. Each step builds on what came before.
-
-### Principle 3: Heavy Trust in AI Capability
-**Spec-Kit trusts that modern AI can interpret rich specifications.**
-
-If your spec is clear enough, AI can figure out the rest.
-
----
-
 > ***"Markdown is the new code. Specs are the new source files."***
 
 ---
-
-> ***"Simple beats complex. Every single time."***
 
 ## What's Next? Start Building Today
 
