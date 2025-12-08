@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     title: 'agentii-kit',
   },
   verification: {
-    google: 'google_verification_code', // Add actual verification code
+    google: '1dKMqmPn7zSIqYq8EubqDD3Z0Lw7woU9a1s8tk3IDBI',
     yandex: 'yandex_verification_code',
   },
 }
