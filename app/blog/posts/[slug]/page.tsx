@@ -34,6 +34,10 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
     }
   }
 
+  // Determine the best image to use for social sharing
+  const imageUrl =
+    post.frontmatter.og_image || post.frontmatter.cover || '/og-image.png'
+
   return {
     title: post.frontmatter.title,
     description: post.frontmatter.description,
@@ -45,8 +49,15 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
       modifiedTime: post.frontmatter.updated_at,
       authors: [post.frontmatter.author],
       tags: post.frontmatter.tags,
-      images: post.frontmatter.og_image ? [{ url: post.frontmatter.og_image }] : undefined,
+      images: imageUrl ? [{ url: imageUrl }] : undefined,
       url: `/blog/posts/${params.slug}`,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.frontmatter.title,
+      description: post.frontmatter.description,
+      images: imageUrl ? [imageUrl] : undefined,
+      creator: post.frontmatter.twitter_handle || '@agentii_ai',
     },
     keywords: post.frontmatter.keywords,
   }
