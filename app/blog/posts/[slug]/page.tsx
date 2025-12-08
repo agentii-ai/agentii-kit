@@ -130,7 +130,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
       {/* Article Header */}
       <div className={`${post.frontmatter.cover ? '' : 'pt-12'} px-6 py-12 border-b border-gray-200 dark:border-white/10`}>
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-3xl mx-auto">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-sm text-gray-600 dark:text-white/60 mb-6">
             <a href="/blog" className="hover:text-gray-900 dark:hover:text-white transition-colors">
@@ -181,7 +181,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
       {/* Article Content */}
       <div className="px-6 py-12">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-3xl mx-auto">
           {/* Render markdown content with proper formatting */}
           <MarkdownRenderer
             content={post.content}
@@ -193,7 +193,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
       {/* Author Bio */}
       <div className="px-6 py-12 border-t border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-3xl mx-auto">
           <div className="flex gap-4 items-start">
             <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex-shrink-0" />
             <div>
@@ -209,7 +209,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       {/* Related Posts */}
       {relatedPosts.length > 0 && (
         <div className="px-6 py-12 border-t border-gray-200 dark:border-white/10">
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">Related Articles</h2>
             <div className="grid gap-6">
               {relatedPosts.map((relatedPost) => (
@@ -234,7 +234,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
       {/* Navigation */}
       <div className="px-6 py-12 border-t border-gray-200 dark:border-white/10">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-3xl mx-auto">
           <a
             href="/blog"
             className="inline-flex items-center gap-2 px-6 py-3 border border-blue-600 dark:border-primary text-blue-600 dark:text-primary font-semibold hover:bg-blue-50 dark:hover:bg-primary/10 transition-colors rounded-lg"

@@ -1,6 +1,6 @@
 ---
 title: "Three Domains, One Method: How Spec-Driven Workflows Are Transforming Product, Content, and Marketing"
-description: "Discover how PMF-Kit, Blog-Tech-Kit, and Twitter-Init-Kit apply the same proven spec-driven methodology to revolutionize how professionals work with AI agents across product discovery, content strategy, and social media marketing."
+description: "How PMF‑Kit, Blog‑Tech‑Kit, and Twitter‑Init‑Kit use one spec‑driven method to transform product, content, and marketing into agent‑ready workflows."
 date: "2025-12-08"
 author: "AgentII Team"
 tags: ["spec-driven-development", "ai-agents", "workflow-automation", "professional-tools", "cross-functional"]
@@ -73,6 +73,8 @@ All three kits implement the same fundamental structure:
 - Iterate based on outcomes and learnings
 
 ### Why This Structure Works Across Domains
+
+![Circular five-phase spec-driven workflow diagram showing Constitution, Specification, Planning, Task Breakdown, and Implementation around a central “Spec-Driven Methodology” core](/images/blog/three-kits/illustrator1.jpg)
 
 **Separation of Strategy and Execution:**
 Professionals retain control over "what" and "why" while agents accelerate "how" within defined boundaries.
@@ -252,6 +254,8 @@ More strategically, the specification-driven method transforms social media from
 
 While PMF-Kit, Blog-Tech-Kit, and Twitter-Init-Kit serve radically different professional functions, their shared methodology reveals universal principles of effective AI-augmented work:
 
+![Three separate toolkit boxes for PMF-Kit, Blog-Tech-Kit, and Twitter-Init-Kit resting on a single shared foundation labeled “Spec-Driven Methodology”](/images/blog/three-kits/illustrator2.jpg)
+
 ### 1. Specification Creates Strategic Control
 
 **Traditional Challenge:** AI tools often feel like "magic black boxes" where professionals input vague requests and hope for useful outputs.
@@ -332,6 +336,8 @@ From writing individual posts → to architecting content strategies that agents
 **For Marketing Professionals:**
 From posting on social media → to orchestrating multi-channel campaigns that agents help amplify
 
+![Before-and-after illustration showing a stressed professional buried in tasks on the left and a confident orchestrator directing multiple AI agents on the right](/images/blog/three-kits/illustrator3.jpg)
+
 ## Practical Starting Points for Cross-Functional Adoption
 
 If you're a professional in product, content, marketing, or related disciplines looking to adopt spec-driven workflows:
@@ -389,6 +395,8 @@ Your greatest leverage comes from encoding your best professional judgment into 
 - Growth loop hypotheses and experiment frameworks
 
 These constitutional frameworks become intellectual property—defensible competitive advantages that persist beyond individual contributors.
+
+![Architectural temple-style illustration with columns for Product, Content, and Marketing Constitutions supporting a roof labeled Organizational Intellectual Property above a foundation labeled Professional Expertise Encoded](/images/blog/three-kits/illustrator4.jpg)
 
 ## The Broader Implication: Specification as the New Core Competency
 
