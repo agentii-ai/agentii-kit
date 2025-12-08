@@ -40,10 +40,10 @@
 
 ### Platform & Infrastructure Setup (1 week)
 
-- [ ] **T001** [P] Verify Nextra blog system live: `npm run dev` → `/blog` route accessible (0.5h, Editor)
+- [x] **T001** [P] Verify Nextra blog system live: `npm run dev` → `/blog` route accessible (0.5h, Editor)
   - Confirm current blog displays existing posts (`/blog/posts/[slug]/`)
   - Test post navigation and tag system
-  - Document live URL: `https://agentii-kit.dev/blog/`
+  - Document live URL: `https://kits.agentii.ai/blog/`
 
 - [ ] **T002** [P] Set up Plausible Analytics: Create account, add site ID to Next.js config (1h, Editor)
   - Create Plausible project for blog subdomain
@@ -52,7 +52,7 @@
   - Define conversion goals: Newsletter signup, GitHub fork, social share
 
 - [ ] **T003** [P] Configure Google Search Console: Verify domain ownership, submit sitemap (1h, Editor)
-  - Add property: `agentii-kit.dev/blog/`
+  - Add property: `kits.agentii.ai/blog/`
   - Verify via DNS or file upload
   - Submit `/sitemap.xml` to GSC
   - Set up keyword tracking dashboard
@@ -64,7 +64,7 @@
   - Configure RSS-to-email if using that feature
   - Test signup and confirmation flow
 
-- [ ] **T005** [P] Configure JSON-LD Article schema templates (1h, Editor)
+- [x] **T005** [P] Configure JSON-LD Article schema templates (1h, Editor)
   - Create schema template file: `/specs/003-single-blog/json-ld-article-template.json`
   - Document schema fields: headline, author, datePublished, image, description, keywords
   - Verify template validates at schema.org
