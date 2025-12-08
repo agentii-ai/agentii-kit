@@ -21,6 +21,21 @@ interface BlogJsonLdProps {
   articleBody?: string
 }
 
+// Helper to ensure dates include a time and timezone for validators
+// Accepts dates in YYYY-MM-DD or full ISO format and always returns
+// an ISO 8601 datetime string with timezone information.
+function toIsoDateTime(date: string): string {
+  if (!date) return ''
+
+  // If the string already contains a time or timezone, use it as-is
+  if (date.includes('T')) {
+    return date
+  }
+
+  // Interpret plain dates as midnight UTC
+  return `${date}T00:00:00Z`
+}
+
 export default function BlogJsonLd({
   title,
   description,
@@ -41,8 +56,8 @@ export default function BlogJsonLd({
     headline: title,
     description: description,
     image: imageUrl || 'https://kits.agentii.ai/default-og-image.png',
-    datePublished: datePublished,
-    dateModified: dateModified || datePublished,
+    datePublished: toIsoDateTime(datePublished),
+    dateModified: toIsoDateTime(dateModified || datePublished),
     author: {
       '@type': 'Person',
       name: authorName,
