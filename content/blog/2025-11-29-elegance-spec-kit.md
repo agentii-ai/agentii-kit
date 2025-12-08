@@ -24,7 +24,7 @@ keywords:
   - ai agents
   - markdown
   - github
-canonical: null
+canonical: "https://agentii.ai/blog/2025-11-29-elegance-spec-kit"
 updated_at: "2025-11-29"
 ---
 

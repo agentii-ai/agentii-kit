@@ -22,7 +22,7 @@ keywords:
   - knowledge work
   - domain-agnostic systems
   - organizational scaling
-canonical: null
+canonical: "https://agentii.ai/blog/2025-11-22-every-job-one-method"
 updated_at: "2025-11-22"
 ---
 

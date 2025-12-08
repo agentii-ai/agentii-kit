@@ -22,7 +22,7 @@ keywords:
   - startup development
   - ai agents
   - first try accuracy
-canonical: null
+canonical: "https://agentii.ai/blog/2025-11-15-dont-code-specify"
 updated_at: "2025-11-15"
 ---
 
@@ -239,6 +239,8 @@ The AI agent executes every task in order, respecting dependencies, running test
 ## The Bigger Picture: Where This Is Heading
 
 Spec-driven development isn't just a workflow improvement. It's a **fundamental shift in how software gets built**. And the implications are staggering.
+
+The beauty of this approach? **It works beyond just code.** The same four-file architecture (constitution, spec, plan, tasks) applies to marketing campaigns, legal workflows, HR processes—any knowledge work. [Learn how spec-driven development transforms every role in your organization →](/blog/2025-11-22-every-job-one-method)
 
 ### AI Agents Finally Work Like Real Team Members
 
