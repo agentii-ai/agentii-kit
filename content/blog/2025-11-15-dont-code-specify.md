@@ -29,8 +29,6 @@ canonical: "https://agentii.ai/blog/2025-11-15-dont-code-specify"
 updated_at: "2025-11-15"
 ---
 
-# Don't Code. Specify: How Spec-Driven Development Gets 95% Accuracy on the First Try
-
 You know the feeling. You fire up your AI coding assistant, describe what you want in natural language, and watch the magic happen. The code flows. It looks beautiful. You feel like a wizard.
 
 Then you run it.

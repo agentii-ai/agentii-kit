@@ -1,14 +1,12 @@
 ---
 title: "Three Domains, One Method: How Spec-Driven Workflows Are Transforming Product, Content, and Marketing"
 description: "Discover how PMF-Kit, Blog-Tech-Kit, and Twitter-Init-Kit apply the same proven spec-driven methodology to revolutionize how professionals work with AI agents across product discovery, content strategy, and social media marketing."
-date: "2025-12-05"
+date: "2025-12-08"
 author: "AgentII Team"
 tags: ["spec-driven-development", "ai-agents", "workflow-automation", "professional-tools", "cross-functional"]
 cover: "/images/blog/three-kits/hero.jpg"
 keywords: ["spec-driven workflows", "AI agents", "product-market fit", "content marketing", "social media strategy", "professional productivity", "workflow automation"]
 ---
-
-# Three Domains, One Method: How Spec-Driven Workflows Are Transforming Product, Content, and Marketing
 
 **The challenge facing professionals across disciplines is remarkably similar: how to harness AI agents effectively without losing strategic control or professional judgment.**
 

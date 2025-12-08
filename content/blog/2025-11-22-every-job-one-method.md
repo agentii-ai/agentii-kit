@@ -29,8 +29,6 @@ canonical: "https://agentii.ai/blog/2025-11-22-every-job-one-method"
 updated_at: "2025-11-22"
 ---
 
-# Every Job. One Method: Spec-Driven Development Beyond Code
-
 You probably think spec-driven development is for engineers.
 
 You're wrong.

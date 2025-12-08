@@ -31,8 +31,6 @@ canonical: "https://agentii.ai/blog/2025-11-29-elegance-spec-kit"
 updated_at: "2025-11-29"
 ---
 
-# The Elegance of Spec-Kit: Simple Beats Complex Every Time
-
 For the past three years, we've watched the world scramble to work with AI coding agents. Billions poured into complex frameworks. Elaborate orchestration systems. Sophisticated agent architectures promising to revolutionize how we build software.
 
 Everyone was building **bigger, more complex** solutions to tame AI.
