@@ -1,0 +1,14 @@
+{
+    "chat.promptFilesRecommendations": {
+        "pmfkit.constitution": true,
+        "pmfkit.specify": true,
+        "pmfkit.plan": true,
+        "pmfkit.tasks": true,
+        "pmfkit.implement": true
+    },
+    "chat.tools.terminal.autoApprove": {
+        ".pmf/scripts/bash/": true,
+        ".pmf/scripts/powershell/": true
+    }
+}
+

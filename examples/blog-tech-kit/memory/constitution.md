@@ -1,36 +1,13 @@
-# Agentii Dual-Blog Constitution
-<!-- Financial Agent (Prosumer Investment + Agentic Tech) + Growth-Hacking Kit Framework -->
+# Blog-Tech-Kit Constitution
+<!-- AI/LLM SaaS Technical Blog & Twitter Marketing Governance Framework -->
 
-**Version**: 2.0.0 | **Ratified**: 2025-12-04 | **Last Amended**: 2025-12-06
-
-**Strategic Objective**: Drive successful product launch and 24-month growth of agentii.ai (Financial Agent for Professional Investors) with supporting growth-hacking blogs (agentii-kit) to amplify Silicon Valley visibility and developer mindshare.
-
----
-
-## Executive Summary: Dual-Blog Strategy
-
-### Primary Blog: agentii.ai
-- **Purpose**: Authority voice for professional investors using agentic intelligence
-- **Target Audience**: Prosumers (pro US stock investors, semi-pro retail investors, small hedge/PE funds with strong finance knowledge)
-- **Content Themes**: Pro/semi-pro investing ideas, agentic-native technology, product innovation
-- **Success Metric**: Position agentii.ai as canonical source for institutional AI investing research
-- **Timeline Horizon**: 24-month compounding authority build (months 1-24)
-
-### Secondary Blog: agentii-kit
-- **Purpose**: Growth-hacking amplifier via open-source spec-driven kits and technical deep-dives
-- **Target Audience**: Geeks, startup founders, VCs, product designers, anyone building agentic systems
-- **Content Themes**: Spec-driven development, agent orchestration patterns, kit documentation, startup growth playbooks
-- **Success Metric**: Organic reach into Silicon Valley, VC/founder mindshare, GitHub stars, framework adoption
-- **Strategic Role**: Support agentii.ai launch by creating organic reach and developer credibility (users who learn agentii-kit may become agentii.ai customers)
-- **Kits Featured**: pmf-kit, blog-tech-kit, twitter-init-kit
-
-**Revenue Impact**: agentii.ai product success is the ultimate goal. agentii-kit is a supporting channel that amplifies awareness and credibility in ecosystem.
+**Version**: 1.1.0 | **Ratified**: 2025-12-04 | **Last Amended**: 2025-12-05
 
 ---
 
 ## Preamble: Multi-Kit Architecture & Coexistence Strategy
 
-This constitution governs the **Agentii Dual-Blog Program**: (1) agentii.ai - authority blog for institutional investment research with agentic intelligence, and (2) agentii-kit - growth-hacking blog featuring open-source spec-driven kits for developers, founders, and VCs. Both blogs are specialized variants of the spec-kit framework, demonstrating how to create domain-specific kit variants while maintaining full compatibility with the original spec-kit and future variants (pm-kit, pd-kit, marketing-kit, biz-writing-kit).
+This constitution governs **blog-tech-kit**, a specialized variant of the spec-kit framework focused on Twitter marketing and technical blog growth for AI SaaS products. Blog-tech-kit demonstrates how to create domain-specific kit variants while maintaining full compatibility with the original spec-kit and future variants (pm-kit, pd-kit, marketing-kit, biz-writing-kit).
 
 ### Namespace Design for Multi-Kit Coexistence
 
@@ -50,7 +27,7 @@ Each kit variant uses a **unique CLI command name** to avoid binary/command coll
 **Installation Pattern**:
 ```bash
 uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
-uv tool install blog-cli --from git+https://github.com/agentii-ai/blog-tech-kit.git
+uv tool install blog-cli --from git+https://github.com/[org]/blog-tech-kit.git
 uv tool install pm-cli --from git+https://github.com/[org]/pm-kit.git
 ```
 
@@ -79,8 +56,9 @@ project-root/
 
 **Rationale**:
 - The `.specify/` directory name is **generic** enough to represent "specification-driven workflows" regardless of domain (software, blog content, product design, etc.)
-- The `.blogkit/` or `.pmkit/` have blog and product management templates and commands
+- Changing to `.blogkit/` or `.pmkit/` would break the abstraction and create unnecessary duplication
 - All kits follow the same workflow: constitution → specify → clarify → plan → tasks → implement
+- Sharing `.specify/` enables hybrid workflows (e.g., using spec-kit for code + blog-kit for content in the same project)
 
 #### 3. Slash Command Namespacing (Agent Integration)
 
@@ -103,8 +81,8 @@ Agent slash commands use **kit-specific prefixes** to avoid collision:
 
 Example from a blogkit script:
 ```bash
-TEMPLATE="$REPO_ROOT/.blogkit/templates/plan-template.md"
-CONSTITUTION="$REPO_ROOT/.blogkit/memory/constitution.md"
+TEMPLATE="$REPO_ROOT/.specify/templates/plan-template.md"
+CONSTITUTION="$REPO_ROOT/.specify/memory/constitution.md"
 ```
 
 **Rationale**: All kits share the same workflow structure. Path consistency enables script reuse and reduces maintenance burden.
@@ -127,95 +105,6 @@ When a project has multiple kit variants installed, the **active kit** is determ
 1. Run `blog init --here --force` to overlay blog-kit templates and commands
 2. Update `.specify/memory/constitution.md` with blog-kit constitution
 3. Verify `.claude/commands/blogkit.*.md` files are present
-
----
-
-## Blog-Specific Governance
-
-### Blog: agentii.ai (Institutional Investment Authority)
-
-**Mission**: Be the canonical source for professional investors seeking AI-powered investment research insights
-
-**Editorial Scope**:
-- ✅ **Pro/Semi-Pro Investing Ideas**: Market analysis, sector deep-dives, thesis exploration with institutional rigor
-- ✅ **Agentic-Native Technology**: How multi-agent systems transform investment research workflows
-- ✅ **Product Innovation & Case Studies**: Real examples of AI agents reducing research friction
-- ❌ **Retail Trading Tips**: Avoid penny stocks, day trading, gambling-adjacent content
-- ❌ **Financial Advice**: Clear disclaimers - educational only, not personal advisory
-
-**Target Readers**:
-- Professional US stock investors with 5+ years experience
-- Semi-pro retail investors who study financial statements and earnings calls
-- Small hedge funds and private equity funds analyzing market opportunities
-- Solo GPs and institutional researchers using AI to scale research efficiency
-
-**Content Pillars** (to be detailed in spec):
-- Investment Research Acceleration (using agentii.ai agents)
-- Multi-Agent Orchestration for Financial Analysis
-- Agentic Market Insights (emerging trends, sector analysis)
-- Technology Stack for Modern Portfolio Management
-- Case Studies: How Institutional Teams Use Agentic Systems
-
-**Authority Markers**:
-- Author credentials: Investment background, holdings transparency, track record
-- Data sources: SEC filings, earnings transcripts, brokerage research, proprietary models
-- Methodologies: Cite frameworks from established investment books/researchers
-- Original insights: Analysis of patterns across 100+ companies, not generic market takes
-
-**Publishing Cadence**: 2-4 posts/month (Authority + Practitioner blend) - realistic for building deep investment theses
-
-**Key Success Metrics**:
-- Organic traffic from investment research keywords (earnings, equity research, portfolio analysis)
-- Citations by investment newsletters and hedge fund research
-- Newsletter subscriber growth within investment community
-- Institutional user signups traced to blog content
-- Rankings for "institutional AI investing" related keywords
-
----
-
-### Blog: agentii-kit (Growth-Hacking & Ecosystem Amplification)
-
-**Mission**: Position agentii.ai ecosystem as credible, transparent, founder-friendly via free, high-quality open-source frameworks and developer education
-
-**Editorial Scope**:
-- ✅ **Spec-Driven Development Practices**: PMF-Kit, Blog-Tech-Kit, Twitter-Init-Kit deep-dives
-- ✅ **Agent Orchestration Patterns**: How to build reliable, complex agentic workflows
-- ✅ **Startup Growth Playbooks**: How growth-hacking (code + content distribution) accelerates startups
-- ✅ **Technical Deep-Dives**: Agentic system architecture, token optimization, prompt engineering for agents
-- ✅ **Founder Stories & Case Studies**: How other startups use agentii-kit frameworks
-- ❌ **Competitive Comparisons**: Avoid attacking competitors; focus on philosophy and approach
-- ❌ **Hype Over Substance**: All tech posts grounded in production constraints and edge cases
-
-**Target Readers**:
-- Geeks building agentic systems (engineers, architects, AI practitioners)
-- Startup founders and growth-hackers seeking scaling frameworks
-- Venture capitalists and angels evaluating AI startup teams
-- Product designers and PMs working with AI product teams
-- Anyone wanting to understand spec-driven development and quality gates
-
-**Content Pillars**:
-- Spec-Kit Framework Mastery (Constitution, Spec, Plan, Tasks, Implement)
-- Agent Architecture Patterns (multi-agent orchestration, tool use, retrieval)
-- Growth-Hacking for Startups (content marketing, community, GitHub strategy)
-- Open-Source Kit Features & Tutorials
-- Founder Lessons: From PMF to Product-Market Fit
-
-**Authority Markers**:
-- Author credentials: Founder, engineer, shipped production systems
-- Code examples: Real, tested, reproducible in clean environments
-- Data: GitHub stars, adoption metrics, community feedback
-- Transparency: Failure modes, architectural trade-offs, cost analysis
-- Community: Feature user stories, highlight developer contributions
-
-**Publishing Cadence**: 3-5 posts/month (Practitioner + Community blend) - higher velocity given developer audience expectations
-
-**Key Success Metrics**:
-- GitHub stars on agentii-kit projects (pmf-kit, blog-tech-kit, twitter-init-kit)
-- Developer adoption (npm downloads, GitHub forks, community contributions)
-- Organic reach into Silicon Valley / VC community
-- Newsletter subscriber growth among founders and CTOs
-- Inbound interest from developers → agentii.ai product conversion
-- Speaking invitations, media mentions, conference talks
 
 ---
 
@@ -294,52 +183,6 @@ When a project has multiple kit variants installed, the **active kit** is determ
 - Content that violates principles (e.g., feature dumps, sales-first positioning) must be rejected or reframed
 
 **Test**: Specifications include a "Blog Type Declaration" section that explicitly states the blog type and how content aligns with the corresponding principles.
-
-### II-C. Domain-Specific Authority Standards
-
-#### For agentii.ai (Institutional Investment Blog)
-
-**Financial Rigor Requirement**: All investment analysis must meet institutional research standards.
-
-**Standards**:
-- **Thesis Clarity**: Investment theses must be explicit (bullish, bearish, neutral) with clear conviction levels
-- **Data-Driven Analysis**: Use SEC filings, earnings calls, public financial data as primary sources
-- **Time Horizons**: Specify investment thesis timeframe (3-month, 1-year, 3-year, 5-year+)
-- **Risk Acknowledgment**: Mandatory section addressing downside risks, market conditions where thesis breaks
-- **Disclosure Requirements**:
-  - Author disclosure: Any personal holdings mentioned
-  - Conflicts of interest: Relationships with companies discussed
-  - Methodology: How analysis differs from consensus, what unique insights you bring
-  - Timestamp: Content decay notice (e.g., "Analysis assumes Q3 2025 market conditions")
-- **Track Record Transparency**: Authors should reference past predictions/analysis with outcome tracking
-
-**Prohibited**:
-- ❌ Market-timing calls without multi-scenario analysis
-- ❌ "Can't miss" or "sure thing" language
-- ❌ Unnamed sources ("industry insiders tell us...")
-- ❌ Extrapolating single-quarter results to annual/multi-year trends
-
-**Test**: Investment-focused posts include Disclosure section with conviction level, time horizon, risk factors, and author transparency.
-
-#### For agentii-kit (Developer Growth-Hacking Blog)
-
-**Authentic Founder Voice Requirement**: Content must reflect real, hard-won lessons from building and shipping products.
-
-**Standards**:
-- **Specificity Over Generalization**: Avoid "best practices" - describe exactly what worked in specific context
-- **Failure Case Inclusion**: Every post about "how we did X" includes section on "what we tried that didn't work"
-- **Numbers & Metrics**: Share actual data (velocity, adoption rates, GitHub stars trajectory, CAC) not just anecdotes
-- **Shipping Evidence**: Code examples, GitHub repos, production deployments - prove you've built what you're writing about
-- **Audience Respect**: Don't oversell; acknowledge that not all tactics work for all teams/products
-- **Community Contributions**: Feature user stories and highlight how developers extended your kits
-
-**Prohibited**:
-- ❌ Survivorship bias ("successful founders all do X")
-- ❌ Generic advice without personal validation
-- ❌ "Move fast and break things" without addressing the cost of breakage
-- ❌ Treating founders/engineers as passive recipients instead of creative peers
-
-**Test**: Developer-focused posts include real data/metrics, failure case analysis, and community contribution acknowledgments.
 
 ### III. Test-First for Content Quality (NON-NEGOTIABLE)
 
@@ -648,41 +491,6 @@ Blog implementations must meet:
 - **Analytics**: Privacy-compliant tracking (GDPR/CCPA), cookie consent if required
 - **Security**: HTTPS enforced, CSP headers, dependency scanning, XSS protection
 
-### Cross-Blog Strategy: Amplification Without Confusion
-
-**Principle**: Both blogs serve agentii.ai's ultimate growth goal, but maintain distinct identities and target audiences to avoid confusion.
-
-**Coordination Requirements**:
-
-1. **Audience Segmentation**:
-   - agentii.ai readers are professional investors first, technologists second
-   - agentii-kit readers are technologists first, potential product users second
-   - Crossover readers: sophisticated investors who code OR technical founders interested in investing
-   - DO NOT force content to appeal to both simultaneously
-
-2. **Content Linking Strategy**:
-   - agentii.ai posts may reference agentii-kit posts when relevant to explain technical implementation
-   - agentii-kit posts may mention agentii.ai as "inspiration for why agentic systems matter"
-   - Cross-links happen naturally, not forced (max 1-2 per post)
-
-3. **Repurposing Without Duplication**:
-   - Same insights told from different angles ✅ (agentii.ai: "How agents improve research speed", agentii-kit: "Building reliable agent systems for financial analysis")
-   - Duplicate posts ❌ (Do not publish exact same content on both blogs)
-   - Shared data with different framing ✅ (agentii.ai: "Market trends we discovered", agentii-kit: "How we built the analysis tools")
-
-4. **Product Mention Protocol**:
-   - agentii.ai blog: Agentii.ai is the primary subject (case studies, use cases, product roadmap)
-   - agentii-kit blog: Agentii-kit frameworks/kits are primary; agentii.ai mentioned as strategic reference
-   - Both blogs: "Agentic systems" as philosophical framework, not product promo
-
-5. **Newsletter & Social Strategy**:
-   - Separate email lists and social accounts (different value propositions)
-   - agentii.ai Twitter: Investment research, market analysis, agentic insights
-   - agentii-kit Twitter: Developer tutorials, spec-kit patterns, growth-hacking lessons
-   - Consider newsletter cross-promotion (e.g., agentii-kit newsletter mentions "investors should read agentii.ai")
-
----
-
 ### SEO Checklist (15-Point Gate)
 
 Every post must pass this checklist before publication:
@@ -905,31 +713,14 @@ Before releasing a new kit variant, validate multi-kit coexistence:
 
 ---
 
-**Living Document**: This constitution evolves as agentii.ai and agentii-kit programs mature and as audience insights inform strategy. Amendments follow semantic versioning and propagate to all dependent templates and scripts.
+**Living Document**: This constitution evolves as blog-tech-kit matures and as multi-kit coexistence patterns are validated. Amendments follow semantic versioning and propagate to all dependent templates and scripts.
 
-**Last Reviewed**: 2025-12-06
-**Next Review**: 2025-03-06 (Quarterly)
+**Last Reviewed**: 2025-12-05
+**Next Review**: 2025-03-05 (Quarterly)
 
 ---
 
 ## Changelog
-
-### v2.0.0 (2025-12-06) - Dual-Blog Launch Edition
-- **MAJOR REVISION**: Updated for Agentii Dual-Blog Program (agentii.ai primary, agentii-kit supporting)
-- **Added**: Executive Summary with dual-blog strategy and revenue impact
-- **Added**: Blog-Specific Governance sections for agentii.ai and agentii-kit
-  - agentii.ai: Institutional Investment Authority (2-4 posts/month, prosumer investors)
-  - agentii-kit: Growth-Hacking & Ecosystem Amplification (3-5 posts/month, developers/founders)
-- **Added**: Domain-Specific Authority Standards (II-C)
-  - Financial Rigor Requirement for agentii.ai (thesis clarity, risk acknowledgment, disclosure)
-  - Authentic Founder Voice Requirement for agentii-kit (specificity, failure cases, metrics)
-- **Added**: Cross-Blog Strategy section (amplification without confusion)
-  - Audience segmentation guidelines
-  - Content linking strategy
-  - Repurposing framework
-  - Product mention protocols
-  - Newsletter & social strategy coordination
-- **Rationale**: agentii.ai product success is ultimate goal; agentii-kit drives organic reach and developer credibility
 
 ### v1.1.0 (2025-12-05)
 - **Added**: Evidence Tier Hierarchy (II-A) - 4-tier evidence standards for claims validation
