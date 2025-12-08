@@ -22,6 +22,9 @@ keywords:
   - startup development
   - ai agents
   - first try accuracy
+  - vibe coding
+  - specification driven development
+  - ai coding accuracy
 canonical: "https://agentii.ai/blog/2025-11-15-dont-code-specify"
 updated_at: "2025-11-15"
 ---
@@ -173,6 +176,8 @@ This is the shift from "prompt-and-pray" to "specify-and-verify."
 
 You don't need a PhD in software architecture or a 50-page requirements document. The easiest way to get started is with **[Spec-Kit](https://github.com/github/spec-kit)**—an open-source toolkit that sets up the complete spec-driven workflow for you.
 
+**Want to understand why Spec-Kit's design is so elegant?** [Discover how four simple Markdown files became the standard for specification-driven development →](/blog/2025-11-29-elegance-spec-kit)
+
 Here's how to go from zero to shipping in 6 steps:
 
 ### Step 1: Install Spec-Kit
@@ -300,7 +305,9 @@ Sound crazy? It's already happening. Teams using spec-driven development report 
 
 Here's where it gets really interesting: **The 4-file architecture scales to any domain.**
 
-Remember those four files (constitution, spec, plan, tasks)? This system works for **any knowledge work**, not just software engineering:
+Remember those four files (constitution, spec, plan, tasks)? This system works for **any knowledge work**, not just software engineering.
+
+**Curious how this same methodology transforms marketing, legal, HR, and every other role?** [See how spec-driven development works across your entire organization →](/blog/2025-11-22-every-job-one-method)
 
 | File | Function | Example |
 |------|----------|---------|

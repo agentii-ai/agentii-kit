@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { getBlogPostBySlug, getAllBlogPosts } from '@/lib/content/blog-loader'
 import { buildTagIndex, getRelatedPostsByTags } from '@/lib/content/tags'
 import MarkdownRenderer from '@/components/MarkdownRenderer'
+import BlogJsonLd from '@/components/BlogJsonLd'
 
 /**
  * Dynamic Blog Post Page
@@ -100,7 +101,21 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     : null
 
   return (
-    <article className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white">
+    <>
+      {/* JSON-LD Structured Data for SEO */}
+      <BlogJsonLd
+        title={post.frontmatter.title}
+        description={post.frontmatter.description}
+        datePublished={post.frontmatter.date}
+        dateModified={post.frontmatter.updated_at}
+        authorName={post.frontmatter.author}
+        imageUrl={post.frontmatter.cover || post.frontmatter.og_image}
+        url={`https://agentii.ai/blog/posts/${params.slug}`}
+        keywords={post.frontmatter.keywords || []}
+        articleBody={post.content}
+      />
+
+      <article className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white">
       {/* Hero Section with Cover Image */}
       {post.frontmatter.cover && (
         <div className="relative w-full h-96 bg-gray-200 dark:bg-gray-900 overflow-hidden">
@@ -229,5 +244,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
       </div>
     </article>
+    </>
   )
 }

@@ -22,6 +22,9 @@ keywords:
   - knowledge work
   - domain-agnostic systems
   - organizational scaling
+  - constitution engineering
+  - work methodology
+  - organizational transformation
 canonical: "https://agentii.ai/blog/2025-11-22-every-job-one-method"
 updated_at: "2025-11-22"
 ---
@@ -33,6 +36,8 @@ You probably think spec-driven development is for engineers.
 You're wrong.
 
 The brilliance of spec-driven methodology isn't that it's a coding technique—it's that it's a **work methodology**. The same principles that let AI agents build software with 95%+ accuracy also work for marketing campaigns, legal contracts, hiring workflows, sales playbooks, and HR onboarding.
+
+**New to spec-driven development?** [Start here: Learn how spec-driven development achieves 95%+ first-pass accuracy →](/blog/2025-11-15-dont-code-specify)
 
 The 4-file architecture works for any job. The question isn't *"Can we apply this outside engineering?"* It's *"Why are we still doing this job the old way?"*
 
@@ -257,6 +262,8 @@ With spec-driven methodology, here's what changes:
 
 Starting a domain-specific kit is easier than you think. You don't need a perfect system—you need a **working system** that you can iterate.
 
+**Want to see the elegant design behind the kit architecture?** [Explore why Spec-Kit's four-file system is perfectly simple →](/blog/2025-11-29-elegance-spec-kit)
+
 ![Five-step journey map for building your first kit](/images/blog/every-job-one-method/illustrator5.jpg)
 
 ---
@@ -342,7 +349,7 @@ By the third or fourth project, you'll be at 90%+ accuracy. That's when the kit 
 
 Let's recap the most important ideas:
 
-1. **Spec-driven development is domain-agnostic.** The same 4-file architecture (constitution, spec, plan, tasks) works for any knowledge work—not just coding.
+1. **Spec-driven development is domain-agnostic.** The same 4-file architecture (constitution, spec, plan, tasks) works for any knowledge work—not just coding. [See how it achieves 95%+ accuracy in software development →](/blog/2025-11-15-dont-code-specify)
 
 2. **The constitution is your competitive advantage.** Encode your best practices once, reuse them forever.
 
