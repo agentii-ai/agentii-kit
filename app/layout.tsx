@@ -1,12 +1,13 @@
 import '../styles/globals.css'
 import '../styles/prose-override.css'
 import { ReactNode } from 'react'
+import type { Metadata } from 'next'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import { Navbar } from '@/components/Navbar'
 import { FooterKit } from '@/components/FooterKit'
 
-export const metadata = {
-  metadataBase: new URL('https://agentii.ai'),
+export const metadata: Metadata = {
+  metadataBase: new URL('https://kits.agentii.ai'),
   title: {
     default: 'agentii-kit - Power Your AI Agents',
     template: '%s – agentii-kit',
@@ -23,7 +24,7 @@ export const metadata = {
     'Development Tools',
     'agentii-kit',
   ],
-  authors: [{ name: 'agentii-kit Team', url: 'https://agentii.ai' }],
+  authors: [{ name: 'agentii-kit Team', url: 'https://kits.agentii.ai' }],
   creator: 'agentii-kit',
   publisher: 'agentii-kit',
   robots: {
@@ -40,7 +41,7 @@ export const metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://agentii.ai',
+    url: 'https://kits.agentii.ai',
     siteName: 'agentii-kit',
     images: [
       {
@@ -60,9 +61,9 @@ export const metadata = {
     creator: '@agentii_ai',
   },
   alternates: {
-    canonical: 'https://agentii.ai',
+    canonical: 'https://kits.agentii.ai',
     types: {
-      'application/rss+xml': 'https://agentii.ai/feed.xml',
+      'application/rss+xml': 'https://kits.agentii.ai/feed.xml',
     },
   },
   icons: {

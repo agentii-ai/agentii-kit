@@ -1,4 +1,4 @@
-const VERCEL_URL = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://agentii.ai'
+const VERCEL_URL = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://kits.agentii.ai'
 
 export default {
   logo: (
@@ -54,8 +54,8 @@ export default {
       <link rel="icon" href="/favicon.ico" />
       <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-      {/* Analytics - Plausible */}
-      <script defer data-domain="agentii.ai" src="https://plausible.io/js/script.js"></script>
+      {/* Analytics - Plausible (blog runs on kits.agentii.ai) */}
+      <script defer data-domain="kits.agentii.ai" src="https://plausible.io/js/script.js"></script>
 
       {/* Vercel Web Analytics */}
       <script defer src="https://cdn.vercel-analytics.com/v1/web.js"></script>

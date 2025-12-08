@@ -6,7 +6,7 @@ import { getAllBlogPosts } from '@/lib/content/blog-loader'
  * Includes core static pages and all published blog posts
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://agentii.ai'
+  const baseUrl = 'https://kits.agentii.ai'
 
   const staticRoutes: MetadataRoute.Sitemap = [
     '',

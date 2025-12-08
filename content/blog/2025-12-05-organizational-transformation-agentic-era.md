@@ -98,7 +98,7 @@ Organizations that delay transformation aren't just missing efficiency gains—t
 
 ## Implementation Roadmap: The 24-Month Transformation
 
-[Organizations that embed AI initiatives into broader transformation agendas](https://www.bcg.com/publications/2025/how-finance-leaders-can-get-roi-from-ai) show 7 percentage points higher probability of success compared to isolated pilots.[^24] The roadmap below reflects best practices from successful enterprise transformations:
+[Organizations that embed AI initiatives into broader transformation agendas](https://www.bcg.com/publications/2025/how-finance-leaders-can-get-roi-from-ai) show 7 percentage points higher probability of success compared to isolated pilots.[^24] The roadmap below reflects best practices from successful enterprise transformations. For a cross-functional view of how spec-driven workflows show up in product, content, and marketing execution, see **[Three Domains, One Method](/blog/posts/three-kits-one-method/)** as a companion piece to this leadership roadmap.
 
 ![24-month organizational transformation roadmap showing Foundation, Scaling, Integration, and Leadership phases with growing agent counts and productivity gains](/images/blog/organizational-transformation/illustrator4.jpg)
 

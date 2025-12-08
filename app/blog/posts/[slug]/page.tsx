@@ -110,7 +110,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         dateModified={post.frontmatter.updated_at}
         authorName={post.frontmatter.author}
         imageUrl={post.frontmatter.cover || post.frontmatter.og_image}
-        url={`https://agentii.ai/blog/posts/${params.slug}`}
+        url={`https://kits.agentii.ai/blog/posts/${params.slug}`}
         keywords={post.frontmatter.keywords || []}
         articleBody={post.content}
       />
