@@ -33,18 +33,18 @@
 
 ### Infrastructure & Hosting (Days 1-5)
 
-- [ ] **T001** [P] **Create GitHub repository** for blog: `github.com/agentii-ai/blog` (Next.js + MDX template)
+- [x] **T001** [P] **Create GitHub repository** for blog: `github.com/agentii-ai/blog` (Next.js + MDX template)
   - Initialize repo with blog structure (content/posts, src, public, config files)
   - Add CONTRIBUTING.md and README.md
   - Set up branch protection on main (require PR reviews)
 
-- [ ] **T002** [P] **Deploy Next.js blog to Vercel**
+- [x] **T002** [P] **Deploy Next.js blog to Vercel**
   - Connect GitHub repo to Vercel project
   - Configure auto-deploy on main branch merge
   - Set up preview deployments for PRs
   - Verify homepage and blog structure loads correctly
 
-- [ ] **T003** [P] **Configure custom domain** (blog.agentii.ai or agentii.ai/blog)
+- [x] **T003** [P] **Configure custom domain** (blog.agentii.ai or agentii.ai/blog)
   - DNS setup (point domain to Vercel)
   - SSL certificate auto-renewal
   - Set up redirects if needed
@@ -72,7 +72,7 @@
   - Test newsletter signup form
   - Create welcome sequence (1-2 emails for new subscribers)
 
-- [ ] **T007** **Test full deployment pipeline**
+- [x] **T007** **Test full deployment pipeline**
   - Create test post in content/posts/
   - Run `npm run dev` locally and verify rendering
   - Commit to PR branch

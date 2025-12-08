@@ -1,0 +1,39 @@
+name: SEO & Content Validation
+
+on:
+  pull_request:
+    paths:
+      - 'content/blog/**'
+      - 'lib/**'
+      - 'scripts/**'
+  push:
+    branches:
+      - main
+    paths:
+      - 'content/blog/**'
+      - 'lib/**'
+      - 'scripts/**'
+
+jobs:
+  validate-seo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate frontmatter
+        run: npm run validate-frontmatter
+
+      - name: Check links
+        run: npm run check-links
+
+      # Placeholder: extend with JSON-LD or meta checks if needed

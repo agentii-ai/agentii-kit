@@ -7,12 +7,12 @@ import { ChevronLeft, ChevronRight, Code, Briefcase, Scale, Megaphone, Palette, 
 import { Button } from "./ui/button";
 
 const categories = [
-  { label: "Development", icon: Code, color: "text-emerald-400", bg: "bg-emerald-400/10", border: "border-emerald-400/30", hover: "hover:border-emerald-400/50" },
-  { label: "Product", icon: Briefcase, color: "text-amber-400", bg: "bg-amber-400/10", border: "border-amber-400/30", hover: "hover:border-amber-400/50" },
-  { label: "Marketing", icon: Megaphone, color: "text-pink-400", bg: "bg-pink-400/10", border: "border-pink-400/30", hover: "hover:border-pink-400/50" },
-  { label: "Design", icon: Palette, color: "text-purple-400", bg: "bg-purple-400/10", border: "border-purple-400/30", hover: "hover:border-purple-400/50" },
-  { label: "Legal", icon: Scale, color: "text-sky-400", bg: "bg-sky-400/10", border: "border-sky-400/30", hover: "hover:border-sky-400/50" },
-  { label: "Operations", icon: Zap, color: "text-orange-400", bg: "bg-orange-400/10", border: "border-orange-400/30", hover: "hover:border-orange-400/50" },
+  { label: "Leadership", slug: "leadership", icon: Briefcase, color: "text-amber-400", bg: "bg-amber-400/10", border: "border-amber-400/30", hover: "hover:border-amber-400/50" },
+  { label: "Organizational Transformation", slug: "organizational-transformation", icon: Scale, color: "text-sky-400", bg: "bg-sky-400/10", border: "border-sky-400/30", hover: "hover:border-sky-400/50" },
+  { label: "Agentic AI", slug: "ai-agents", icon: Zap, color: "text-orange-400", bg: "bg-orange-400/10", border: "border-orange-400/30", hover: "hover:border-orange-400/50" },
+  { label: "Spec-Driven Development", slug: "spec-driven-development", icon: Code, color: "text-emerald-400", bg: "bg-emerald-400/10", border: "border-emerald-400/30", hover: "hover:border-emerald-400/50" },
+  { label: "Workflow Automation", slug: "business-process", icon: Megaphone, color: "text-pink-400", bg: "bg-pink-400/10", border: "border-pink-400/30", hover: "hover:border-pink-400/50" },
+  { label: "Professional Tools", slug: "development-tools", icon: Palette, color: "text-purple-400", bg: "bg-purple-400/10", border: "border-purple-400/30", hover: "hover:border-purple-400/50" },
 ];
 
 interface BlogHeroProps {
@@ -229,15 +229,16 @@ export function BlogHero({ featuredArticles = [] }: BlogHeroProps) {
             {categories.map((category) => {
               const Icon = category.icon;
               return (
-                <div
+                <Link
                   key={category.label}
+                  href={`/blog?tag=${category.slug}`}
                   className={`group bg-card border rounded-lg p-4 text-center transition-all cursor-pointer ${category.border} ${category.hover} hover:shadow-lg`}
                 >
                   <div className={`w-10 h-10 rounded-lg ${category.bg} flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform`}>
                     <Icon className={`h-5 w-5 ${category.color}`} />
                   </div>
                   <p className="text-sm font-medium text-foreground">{category.label}</p>
-                </div>
+                </Link>
               );
             })}
           </div>
